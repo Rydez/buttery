@@ -1,0 +1,52 @@
+
+{% load static %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'appointments/appointments.css' %}" />
+<script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'appointments/appointments.js' %}"></script>
+<html>
+<head>
+  <title>
+    Buttery Automotive Finishes
+  </title>
+</head>
+<body onload="initialize();">
+<h1>Buttery!</h1>
+<h3>Automotive Finishes</h3>
+<br>
+<br>
+<div id="packages">
+  <h4>Packages:</h4>
+  <br>
+  <p>Package 1: jalksdjflaksjdflkasjdflkajsdf</p>
+  <br>
+  <p>Package 2: jalksdjflaksjdflkasjdflkajsdf</p>
+  <br>
+  <p>Package 3: jalksdjflaksjdflkasjdflkajsdf</p>
+  <br>
+  <br>
+</div>
+
+<div id="appointment-creation">
+  <h4 id="creation-header">Make an Appointment:</h4>
+  <h4 id="review-header" class="hidden">Review Appointment:</h4>
+  <h4 id="edit-header" class="hidden">Edit Appointment:</h4>
+  <form id="appointment-form" action="" method="POST">
+    <ul id="form-errors"></ul>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="button" id="review-appointment">Review</button>
+    <button type="button" id="edit-appointment" class="hidden">Edit</button>
+    <button type="submit" id="submit-appointment" class="hidden">Submit</button>
+  </form>
+</div>
+
+<div id="appointment-receipt" class="hidden">
+  <h4>Thank you for making an appointment!</h4>
+  <p>--Further instructions here--</p>
+  <button type="button" id="back-to-home">Home</button>
+</div>
+
+<!-- <pre>{% filter force_escape %}{% debug %}{% endfilter %}</pre> -->
+</body>
+</html>
