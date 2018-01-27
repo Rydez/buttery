@@ -34,7 +34,18 @@
   <form id="appointment-form" action="" method="POST">
     <ul id="form-errors"></ul>
     {% csrf_token %}
-    {{ form.as_p }}
+    {% for field in form %}
+      {% if field.name != 'appointment_date' %}
+        <p>
+          <label>
+            {{ field.label }}:
+          </label>
+          {{ field }}
+        </p>
+      {% else %}
+
+      {% endif %}
+    {% endfor %}
     <button type="button" id="review-appointment">Review</button>
     <button type="button" id="edit-appointment" class="hidden">Edit</button>
     <button type="submit" id="submit-appointment" class="hidden">Submit</button>
@@ -47,6 +58,6 @@
   <button type="button" id="back-to-home">Home</button>
 </div>
 
-<!-- <pre>{% filter force_escape %}{% debug %}{% endfilter %}</pre> -->
+{% comment %} <pre>{% filter force_escape %}{% debug %}{% endfilter %}</pre> {% endcomment %}
 </body>
 </html>

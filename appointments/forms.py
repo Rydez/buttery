@@ -14,8 +14,8 @@ class AppointmentForm(ModelForm):
       'city',
       'address',
       'zip_code',
-      'package_number',
-      'appointment_date',
+      # 'package_number',
+      # 'appointment_date',
     ]
     error_messages = {
       'phone_number': {

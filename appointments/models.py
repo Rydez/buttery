@@ -3,6 +3,25 @@ from datetime import datetime
 from django.db import models
 from django.core.validators import RegexValidator
 
+
+class Package(models.Model):
+  name = models.CharField(max_length=200)
+  description = models.TextField()
+  price = models.PositiveIntegerField()
+  minutes = models.PositiveIntegerField()
+  creation_date = models.DateTimeField(default=datetime.now, blank=True)
+
+class Availability(models.Model):
+  date = models.DateTimeField()
+  minutes_available = models.PositiveIntegerField()
+  minutes_remaining = models.PositiveIntegerField()
+  creation_date = models.DateTimeField(default=datetime.now, blank=True)
+
+class AvailabilityCheck(models.Model):
+  ip_address = models.GenericIPAddressField()
+  package = models.ForeignKey(Package)
+  creation_date = models.DateTimeField(default=datetime.now, blank=True)
+
 class Appointment(models.Model):
   first_name = models.CharField(max_length=100)
   last_name = models.CharField(max_length=100)
@@ -12,8 +31,7 @@ class Appointment(models.Model):
   city = models.CharField(max_length=100)
   address = models.CharField(max_length=100)
   zip_code = models.PositiveIntegerField()
+  package = models.ForeignKey(Package, on_delete=models.PROTECT, null=True) # This should not be nullable
+  availability = models.ForeignKey(Availability, on_delete=models.PROTECT, null=True) # This should not be nullable
   validated = models.BooleanField(default=False, blank=True)
-  package_number = models.PositiveSmallIntegerField()
   creation_date = models.DateTimeField(default=datetime.now, blank=True)
-  appointment_date = models.DateTimeField()
-
