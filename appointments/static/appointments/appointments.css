@@ -1,3 +1,7 @@
 .hidden {
   display: none;
 }
+
+.package-description {
+  width: 700px
+}

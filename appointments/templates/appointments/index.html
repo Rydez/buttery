@@ -18,12 +18,11 @@
 <div id="packages">
   <h4>Packages:</h4>
   <br>
-  <p>Package 1: jalksdjflaksjdflkasjdflkajsdf</p>
-  <br>
-  <p>Package 2: jalksdjflaksjdflkasjdflkajsdf</p>
-  <br>
-  <p>Package 3: jalksdjflaksjdflkasjdflkajsdf</p>
-  <br>
+  {% for package in package_list %}
+    <h5>{{ package.name }}</h5>
+    <p class="package-description">{{ package.description }}</p>
+    <br>
+  {% endfor %}
   <br>
 </div>
 
@@ -35,15 +34,31 @@
     <ul id="form-errors"></ul>
     {% csrf_token %}
     {% for field in form %}
-      {% if field.name != 'appointment_date' %}
+      {% if field.name == 'package' %}
+        {% for package in package_list %}
+          <p>
+            <label>
+              <input type="radio" name="package_radio" value="{{ package.id }}">
+              {{ field.label }} {{ package.id }}
+            </label>
+          </p>
+        {% endfor %}
+      {% elif field.name == 'availability' %}
+        <p>
+          <label>
+            {{ field.label }}:
+          </label>
+          <div id="{{ field.name }}">
+            <!-- Availability buttons go here -->
+          </div>
+        </p>
+      {% else %}
         <p>
           <label>
             {{ field.label }}:
           </label>
           {{ field }}
         </p>
-      {% else %}
-
       {% endif %}
     {% endfor %}
     <button type="button" id="review-appointment">Review</button>
