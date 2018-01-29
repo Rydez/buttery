@@ -125,3 +125,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.0.8', '192.168.1.179']
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

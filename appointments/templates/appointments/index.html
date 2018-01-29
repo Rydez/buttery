@@ -38,16 +38,16 @@
         {% for package in package_list %}
           <p>
             <label>
-              <input type="radio" name="package_radio" value="{{ package.id }}">
+              <input type="radio" name="package" value="{{ package.id }}">
               {{ field.label }} {{ package.id }}
             </label>
           </p>
         {% endfor %}
       {% elif field.name == 'availability' %}
         <p>
-          <label>
-            {{ field.label }}:
-          </label>
+          <button type="button" id="show-availabilities">
+            Show Availabilities
+          </button>
           <div id="{{ field.name }}">
             <!-- Availability buttons go here -->
           </div>

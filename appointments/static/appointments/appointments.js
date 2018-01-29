@@ -1,4 +1,38 @@
 function initialize() {
+
+  function get_cookie(name) {
+    let cookie_value = null;
+    if (document.cookie && document.cookie != '') {
+      const cookies = document.cookie.split(';');
+      for (let cookie of cookies) {
+        cookie = jQuery.trim(cookie);
+
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+          cookie_value = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookie_value;
+  }
+
+  const csrftoken = get_cookie('csrftoken');
+
+  function csrfSafeMethod(method) {
+
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
+
+  $.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+      if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      }
+    }
+  });
+
   const reviewButton = document.getElementById('review-appointment');
   reviewButton.onclick = reviewAppointment;
 
@@ -45,13 +79,36 @@ function initialize() {
     return false;
   });
 
+  // Initialize availabilities as hidden
+  $('#availability').hide();
+
+  // Show availabilities handler
+  $('#show-availabilities').click(function() {
+    $(this).hide();
+    $('#availability').show();
+
+    // Create an availability check
+    const package_id = $('input[name=package]:checked').val();
+    $.ajax({
+      type: 'POST',
+      url: '/availability_check/',
+      data: {package_id},
+      error: function(response) {
+        console.log(response);
+      }
+    });
+
+    // Scroll to bottom
+    $("html, body").scrollTop($(document).height());
+  });
+
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  let firstSelection = true;
 
   // Package selection handler
-  $('input[name=package_radio]').change(function() {
+  $('input[name=package]').change(function() {
 
-    const package_id = $('input[name=package_radio]:checked').val();
-    console.log(package_id)
+    const package_id = $('input[name=package]:checked').val();
     $.ajax({
       type: 'GET',
       url: '/package_availabilities/',
@@ -107,16 +164,26 @@ function initialize() {
           // Always append the date
           const [dateInput] = $('<input/>', {
             type: 'radio',
-            value: dateString,
-            name: 'dates'
+            value: availability.pk,
+            name: 'availability'
           });
 
           dateLabel.append(dateInput)
           dates.append(dateLabel);
         }
 
+        // Scroll to bottom on all but the initial selection
+        if (!firstSelection) {
+          $("html, body").scrollTop($(document).height());
+        }
+
+        firstSelection = false;
+
+        // Put the check availabilities button back
+        $('#show-availabilities').show();
+        $('#availability').hide();
+
         // Create event listener for inputs
-        console.log($('input[name=months]'))
         $('input[name=months]').change(function() {
 
           // First, hide all showing dates
@@ -126,6 +193,9 @@ function initialize() {
 
             // Show the one which was just checked
             $(`#${month}-dates`).show();
+
+            // Scroll to bottom
+            $("html, body").scrollTop($(document).height());
           }
         });
       },
@@ -135,7 +205,11 @@ function initialize() {
     });
   });
 
-  $('input[name=package_radio]:first').attr('checked', true);
+  // Select the first package
+  $('input[name=package]:first').attr('checked', true);
+
+  // Trigger a change on the selected package
+  $('input[name=package]:first').change();
 }
 
 function reviewAppointment(event) {

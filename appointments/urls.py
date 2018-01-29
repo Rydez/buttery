@@ -6,4 +6,5 @@ app_name = 'appointments'
 urlpatterns = [
   url(r'^$', views.AppointmentView.as_view(), name='index'),
   url(r'^package_availabilities/$', views.AppointmentView.package_availabilities, name='package_availabilities'),
+  url(r'^availability_check/$', views.AppointmentView.availability_check, name='availability_check'),
 ]
