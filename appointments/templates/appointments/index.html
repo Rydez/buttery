@@ -11,66 +11,86 @@
   </title>
 </head>
 <body onload="initialize();">
-<h1>Buttery!</h1>
-<h3>Automotive Finishes</h3>
-<br>
-<br>
-<div id="packages">
-  <h4>Packages:</h4>
+<div id="background-car"></div>
+<div id="middleground-page"></div>
+<div id="foreground-car"></div>
+<div id="content">
+  <div id="logo"></div>
+  <div id="navigation">
+    <ul>
+      <li>
+        <input type="radio" name="navigation" id="home-radio" value="home-radio" checked>
+        <label for="home-radio" id="home-label">Home</label>
+      </li>
+      <li>
+        <input type="radio" name="navigation" id="packages-radio" value="packages-radio">
+        <label for="packages-radio" id="packages-label">Packages</label>
+      </li>
+      <li>
+        <input type="radio" name="navigation" id="appointments-radio" value="appointments-radio">
+        <label for="appointments-radio" id="appointments-label">Appointments</label>
+      </li>
+    </ul>
+  </div>
   <br>
-  {% for package in package_list %}
-    <h5>{{ package.name }}</h5>
-    <p class="package-description">{{ package.description }}</p>
+  <br>
+  <div id="packages">
+    <h1>Packages:</h1>
     <br>
-  {% endfor %}
-  <br>
-</div>
+    {% for package in package_list %}
+      <h2>{{ package.name }}</h2>
+      <p class="package-description">{{ package.description }}</p>
+      <br>
+    {% endfor %}
+    <br>
+  </div>
 
-<div id="appointment-creation">
-  <h4 id="creation-header">Make an Appointment:</h4>
-  <h4 id="review-header" class="hidden">Review Appointment:</h4>
-  <h4 id="edit-header" class="hidden">Edit Appointment:</h4>
-  <form id="appointment-form" action="" method="POST">
-    <ul id="form-errors"></ul>
-    {% csrf_token %}
-    {% for field in form %}
-      {% if field.name == 'package' %}
-        {% for package in package_list %}
+  <div id="appointment-creation">
+    <h1 id="creation-header">Make an Appointment:</h1>
+    <h1 id="review-header" class="hidden">Review Appointment:</h1>
+    <h1 id="edit-header" class="hidden">Edit Appointment:</h1>
+    <form id="appointment-form" action="" method="POST">
+      <ul id="form-errors"></ul>
+      {% csrf_token %}
+      {% for field in form %}
+        {% if field.name == 'package' %}
+          {% for package in package_list %}
+            <p>
+              <label>
+                <input type="radio" name="package" value="{{ package.id }}">
+                {{ field.label }} {{ package.id }}
+              </label>
+            </p>
+          {% endfor %}
+        {% elif field.name == 'availability' %}
+          <p>
+            <button type="button" id="show-availabilities">
+              Show Availabilities
+            </button>
+            <div id="{{ field.name }}">
+              <!-- Availability buttons go here -->
+            </div>
+          </p>
+        {% else %}
           <p>
             <label>
-              <input type="radio" name="package" value="{{ package.id }}">
-              {{ field.label }} {{ package.id }}
+              {{ field.label }}:
             </label>
+            {{ field }}
           </p>
-        {% endfor %}
-      {% elif field.name == 'availability' %}
-        <p>
-          <button type="button" id="show-availabilities">
-            Show Availabilities
-          </button>
-          <div id="{{ field.name }}">
-            <!-- Availability buttons go here -->
-          </div>
-        </p>
-      {% else %}
-        <p>
-          <label>
-            {{ field.label }}:
-          </label>
-          {{ field }}
-        </p>
-      {% endif %}
-    {% endfor %}
-    <button type="button" id="review-appointment">Review</button>
-    <button type="button" id="edit-appointment" class="hidden">Edit</button>
-    <button type="submit" id="submit-appointment" class="hidden">Submit</button>
-  </form>
-</div>
+        {% endif %}
+      {% endfor %}
+      <button type="button" id="review-appointment">Review</button>
+      <button type="button" id="edit-appointment" class="hidden">Edit</button>
+      <button type="submit" id="submit-appointment" class="hidden">Submit</button>
+    </form>
+  </div>
 
-<div id="appointment-receipt" class="hidden">
-  <h4>Thank you for making an appointment!</h4>
-  <p>--Further instructions here--</p>
-  <button type="button" id="back-to-home">Home</button>
+  <div id="appointment-receipt" class="hidden">
+    <h1>Thank you for making an appointment!</h1>
+    <p>--Further instructions here--</p>
+    <button type="button" id="back-to-home">Home</button>
+  </div>
 </div>
 
 {% comment %} <pre>{% filter force_escape %}{% debug %}{% endfilter %}</pre> {% endcomment %}

@@ -1,3 +1,113 @@
+body {
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  background: #000000;
+}
+
+h1, h2, p {
+  color: #F3E2B0;
+}
+
+#background-car {
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  left: 25px;
+  right: 0;
+  bottom: -125px;
+  z-index: 100;
+  width: 1950px;
+  height: calc(0.63405797101 * 1950px);
+  background-position: 50% 50%;
+  background-size: cover;
+  background-image: url('../../../static/images/background_car.png');
+}
+
+#foreground-car {
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  left: 25px;
+  right: 0;
+  bottom: -125px;
+  z-index: 400;
+  width: 1950px;
+  height: calc(0.27053140096 * 1950px);
+  background-position: 50% 50%;
+  background-size: cover;
+  background-image: url('../../../static/images/foreground_car_cropped.png');
+}
+
+#middleground-page {
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  top: 20px;
+  left: 0;
+  right: 0;
+  width: 850px;
+  height: 100%;
+  padding: 0px 50px;
+  background: #182126;
+  z-index: 200;
+  border-radius: 10px;
+}
+
+#content {
+  position: relative;
+  padding: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: 850px;
+  height: 100%;
+  z-index: 300;
+}
+
+#logo {
+  display: inline-block;
+  position: relative;
+  margin-left: 20px;
+
+  /* For Centering the logo (trash) */
+  /* margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0; */
+
+  /* width: 386px;
+  height: calc(0.48963730569 * 386px);
+  background-image: url('../../../static/images/logo_short_tagline.png'); */
+
+  width: 476px;
+  height: calc(0.39495798319 * 476px);
+  background-image: url('../../../static/images/logo_long_tagline.png');
+
+  background-repeat: no-repeat;
+}
+
+/* Nav container */
+#navigation {
+  display: inline-block;
+}
+
+/* Nav radio button when not selected or pressed */
+#navigation input[type="radio"]+label {
+
+}
+
+/* Nav radio button label when pressed */
+#navigation #navigation-label:active {
+
+}
+
+/* Nav radio button label when selected */
+#navigation input[type="radio"]:checked+label {
+
+}
+
 .hidden {
   display: none;
 }
@@ -5,3 +115,4 @@
 .package-description {
   width: 700px
 }
+
