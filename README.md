@@ -1,2 +1,2 @@
-# buttery
-buttery website
+# first django project
+a website.
