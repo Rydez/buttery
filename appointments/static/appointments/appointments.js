@@ -1,5 +1,6 @@
 function initialize() {
 
+  // Cookie handling stuff
   function get_cookie(name) {
     let cookie_value = null;
     if (document.cookie && document.cookie != '') {
@@ -33,6 +34,25 @@ function initialize() {
     }
   });
 
+  // Navigation click handlers
+  $('.navigation-button').click(function() {
+    $('.navigation-button').removeClass('selected');
+    const clickedButton = $(this);
+    clickedButton.addClass('selected');
+
+    $('.section').hide();
+    const [clickedEl] = clickedButton;
+    if (clickedEl.id === 'home-button') {
+      $('#home-section').show();
+    }
+    else if (clickedEl.id === 'packages-button') {
+      $('#packages-section').show();
+    }
+    else if (clickedEl.id === 'appointments-button') {
+      $('#appointment-section').show();
+    }
+  });
+
   const reviewButton = document.getElementById('review-appointment');
   reviewButton.onclick = reviewAppointment;
 
@@ -55,7 +75,7 @@ function initialize() {
       url: '/',
       data: formData,
       success: function() {
-        $('#appointment-creation').hide();
+        $('#appointment-section').hide();
         $('#appointment-receipt').show();
       },
       error: function(response) {

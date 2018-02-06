@@ -15,37 +15,52 @@
 <div id="middleground-page"></div>
 <div id="foreground-car"></div>
 <div id="content">
-  <div id="logo"></div>
-  <div id="navigation">
-    <ul>
-      <li>
-        <input type="radio" name="navigation" id="home-radio" value="home-radio" checked>
-        <label for="home-radio" id="home-label">Home</label>
-      </li>
-      <li>
-        <input type="radio" name="navigation" id="packages-radio" value="packages-radio">
-        <label for="packages-radio" id="packages-label">Packages</label>
-      </li>
-      <li>
-        <input type="radio" name="navigation" id="appointments-radio" value="appointments-radio">
-        <label for="appointments-radio" id="appointments-label">Appointments</label>
-      </li>
-    </ul>
+  <div id="header">
+    <div id="logo"></div>
+    <div id="navigation">
+      <ul id="navigation-ul">
+        <li class="navigation-li">
+          <button id="home-button" class="navigation-button selected">
+            Home
+          </button>
+        </li>
+        <li class="navigation-li">
+          <button id="packages-button" class="navigation-button">
+            Packages
+          </button>
+        </li>
+        <li class="navigation-li">
+          <button id="appointments-button" class="navigation-button">
+            Appointments
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
-  <br>
-  <br>
-  <div id="packages">
-    <h1>Packages:</h1>
-    <br>
+  <div id="home-section" class="section">
+    <h1>What</h1>
+    <p>
+      kasdjfl jasdkfjasdlkfj asldj k;falskd jfalskj dfslk djfalksjd
+      akls dflasj dflkjasdfjasdkl fjakls jdfalksjdf aksjdf asjdf ;alskdjf
+      a lskdfjlaks jdflkajs dfoinwoimc w em c mc ljwoec
+    </p>
+    <h1>Why</h1>
+    <p>
+      kasdjfl jasdkfjasdlkfj asldj k;falskd jfalskj dfslk djfalksjd
+      akls dflasj dflkjasdfjasdkl fjakls jdfalksjdf aksjdf asjdf ;alskdjf
+      a lskdfjlaks jdflkajs dfoinwoimc w em c mc ljwoec  dfioje wmcklw ecw
+      w ecweic mwoiemcwoiemcow  mcsdcskjcx,cljclqjiqwqw
+      qwd qwqlkwmxqlkwmxl qwmoi qwxioqwoiqjwoixjqow
+    </p>
+  </div>
+  <div id="packages-section" class="section hidden">
     {% for package in package_list %}
-      <h2>{{ package.name }}</h2>
+      <h1>{{ package.name }}</h1>
       <p class="package-description">{{ package.description }}</p>
-      <br>
     {% endfor %}
-    <br>
   </div>
 
-  <div id="appointment-creation">
+  <div id="appointment-section" class="section hidden">
     <h1 id="creation-header">Make an Appointment:</h1>
     <h1 id="review-header" class="hidden">Review Appointment:</h1>
     <h1 id="edit-header" class="hidden">Edit Appointment:</h1>

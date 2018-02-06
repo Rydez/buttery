@@ -69,7 +69,6 @@ h1, h2, p {
 #logo {
   display: inline-block;
   position: relative;
-  margin-left: 20px;
 
   /* For Centering the logo (trash) */
   /* margin-left: auto;
@@ -81,31 +80,62 @@ h1, h2, p {
   height: calc(0.48963730569 * 386px);
   background-image: url('../../../static/images/logo_short_tagline.png'); */
 
-  width: 476px;
-  height: calc(0.39495798319 * 476px);
+  width: 410px;
+  height: calc(0.39495798319 * 410px);
   background-image: url('../../../static/images/logo_long_tagline.png');
-
+  background-position: 50% 50%;
+  background-size: cover;
   background-repeat: no-repeat;
+}
+
+/* logo and navigation */
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Nav container */
 #navigation {
   display: inline-block;
+  margin-left: auto;
+
 }
 
-/* Nav radio button when not selected or pressed */
-#navigation input[type="radio"]+label {
+#navigation #navigation-ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
 
+#navigation #navigation-ul .navigation-li {
+  display: flex;
+}
+
+#navigation #navigation-ul .navigation-li button {
+  margin: 5px;
+  width: 180px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #F3E2B0;
+  opacity: 0.2;
+  color: #182126;
+  border: none;
+}
+
+#navigation #navigation-ul .navigation-li button:focus {
+  outline: none;
+}
+
+#navigation #navigation-ul .navigation-li button:active {
+  opacity: 1;
 }
 
 /* Nav radio button label when pressed */
-#navigation #navigation-label:active {
-
-}
-
-/* Nav radio button label when selected */
-#navigation input[type="radio"]:checked+label {
-
+#navigation #navigation-ul .navigation-li .selected {
+  background-color: #F3E2B0;
+  opacity: 0.8;
 }
 
 .hidden {
