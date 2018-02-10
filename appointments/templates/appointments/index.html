@@ -1,6 +1,7 @@
 
 {% load static %}
 {% load staticfiles %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="{% static 'appointments/appointments.css' %}" />
 <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'appointments/appointments.js' %}"></script>
@@ -11,100 +12,102 @@
   </title>
 </head>
 <body onload="initialize();">
-<div id="background-car"></div>
-<div id="middleground-page"></div>
-<div id="foreground-car"></div>
-<div id="content">
-  <div id="header">
-    <div id="logo"></div>
-    <div id="navigation">
-      <ul id="navigation-ul">
-        <li class="navigation-li">
-          <button id="home-button" class="navigation-button selected">
-            Home
-          </button>
-        </li>
-        <li class="navigation-li">
-          <button id="packages-button" class="navigation-button">
-            Packages
-          </button>
-        </li>
-        <li class="navigation-li">
-          <button id="appointments-button" class="navigation-button">
-            Appointments
-          </button>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div id="home-section" class="section">
-    <h1>What</h1>
-    <p>
-      kasdjfl jasdkfjasdlkfj asldj k;falskd jfalskj dfslk djfalksjd
-      akls dflasj dflkjasdfjasdkl fjakls jdfalksjdf aksjdf asjdf ;alskdjf
-      a lskdfjlaks jdflkajs dfoinwoimc w em c mc ljwoec
-    </p>
-    <h1>Why</h1>
-    <p>
-      kasdjfl jasdkfjasdlkfj asldj k;falskd jfalskj dfslk djfalksjd
-      akls dflasj dflkjasdfjasdkl fjakls jdfalksjdf aksjdf asjdf ;alskdjf
-      a lskdfjlaks jdflkajs dfoinwoimc w em c mc ljwoec  dfioje wmcklw ecw
-      w ecweic mwoiemcwoiemcow  mcsdcskjcx,cljclqjiqwqw
-      qwd qwqlkwmxqlkwmxl qwmoi qwxioqwoiqjwoixjqow
-    </p>
-  </div>
-  <div id="packages-section" class="section hidden">
-    {% for package in package_list %}
-      <h1>{{ package.name }}</h1>
-      <p class="package-description">{{ package.description }}</p>
-    {% endfor %}
-  </div>
-
-  <div id="appointment-section" class="section hidden">
-    <h1 id="creation-header">Make an Appointment:</h1>
-    <h1 id="review-header" class="hidden">Review Appointment:</h1>
-    <h1 id="edit-header" class="hidden">Edit Appointment:</h1>
-    <form id="appointment-form" action="" method="POST">
-      <ul id="form-errors"></ul>
-      {% csrf_token %}
-      {% for field in form %}
-        {% if field.name == 'package' %}
-          {% for package in package_list %}
-            <p>
-              <label>
-                <input type="radio" name="package" value="{{ package.id }}">
-                {{ field.label }} {{ package.id }}
-              </label>
-            </p>
-          {% endfor %}
-        {% elif field.name == 'availability' %}
-          <p>
-            <button type="button" id="show-availabilities">
-              Show Availabilities
+<div id="container">
+  <div id="content">
+    <div id="header">
+      <img id="logo" src="../../../static/images/logo_long_tagline.png">
+      <div id="navigation">
+        <ul id="navigation-ul">
+          <li class="navigation-li">
+            <button id="home-button" class="navigation-button selected">
+              Home
             </button>
-            <div id="{{ field.name }}">
-              <!-- Availability buttons go here -->
-            </div>
-          </p>
-        {% else %}
-          <p>
-            <label>
-              {{ field.label }}:
-            </label>
-            {{ field }}
-          </p>
-        {% endif %}
-      {% endfor %}
-      <button type="button" id="review-appointment">Review</button>
-      <button type="button" id="edit-appointment" class="hidden">Edit</button>
-      <button type="submit" id="submit-appointment" class="hidden">Submit</button>
-    </form>
-  </div>
+          </li>
+          <li class="navigation-li">
+            <button id="packages-button" class="navigation-button">
+              Packages
+            </button>
+          </li>
+          <li class="navigation-li">
+            <button id="appointments-button" class="navigation-button">
+              Appointments
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="body">
+      <div id="home-section" class="section">
+        <h1>What</h1>
+        <p>
+          kasdjfl jasdkfjasdlkfj asldj k;falskd jfalskj dfslk djfalksjd
+          akls dflasj dflkjasdfjasdkl fjakls jdfalksjdf aksjdf asjdf ;alskdjf
+          a lskdfjlaks jdflkajs dfoinwoimc w em c mc ljwoec
+        </p>
+        <h1>Why</h1>
+        <p>
+          kasdjfl jasdkfjasdlkfj asldj k;falskd jfalskj dfslk djfalksjd
+          akls dflasj dflkjasdfjasdkl fjakls jdfalksjdf aksjdf asjdf ;alskdjf
+          a lskdfjlaks jdflkajs dfoinwoimc w em c mc ljwoec  dfioje wmcklw ecw
+          w ecweic mwoiemcwoiemcow  mcsdcskjcx,cljclqjiqwqw
+          qwd qwqlkwmxqlkwmxl qwmoi qwxioqwoiqjwoixjqow
+        </p>
+      </div>
+      <div id="packages-section" class="section hidden">
+        {% for package in package_list %}
+          <h1>{{ package.name }}</h1>
+          <p class="package-description">{{ package.description }}</p>
+        {% endfor %}
+      </div>
 
-  <div id="appointment-receipt" class="hidden">
-    <h1>Thank you for making an appointment!</h1>
-    <p>--Further instructions here--</p>
-    <button type="button" id="back-to-home">Home</button>
+      <div id="appointment-section" class="section hidden">
+        <h1 id="creation-header">Make an Appointment:</h1>
+        <h1 id="review-header" class="hidden">Review Appointment:</h1>
+        <h1 id="edit-header" class="hidden">Edit Appointment:</h1>
+        <form id="appointment-form" action="" method="POST">
+          <ul id="form-errors"></ul>
+          {% csrf_token %}
+          {% for field in form %}
+            {% if field.name == 'package' %}
+              {% for package in package_list %}
+                <p>
+                  <label>
+                    <input type="radio" name="package" value="{{ package.id }}">
+                    {{ field.label }} {{ package.id }}
+                  </label>
+                </p>
+              {% endfor %}
+            {% elif field.name == 'availability' %}
+              <p>
+                <button type="button" id="show-availabilities">
+                  Show Availabilities
+                </button>
+                <div id="{{ field.name }}">
+                  <!-- Availability buttons go here -->
+                </div>
+              </p>
+            {% else %}
+              <p>
+                <label>
+                  {{ field.label }}:
+                </label>
+                {{ field }}
+              </p>
+            {% endif %}
+          {% endfor %}
+          <button type="button" id="review-appointment">Review</button>
+          <button type="button" id="edit-appointment" class="hidden">Edit</button>
+          <button type="submit" id="submit-appointment" class="hidden">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="appointment-receipt" class="hidden">
+      <h1>Thank you for making an appointment!</h1>
+      <p>--Further instructions here--</p>
+      <button type="button" id="back-to-home">Home</button>
+    </div>
+    <img id="foreground-car" src="../../../static/images/foreground_car_cropped.png">
   </div>
 </div>
 

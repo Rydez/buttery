@@ -2,90 +2,91 @@ body {
   z-index: 0;
   margin: 0;
   padding: 0;
-  background: #000000;
+  background: #F3E2B0;
+  font-size: 16px;
 }
 
 h1, h2, p {
   color: #F3E2B0;
 }
 
-#background-car {
-  position: fixed;
-  margin-left: auto;
-  margin-right: auto;
-  left: 25px;
-  right: 0;
-  bottom: -125px;
-  z-index: 100;
-  width: 1950px;
-  height: calc(0.63405797101 * 1950px);
-  background-position: 50% 50%;
-  background-size: cover;
-  background-image: url('../../../static/images/background_car.png');
+h1, h2 {
+  font-size: 150%;
+}
+
+p {
+  font-size: 100%;
+}
+
+button {
+  font-size: 100%;
 }
 
 #foreground-car {
-  position: fixed;
-  margin-left: auto;
-  margin-right: auto;
-  left: 25px;
-  right: 0;
-  bottom: -125px;
-  z-index: 400;
-  width: 1950px;
-  height: calc(0.27053140096 * 1950px);
-  background-position: 50% 50%;
-  background-size: cover;
-  background-image: url('../../../static/images/foreground_car_cropped.png');
+  position: absolute;
+  margin-left: -20px;
+  bottom: 0;
+  z-index: 300;
+  width: 110%;
+  max-width: 1000px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7) 60%);
 }
 
-#middleground-page {
-  position: fixed;
+#container {
   margin-left: auto;
   margin-right: auto;
-  top: 20px;
-  left: 0;
-  right: 0;
-  width: 850px;
-  height: 100%;
-  padding: 0px 50px;
-  background: #182126;
-  z-index: 200;
-  border-radius: 10px;
+  width: 100%;
+  max-width: 1000px;
 }
 
 #content {
+  margin: 15px 15px 15px 15px;
   position: relative;
-  padding: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  width: 850px;
+  overflow: hidden;
+  box-shadow: 0 0 100px #000000;
+  padding: 2%;
+  height: calc(100% - 30px);
+  box-sizing: border-box;
+  background: #182126;
+  border-radius: 15px;
+  z-index: 100;
+}
+
+#body {
   height: 100%;
-  z-index: 300;
+  overflow-y: auto;
+}
+
+#body::-webkit-scrollbar-track {
+	border: 1px solid #F3E2B0;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+#body::-webkit-scrollbar {
+	width: 10px;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+#body::-webkit-scrollbar-thumb {
+  background-color: rgba(243, 226, 176, 0.5);
+}
+
+#body::-webkit-scrollbar-thumb:active {
+  background-color: rgba(243, 226, 176, 1);
+}
+
+.section {
+  /* margin-bottom: calc(100% - 60vh); */
+  margin-bottom: calc(300px - 12vmin);
 }
 
 #logo {
   display: inline-block;
   position: relative;
-
-  /* For Centering the logo (trash) */
-  /* margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0; */
-
-  /* width: 386px;
-  height: calc(0.48963730569 * 386px);
-  background-image: url('../../../static/images/logo_short_tagline.png'); */
-
-  width: 410px;
-  height: calc(0.39495798319 * 410px);
-  background-image: url('../../../static/images/logo_long_tagline.png');
-  background-position: 50% 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
+  width: 50%;
+  max-width: 410px;
+  margin-left: 0px;
+  margin-top: 0px;
 }
 
 /* logo and navigation */
@@ -97,9 +98,10 @@ h1, h2, p {
 
 /* Nav container */
 #navigation {
+  margin-right: -50px;
+  width: 55vw;
   display: inline-block;
   margin-left: auto;
-
 }
 
 #navigation #navigation-ul {
@@ -113,15 +115,25 @@ h1, h2, p {
 }
 
 #navigation #navigation-ul .navigation-li button {
-  margin: 5px;
-  width: 180px;
-  height: 30px;
-  font-size: 16px;
+  margin: 3px 0 3px auto;
+  height: 4%;
+  max-width: 200px;
   font-weight: bold;
   background-color: #F3E2B0;
-  opacity: 0.2;
+  opacity: 0.4;
   color: #182126;
   border: none;
+  text-align: left;
+}
+
+#navigation #navigation-ul .navigation-li:nth-child(1) button {
+  width: 55%;
+}
+#navigation #navigation-ul .navigation-li:nth-child(2) button {
+  width: 75%;
+}
+#navigation #navigation-ul .navigation-li:nth-child(3) button {
+  width: 95%;
 }
 
 #navigation #navigation-ul .navigation-li button:focus {
@@ -134,15 +146,11 @@ h1, h2, p {
 
 /* Nav radio button label when pressed */
 #navigation #navigation-ul .navigation-li .selected {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7) inset;
   background-color: #F3E2B0;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .hidden {
   display: none;
 }
-
-.package-description {
-  width: 700px
-}
-
