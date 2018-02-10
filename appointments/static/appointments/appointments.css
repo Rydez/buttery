@@ -11,6 +11,7 @@ h1, h2, p {
 }
 
 h1, h2 {
+  margin-top: 0;
   font-size: 150%;
 }
 
@@ -29,6 +30,7 @@ button {
   z-index: 300;
   width: 110%;
   max-width: 1000px;
+  pointer-events: none;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.7) 60%);
 }
 
@@ -55,6 +57,9 @@ button {
 #body {
   height: 100%;
   overflow-y: auto;
+
+  /* Neat little thing right here */
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.4) inset; */
 }
 
 #body::-webkit-scrollbar-track {
@@ -76,8 +81,14 @@ button {
 }
 
 .section {
-  /* margin-bottom: calc(100% - 60vh); */
   margin-bottom: calc(300px - 12vmin);
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.02);
+  padding: 10px;
+  margin: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
 #logo {
@@ -87,6 +98,10 @@ button {
   max-width: 410px;
   margin-left: 0px;
   margin-top: 0px;
+
+  /* Neat little thing right here */
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.4) inset;
+  padding: 10px; */
 }
 
 /* logo and navigation */
@@ -94,6 +109,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* box-shadow: 0 0 20px #182126; */
 }
 
 /* Nav container */
@@ -101,7 +117,6 @@ button {
   margin-right: -50px;
   width: 55vw;
   display: inline-block;
-  margin-left: auto;
 }
 
 #navigation #navigation-ul {
@@ -116,14 +131,16 @@ button {
 
 #navigation #navigation-ul .navigation-li button {
   margin: 3px 0 3px auto;
-  height: 4%;
+  height: 5%;
   max-width: 200px;
   font-weight: bold;
-  background-color: #F3E2B0;
+  background-color: #182126;
   opacity: 0.4;
-  color: #182126;
+  color: #F3E2B0;
   border: none;
   text-align: left;
+  padding-left: 10px;
+  cursor: pointer;
 }
 
 #navigation #navigation-ul .navigation-li:nth-child(1) button {
@@ -147,7 +164,7 @@ button {
 /* Nav radio button label when pressed */
 #navigation #navigation-ul .navigation-li .selected {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7) inset;
-  background-color: #F3E2B0;
+  background-color: #182126;
   opacity: 1;
 }
 

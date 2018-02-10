@@ -51,6 +51,8 @@ function initialize() {
     else if (clickedEl.id === 'appointments-button') {
       $('#appointment-section').show();
     }
+
+    return false;
   });
 
   const reviewButton = document.getElementById('review-appointment');

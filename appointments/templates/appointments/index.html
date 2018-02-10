@@ -38,67 +38,75 @@
     </div>
     <div id="body">
       <div id="home-section" class="section">
-        <h1>What</h1>
-        <p>
-          kasdjfl jasdkfjasdlkfj asldj k;falskd jfalskj dfslk djfalksjd
-          akls dflasj dflkjasdfjasdkl fjakls jdfalksjdf aksjdf asjdf ;alskdjf
-          a lskdfjlaks jdflkajs dfoinwoimc w em c mc ljwoec
-        </p>
-        <h1>Why</h1>
-        <p>
-          kasdjfl jasdkfjasdlkfj asldj k;falskd jfalskj dfslk djfalksjd
-          akls dflasj dflkjasdfjasdkl fjakls jdfalksjdf aksjdf asjdf ;alskdjf
-          a lskdfjlaks jdflkajs dfoinwoimc w em c mc ljwoec  dfioje wmcklw ecw
-          w ecweic mwoiemcwoiemcow  mcsdcskjcx,cljclqjiqwqw
-          qwd qwqlkwmxqlkwmxl qwmoi qwxioqwoiqjwoixjqow
-        </p>
+        <div class="card">
+          <h1>What</h1>
+          <p>
+            kasdjfl jasdkfjasdlkfj asldj k;falskd jfalskj dfslk djfalksjd
+            akls dflasj dflkjasdfjasdkl fjakls jdfalksjdf aksjdf asjdf ;alskdjf
+            a lskdfjlaks jdflkajs dfoinwoimc w em c mc ljwoec
+          </p>
+        </div>
+        <div class="card">
+          <h1>Why</h1>
+          <p>
+            kasdjfl jasdkfjasdlkfj asldj k;falskd jfalskj dfslk djfalksjd
+            akls dflasj dflkjasdfjasdkl fjakls jdfalksjdf aksjdf asjdf ;alskdjf
+            a lskdfjlaks jdflkajs dfoinwoimc w em c mc ljwoec  dfioje wmcklw ecw
+            w ecweic mwoiemcwoiemcow  mcsdcskjcx,cljclqjiqwqw
+            qwd qwqlkwmxqlkwmxl qwmoi qwxioqwoiqjwoixjqow
+          </p>
+        </div>
       </div>
       <div id="packages-section" class="section hidden">
         {% for package in package_list %}
-          <h1>{{ package.name }}</h1>
-          <p class="package-description">{{ package.description }}</p>
+          <div class="card">
+            <h1>{{ package.name }}</h1>
+            <p class="package-description">{{ package.description }}</p>
+          </div>
         {% endfor %}
       </div>
 
       <div id="appointment-section" class="section hidden">
-        <h1 id="creation-header">Make an Appointment:</h1>
-        <h1 id="review-header" class="hidden">Review Appointment:</h1>
-        <h1 id="edit-header" class="hidden">Edit Appointment:</h1>
-        <form id="appointment-form" action="" method="POST">
-          <ul id="form-errors"></ul>
-          {% csrf_token %}
-          {% for field in form %}
-            {% if field.name == 'package' %}
-              {% for package in package_list %}
+        <div class="card">
+          <h1 id="creation-header">Make an Appointment:</h1>
+          <h1 id="review-header" class="hidden">Review Appointment:</h1>
+          <h1 id="edit-header" class="hidden">Edit Appointment:</h1>
+          <form id="appointment-form" action="" method="POST">
+            <ul id="form-errors"></ul>
+            {% csrf_token %}
+            {% for field in form %}
+              {% if field.name == 'package' %}
+                {% for package in package_list %}
+                  <p>
+                    <label>
+                      <input type="radio" name="package" value="{{ package.id }}">
+                      {{ field.label }} {{ package.id }}
+                    </label>
+                  </p>
+                {% endfor %}
+              {% elif field.name == 'availability' %}
+                <p>
+                  <button type="button" id="show-availabilities">
+                    Show Availabilities
+                  </button>
+                  <div id="{{ field.name }}">
+                    <!-- Availability buttons go here -->
+                  </div>
+                </p>
+              {% else %}
                 <p>
                   <label>
-                    <input type="radio" name="package" value="{{ package.id }}">
-                    {{ field.label }} {{ package.id }}
+                    {{ field.label }}:
                   </label>
+                  {{ field }}
                 </p>
-              {% endfor %}
-            {% elif field.name == 'availability' %}
-              <p>
-                <button type="button" id="show-availabilities">
-                  Show Availabilities
-                </button>
-                <div id="{{ field.name }}">
-                  <!-- Availability buttons go here -->
-                </div>
-              </p>
-            {% else %}
-              <p>
-                <label>
-                  {{ field.label }}:
-                </label>
-                {{ field }}
-              </p>
-            {% endif %}
-          {% endfor %}
-          <button type="button" id="review-appointment">Review</button>
-          <button type="button" id="edit-appointment" class="hidden">Edit</button>
-          <button type="submit" id="submit-appointment" class="hidden">Submit</button>
-        </form>
+              {% endif %}
+            {% endfor %}
+            <button type="button" id="review-appointment">Review</button>
+            <button type="button" id="edit-appointment" class="hidden">Edit</button>
+            <button type="submit" id="submit-appointment" class="hidden">Submit</button>
+          </form>
+        </div>
       </div>
     </div>
 
