@@ -1,11 +1,11 @@
-function initialize() {
+$(document).ready(function() {
 
   // Cookie handling stuff
   function get_cookie(name) {
-    let cookie_value = null;
+    var cookie_value = null;
     if (document.cookie && document.cookie != '') {
-      const cookies = document.cookie.split(';');
-      for (let cookie of cookies) {
+      var cookies = document.cookie.split(';');
+      for (var cookie of cookies) {
         cookie = jQuery.trim(cookie);
 
         // Does this cookie string begin with the name we want?
@@ -18,7 +18,7 @@ function initialize() {
     return cookie_value;
   }
 
-  const csrftoken = get_cookie('csrftoken');
+  var csrftoken = get_cookie('csrftoken');
 
   function csrfSafeMethod(method) {
 
@@ -34,14 +34,13 @@ function initialize() {
     }
   });
 
-  // Navigation click handlers
   $('.navigation-button').click(function() {
     $('.navigation-button').removeClass('selected');
-    const clickedButton = $(this);
+    var clickedButton = $(this);
     clickedButton.addClass('selected');
 
     $('.section').hide();
-    const [clickedEl] = clickedButton;
+    var [clickedEl] = clickedButton;
     if (clickedEl.id === 'home-button') {
       $('#home-section').show();
     }
@@ -55,21 +54,21 @@ function initialize() {
     return false;
   });
 
-  const reviewButton = document.getElementById('review-appointment');
+  var reviewButton = document.getElementById('review-appointment');
   reviewButton.onclick = reviewAppointment;
 
-  const editButton = document.getElementById('edit-appointment');
+  var editButton = document.getElementById('edit-appointment');
   editButton.onclick = editAppointment;
 
-  const homeButton = document.getElementById('back-to-home');
+  var homeButton = document.getElementById('back-to-home');
   homeButton.onclick = backToHome;
 
   // Form submit handler
   $('#appointment-form').submit(function() {
 
     // Remove disabled attribute in order to collect data, then re-disable them
-    const disabled = $(this).find(':input:disabled').removeAttr('disabled');
-    const formData = $(this).serialize();
+    var disabled = $(this).find(':input:disabled').removeAttr('disabled');
+    var formData = $(this).serialize();
     disabled.attr('disabled','true');
 
     $.ajax({
@@ -83,12 +82,12 @@ function initialize() {
       error: function(response) {
 
         // Display errors
-        const fieldErrors = JSON.parse(response.responseText);
-        const ul = document.getElementById('form-errors');
+        var fieldErrors = JSON.parse(response.responseText);
+        var ul = document.getElementById('form-errors');
         ul.innerHTML = '';
-        for (const field in fieldErrors) {
-          const [text] = fieldErrors[field];
-          const li = document.createElement('li');
+        for (var field in fieldErrors) {
+          var [text] = fieldErrors[field];
+          var li = document.createElement('li');
           li.appendChild(document.createTextNode(text.message));
           ul.appendChild(li);
         }
@@ -110,7 +109,14 @@ function initialize() {
     $('#availability').show();
 
     // Create an availability check
-    const package_id = $('input[name=package]:checked').val();
+    var package_id = null;
+    var packageRadios = $('input[name=package]');
+    for (var package of packageRadios) {
+      if (package.checked) {
+        package_id = package.value;
+      }
+    }
+
     $.ajax({
       type: 'POST',
       url: '/availability_check/',
@@ -124,33 +130,43 @@ function initialize() {
     $("html, body").scrollTop($(document).height());
   });
 
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  let firstSelection = true;
+  var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var firstSelection = true;
 
   // Package selection handler
   $('input[name=package]').change(function() {
 
-    const package_id = $('input[name=package]:checked').val();
+    $('#availability').empty();
+    $('#show-availabilities').show();
+
+
+    var package_id = null;
+    var packageRadios = $('input[name=package]');
+    for (var package of packageRadios) {
+      if (package.checked) {
+        package_id = package.value;
+      }
+    }
+
     $.ajax({
       type: 'GET',
       url: '/package_availabilities/',
       data: {package_id},
       success: function(availabilities) {
-        $('#availability').empty();
-
         // Get availability contianer
-        const [container] = $('#availability');
-        const [months] = $('<div/>', {id: 'months'});
+        var [container] = $('#availability');
+        var [months] = $('<div/>', {id: 'months'});
 
-        container.append(months);
+        container.appendChild(months);
 
         // Keep track of month
-        let currentMonth = '';
-        let dates = null;
-        for (const availability of JSON.parse(availabilities)) {
-          const dateString = availability.fields.date;
-          const date = new Date(dateString);
-          const nextMonth = date.toLocaleString('en-us', {month: 'long'}).toLowerCase();
+        var currentMonth = '';
+        var dates = null;
+        for (var availability of JSON.parse(availabilities)) {
+          var dateString = availability.fields.date;
+          var date = new Date(dateString);
+          var nextMonth = monthNames[date.getMonth()];
 
           // When there's a new month, make an input for it
           if (nextMonth !== currentMonth) {
@@ -159,39 +175,39 @@ function initialize() {
             // Create container for dates of each month
             [dates] = $('<div/>', {
               id: `${nextMonth}-dates`,
-              class: 'dates'
+              class: 'dates hidden'
             });
 
-            container.append(dates);
-            $(`#${nextMonth}-dates`).hide();
+            container.appendChild(dates);
+            // $(`#${nextMonth}-dates`).hide();
 
             // Create label for input
-            const [monthLabel] = $(`<label>${nextMonth}</label>`)
+            var [monthLabel] = $(`<label>${nextMonth}</label>`)
 
             // Create month input and put it in months div
-            const [monthInput] = $('<input/>', {
+            var [monthInput] = $('<input/>', {
               type: 'radio',
               value: nextMonth,
               id: `${nextMonth}-input`,
               name: 'months'
             });
 
-            monthLabel.append(monthInput)
-            months.append(monthLabel);
+            monthLabel.appendChild(monthInput)
+            months.appendChild(monthLabel);
           }
 
           // Create label for input
-          const [dateLabel] = $(`<label>${days[date.getDay()]}, ${date.getDate()}</label>`)
+          var [dateLabel] = $(`<label>${days[date.getDay()]}, ${date.getDate()}</label>`)
 
           // Always append the date
-          const [dateInput] = $('<input/>', {
+          var [dateInput] = $('<input/>', {
             type: 'radio',
             value: availability.pk,
             name: 'availability'
           });
 
-          dateLabel.append(dateInput)
-          dates.append(dateLabel);
+          dateLabel.appendChild(dateInput)
+          dates.appendChild(dateLabel);
         }
 
         // Scroll to bottom on all but the initial selection
@@ -202,7 +218,6 @@ function initialize() {
         firstSelection = false;
 
         // Put the check availabilities button back
-        $('#show-availabilities').show();
         $('#availability').hide();
 
         // Create event listener for inputs
@@ -210,7 +225,7 @@ function initialize() {
 
           // First, hide all showing dates
           $('.dates').hide();
-          const month = this.value;
+          var month = this.value;
           if (this.checked) {
 
             // Show the one which was just checked
@@ -228,69 +243,70 @@ function initialize() {
   });
 
   // Select the first package
-  $('input[name=package]:first').attr('checked', true);
+  $('input[name=package]').first().attr('checked', true);
 
   // Trigger a change on the selected package
-  $('input[name=package]:first').change();
-}
+  $('input[name=package]').first().change();
 
-function reviewAppointment(event) {
+  function reviewAppointment(event) {
 
-  // Remove packages
-  const packages = document.getElementById('packages');
-  packages.classList.add('hidden');
+    // Remove packages
+    var packages = document.getElementById('packages');
+    packages.classList.add('hidden');
 
-  // Change header
-  const creationHeader = document.getElementById('creation-header');
-  const reviewHeader = document.getElementById('review-header');
-  const editHeader = document.getElementById('edit-header');
-  creationHeader.classList.add('hidden');
-  reviewHeader.classList.remove('hidden');
-  editHeader.classList.add('hidden');
+    // Change header
+    var creationHeader = document.getElementById('creation-header');
+    var reviewHeader = document.getElementById('review-header');
+    var editHeader = document.getElementById('edit-header');
+    creationHeader.classList.add('hidden');
+    reviewHeader.classList.remove('hidden');
+    editHeader.classList.add('hidden');
 
-  // Change buttons
-  const reviewButton = document.getElementById('review-appointment');
-  const editButton = document.getElementById('edit-appointment');
-  const submitButton = document.getElementById('submit-appointment');
-  reviewButton.classList.add('hidden');
-  editButton.classList.remove('hidden');
-  submitButton.classList.remove('hidden');
+    // Change buttons
+    var reviewButton = document.getElementById('review-appointment');
+    var editButton = document.getElementById('edit-appointment');
+    var submitButton = document.getElementById('submit-appointment');
+    reviewButton.classList.add('hidden');
+    editButton.classList.remove('hidden');
+    submitButton.classList.remove('hidden');
 
-  // Disable fields
-  const fields = document.getElementById('appointment-form').elements;
-  for (const field of fields) {
-    if (field.id !== 'edit-appointment' &&
-        field.id !== 'submit-appointment' &&
-        field.type !== 'hidden')
-    {
-      field.disabled = true;
+    // Disable fields
+    var fields = document.getElementById('appointment-form').elements;
+    for (var field of fields) {
+      if (field.id !== 'edit-appointment' &&
+          field.id !== 'submit-appointment' &&
+          field.type !== 'hidden')
+      {
+        field.disabled = true;
+      }
     }
   }
-}
 
-function editAppointment() {
+  function editAppointment() {
 
-  // Change header
-  const reviewHeader = document.getElementById('review-header');
-  const editHeader = document.getElementById('edit-header');
-  reviewHeader.classList.add('hidden');
-  editHeader.classList.remove('hidden');
+    // Change header
+    var reviewHeader = document.getElementById('review-header');
+    var editHeader = document.getElementById('edit-header');
+    reviewHeader.classList.add('hidden');
+    editHeader.classList.remove('hidden');
 
-  // Change buttons
-  const reviewButton = document.getElementById('review-appointment');
-  const editButton = document.getElementById('edit-appointment');
-  const submitButton = document.getElementById('submit-appointment');
-  reviewButton.classList.remove('hidden');
-  editButton.classList.add('hidden');
-  submitButton.classList.add('hidden');
+    // Change buttons
+    var reviewButton = document.getElementById('review-appointment');
+    var editButton = document.getElementById('edit-appointment');
+    var submitButton = document.getElementById('submit-appointment');
+    reviewButton.classList.remove('hidden');
+    editButton.classList.add('hidden');
+    submitButton.classList.add('hidden');
 
-  // Disable fields
-  const fields = document.getElementById('appointment-form').elements;
-  for (const field of fields) {
-    field.disabled = false;
+    // Disable fields
+    var fields = document.getElementById('appointment-form').elements;
+    for (var field of fields) {
+      field.disabled = false;
+    }
   }
-}
 
-function backToHome(event) {
-  window.location = '';
-}
+  function backToHome(event) {
+    window.location = '';
+  }
+
+});

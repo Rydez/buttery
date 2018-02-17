@@ -3,15 +3,46 @@
 {% load staticfiles %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="{% static 'appointments/appointments.css' %}" />
-<script src="{% static 'jquery-3.2.1.min.js' %}"></script>
-<script src="{% static 'appointments/appointments.js' %}"></script>
 <html>
-<head>
+  <head>
+    <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        alert(message);
+        alert(source);
+        alert(lineno);
+        alert(colno);
+        alert(error);
+      };
+    </script>
+    <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'appointments/appointments.js' %}"></script>
+    <!-- <script src="http://192.168.0.10:1337/vorlon.js"></script> -->
+  {% comment %} <script>
+    function navigationOnClick(event) {
+      alert('asdf')
+      $('.navigation-button').removeClass('selected');
+      event.target.classList.add('selected');
+
+      $('.section').hide();
+      if (event.target.id === 'home-button') {
+        $('#home-section').show();
+      }
+      else if (event.target.id === 'packages-button') {
+        $('#packages-section').show();
+      }
+      else if (event.target.id === 'appointments-button') {
+        $('#appointment-section').show();
+      }
+
+      // return false;
+    }
+  </script> {% endcomment %}
   <title>
     Buttery Automotive Finishes
   </title>
 </head>
-<body onload="initialize();">
+<body>
+<img id="foreground-car" src="../../../static/images/porsche_for_web_tiny.png">
 <div id="container">
   <div id="content">
     <div id="header">
@@ -23,17 +54,17 @@
       <div id="navigation">
         <ul id="navigation-ul">
           <li class="navigation-li">
-            <button id="home-button" class="navigation-button selected">
+            <button id="home-button" class="navigation-button selected" onclick="">
               Home
             </button>
           </li>
-          <li class="navigation-li">
-            <button id="packages-button" class="navigation-button">
+          <li class="navigation-li" onclick="">
+            <button id="packages-button" class="navigation-button" onclick="">
               Packages
             </button>
           </li>
           <li class="navigation-li">
-            <button id="appointments-button" class="navigation-button">
+            <button id="appointments-button" class="navigation-button" onclick="">
               Appointments
             </button>
           </li>
@@ -119,7 +150,6 @@
       <p>--Further instructions here--</p>
       <button type="button" id="back-to-home">Home</button>
     </div>
-    <img id="foreground-car" src="../../../static/images/foreground_car_cropped.png">
   </div>
 </div>
 

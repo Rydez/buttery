@@ -4,6 +4,7 @@ body {
   padding: 0;
   background: #F3E2B0;
   font-size: 16px;
+  overflow: hidden;
 }
 
 h1, h2, p {
@@ -25,13 +26,32 @@ button {
 
 #foreground-car {
   position: absolute;
-  margin-left: -20px;
+  /* margin-left: -20px; */
   bottom: 0;
+  right: 0;
   z-index: 300;
-  width: 110%;
+  width: 70vmin;
   max-width: 1000px;
   pointer-events: none;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7) 60%);
+  /* background: linear-gradient(transparent, rgba(0, 0, 0, 0.7) 60%); */
+}
+
+@media screen and (min-width: 1101px) {
+  #foreground-car {
+    position: absolute;
+    left: 450px;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  #foreground-car {
+    position: absolute;
+    bottom: -1.5%;
+    right: -2%;
+  }
 }
 
 #container {
@@ -81,7 +101,7 @@ button {
 }
 
 .section {
-  margin-bottom: calc(300px - 12vmin);
+  margin-bottom: calc(600px - 15vh);
 }
 
 .card {
@@ -89,7 +109,7 @@ button {
   padding: 10px 50px 10px 50px;
   margin: 30px 0 30px 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(140deg, rgba(200, 200, 200, 0.06), transparent)
+  background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent)
 }
 
 #logo-container {
@@ -111,16 +131,16 @@ button {
   display: block;
   -webkit-filter: drop-shadow(1px 1px 10px rgba(0,0,0,.8));
   filter: drop-shadow(1px 1px 10px rgba(0,0,0,.8));
-  -webkit-animation: shine 2s infinite;
-  animation: shine 4s infinite;
+  -webkit-animation: shine 5s infinite;
+  animation: shine 5s infinite;
 }
 
 @keyframes shine {
-  0%{
-    background-position: -2000px 0;
+  0%, 30%{
+    background-position: -500px 0;
   }
-  100%{
-    background-position: 400px 0;
+  70%, 100%{
+    background-position: 100px 0;
   }
 }
 
@@ -135,24 +155,6 @@ button {
   -webkit-mask: url('../../../static/images/logo_long_tagline.png') center no-repeat;
   -webkit-mask-size: 46vmin auto;
 }
-/*
-.shine{
-  width: 1000px;
-  height: 100px;
-  margin-left: -100px;
-  transform: rotate(30deg);
-  background: -webkit-linear-gradient(top, transparent, rgba(200,200,200,0.1),transparent);
-  position: absolute;
-  animation: shine 6s ease-in-out infinite;
-}
-@keyframes shine{
-  0%,100%{
-    margin-top: -100px;
-  }
-  50%{
-    margin-top: 800px;
-  }
-} */
 
 /* logo and navigation */
 #header {
@@ -193,7 +195,7 @@ button {
   padding: 12px 0 10px 12px;
   cursor: pointer;
   border-radius: 8px;
-  background: linear-gradient(140deg, rgba(200, 200, 200, 0.06), transparent);
+  background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent);
 
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 
