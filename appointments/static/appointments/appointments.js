@@ -100,15 +100,14 @@ $(document).ready(function() {
     return false;
   });
 
-  // Initialize availabilities as hidden
-  $('#availability').hide();
+  var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-  // Show availabilities handler
-  $('#show-availabilities').click(function() {
-    $(this).hide();
-    $('#availability').show();
+  // Package selection handler
+  $('input[name=package]').change(function() {
 
-    // Create an availability check
+    $('#availability').empty();
+
     var package_id = null;
     var packageRadios = $('input[name=package]');
     for (var package of packageRadios) {
@@ -125,29 +124,6 @@ $(document).ready(function() {
         console.log(response);
       }
     });
-
-    // Scroll to bottom
-    $("html, body").scrollTop($(document).height());
-  });
-
-  var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  var firstSelection = true;
-
-  // Package selection handler
-  $('input[name=package]').change(function() {
-
-    $('#availability').empty();
-    $('#show-availabilities').show();
-
-
-    var package_id = null;
-    var packageRadios = $('input[name=package]');
-    for (var package of packageRadios) {
-      if (package.checked) {
-        package_id = package.value;
-      }
-    }
 
     $.ajax({
       type: 'GET',
@@ -175,11 +151,11 @@ $(document).ready(function() {
             // Create container for dates of each month
             [dates] = $('<div/>', {
               id: `${nextMonth}-dates`,
-              class: 'dates hidden'
+              class: 'dates'
             });
 
             container.appendChild(dates);
-            // $(`#${nextMonth}-dates`).hide();
+            $(`#${nextMonth}-dates`).hide();
 
             // Create label for input
             var [monthLabel] = $(`<label>${nextMonth}</label>`)
@@ -210,16 +186,6 @@ $(document).ready(function() {
           dates.appendChild(dateLabel);
         }
 
-        // Scroll to bottom on all but the initial selection
-        if (!firstSelection) {
-          $("html, body").scrollTop($(document).height());
-        }
-
-        firstSelection = false;
-
-        // Put the check availabilities button back
-        $('#availability').hide();
-
         // Create event listener for inputs
         $('input[name=months]').change(function() {
 
@@ -230,9 +196,6 @@ $(document).ready(function() {
 
             // Show the one which was just checked
             $(`#${month}-dates`).show();
-
-            // Scroll to bottom
-            $("html, body").scrollTop($(document).height());
           }
         });
       },
@@ -242,11 +205,35 @@ $(document).ready(function() {
     });
   });
 
-  // Select the first package
-  $('input[name=package]').first().attr('checked', true);
+  // Keep track of when field was clicked
+  $('.field-group').focusin(function() {
+    $(this).addClass('clicked');
+    $(this).removeClass('unclicked');
+  });
 
-  // Trigger a change on the selected package
-  $('input[name=package]').first().change();
+  // Keep track of when field was blurred
+  $('.field-group').focusout(function() {
+    if($(this).find('input').val() !== '') {
+      $(this).addClass('unclicked');
+    }
+  });
+
+  // Open hamburger menu
+  $('#hamburger').click(function() {
+    $(this).addClass('opened');
+    $('#hamburger-menu').addClass('opened');
+    $('#hamburger-close').addClass('opened');
+    $('#hamburger-close').removeClass('no-click');
+    $('#content').addClass('background-blur');
+  });
+
+  $('#hamburger-close').click(function() {
+    $(this).removeClass('opened');
+    $('#hamburger-close').addClass('no-click');
+    $('#hamburger-menu').removeClass('opened');
+    $('#hamburger').removeClass('opened');
+    $('#content').removeClass('background-blur');
+  });
 
   function reviewAppointment(event) {
 
