@@ -225,15 +225,30 @@ $(document).ready(function() {
     $('#hamburger-close').addClass('opened');
     $('#hamburger-close').removeClass('no-click');
     $('#content').addClass('background-blur');
+    $('#foreground-car').addClass('background-blur');
+    $('.hamburger-divider').animate({opacity: 1}, 2500);
+    $('.slice-icon').animate({opacity: 1}, 2500);
   });
 
   $('#hamburger-close').click(function() {
+    $('.hamburger-divider').stop().animate({opacity: 0}, 50);
+    $('.slice-icon').stop().animate({opacity: 0}, 50);
     $(this).removeClass('opened');
     $('#hamburger-close').addClass('no-click');
     $('#hamburger-menu').removeClass('opened');
     $('#hamburger').removeClass('opened');
     $('#content').removeClass('background-blur');
+    $('#foreground-car').removeClass('background-blur');
   });
+
+  // border on active hamburger icon
+  $('#hamburger-close, #hamburger').on("mousedown mouseup", function() {
+    console.log('111111111')
+    $('.patty').toggleClass('hamburger-icon-active');
+    $('#back').toggleClass('hamburger-icon-active');
+    $('#forward').toggleClass('hamburger-icon-active');
+  });
+
 
   function reviewAppointment(event) {
 

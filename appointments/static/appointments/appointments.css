@@ -1,3 +1,5 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+
 body {
   z-index: 0;
   margin: 0;
@@ -26,14 +28,13 @@ button {
 
 #foreground-car {
   position: absolute;
-  /* margin-left: -20px; */
   bottom: 0;
   right: 0;
   z-index: 300;
   width: 70vmin;
   max-width: 1000px;
   pointer-events: none;
-  /* background: linear-gradient(transparent, rgba(0, 0, 0, 0.7) 60%); */
+  transition: all 200ms ease-out;
 }
 
 /* For desktop */
@@ -98,8 +99,8 @@ button {
 #hamburger-close {
   position: absolute;
   height: 60px;
-  top: 3vh;
-  right: 3vh;
+  top: calc(3vh + 15px);
+  right: calc(3vh + 15px);
   z-index: 1000;
   opacity: 0;
 }
@@ -130,8 +131,10 @@ button {
 
 #hamburger-menu {
   position: absolute;
-  right: calc(3vh + 25px - 75vmin);
-  top: calc(3vh + 25px - 75vmin);
+
+  /* 3vh for hamburger, 25px for half hamburger width, 15px for content padding */
+  right: calc(3vh + 25px + 15px - 75vmin);
+  top: calc(3vh + 25px + 15px - 75vmin);
   border-radius: 100%;
   width: 150vmin;
   height: 150vmin;
@@ -143,9 +146,113 @@ button {
 }
 
 #hamburger-menu.opened {
-  transition: all 250ms ease-in 200ms;
+  transition: all 150ms ease-in 200ms;
   transform-origin: center;
   transform: scale(1);
+}
+
+.hamburger-icon-active {
+  border: 1px solid #F0D736 !important;
+}
+
+.hamburger-divider {
+  z-index: 800;
+  width: 75vmin;
+  height: 1px;
+  background: linear-gradient(90deg, #F0D736, #F3E2B0, transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 3vh for hamburger, 25px for half hamburger width, 15px for content padding */
+.hamburger-divider.divider-00 {
+  position: absolute;
+  right: calc(3vh + 25px + 15px);
+  top: calc(3vh + 25px + 15px);
+}
+.hamburger-divider.divider-30 {
+  position: absolute;
+  right: calc(3vh + 25px + 15px);
+  top: calc(3vh + 25px + 15px);
+  transform-origin: right;
+  transform: rotate(-30deg);
+}
+.hamburger-divider.divider-60 {
+  position: absolute;
+  right: calc(3vh + 25px + 15px);
+  top: calc(3vh + 25px + 15px);
+  transform-origin: right;
+  transform: rotate(-60deg);
+}
+/* .hamburger-divider.divider-675 {
+  position: absolute;
+  right: calc(3vh + 25px + 15px + 2px);
+  top: calc(3vh + 25px + 15px + 2px);
+  transform-origin: right;
+  transform: rotate(-67.5deg);
+} */
+.hamburger-divider.divider-90 {
+  position: absolute;
+  right: calc(3vh + 25px + 15px);
+  top: calc(3vh + 25px + 15px);
+  transform-origin: right;
+  transform: rotate(-90deg);
+}
+
+.hamburger-slice {
+  z-index: 800;
+  color: white;
+  pointer-events: none;
+  /* opacity: 0; */
+}
+
+.slice-15 {
+  width: 65vmin;
+  position: absolute;
+  right: calc(3vh + 25px + 15px);
+  top: calc(3vh + 25px + 15px);
+  transform-origin: right;
+  transform: rotate(-5deg);
+}
+.slice-45 {
+  width: 62vmin;
+  position: absolute;
+  right: calc(3vh + 25px + 15px);
+  top: calc(3vh + 25px + 15px);
+  transform-origin: right;
+  transform: rotate(-34deg);
+}
+.slice-75 {
+  width: 57vmin;
+  position: absolute;
+  right: calc(3vh + 25px + 15px);
+  top: calc(3vh + 25px + 15px);
+  transform-origin: right;
+  transform: rotate(-71deg);
+}
+
+.slice-icon {
+  width: 50px;
+  font-size: 120%;
+  color: #F3E2B0;
+  opacity: 0;
+}
+
+.slice-icon .glyphicon {
+  font-size: 40px;
+}
+
+.slice-icon-15 {
+  transform-origin: center;
+  transform: rotate(5deg);
+}
+.slice-icon-45 {
+  transform-origin: center;
+  transform: rotate(34deg);
+}
+.slice-icon-75 {
+  transform-origin: center;
+  transform: rotate(71deg);
 }
 
 #container {
@@ -165,6 +272,7 @@ button {
   background: #182126;
   border-radius: 15px;
   z-index: 100;
+  transition: all 200ms ease-out;
 }
 
 #body {
@@ -219,8 +327,6 @@ button {
 }
 
 #logo-image {
-  /* max-width: 410px; */
-  /* width: 100%; */
   width: 50vmin;
 }
 
@@ -260,10 +366,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background: linear-gradient(#182126, transparent); */
-  /* box-shadow: 0 10px 20px rgba(0, 0, 0, 1); */
-  /* z-index: 500; */
-  /* box-shadow: 0 10px 20px #182126; */
 }
 
 /* Nav container */
@@ -293,7 +395,6 @@ button {
   background-color: #182126;
   opacity: 0.8;
   color: #F3E2B0;
-  /* border: none; */
   border: 1px solid #F3E2B0;
 
   text-align: left;
@@ -301,25 +402,8 @@ button {
   cursor: pointer;
   border-radius: 8px;
   background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent);
-
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-
-  /* border: 1px solid rgba(200,200,200,0.2);
-  background: linear-gradient(rgba(255,255,255,0.15),transparent);
-  box-shadow: inset 1px 1px 10px rgba(255,255,255,0.1);
-  overflow: hidden;
-  position: relative; */
 }
-
-/* #navigation #navigation-ul .navigation-li:nth-child(1) button {
-  width: 55%;
-}
-#navigation #navigation-ul .navigation-li:nth-child(2) button {
-  width: 75%;
-}
-#navigation #navigation-ul .navigation-li:nth-child(3) button {
-  width: 95%;
-} */
 
 #navigation #navigation-ul .navigation-li button:focus {
   outline: none;
@@ -498,5 +582,6 @@ button {
 }
 
 .background-blur {
-  filter: blur(5px) grayscale(0.5);
+  filter: blur(3px) grayscale(0.5);
+  transition: all 200ms ease-in;
 }
