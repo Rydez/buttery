@@ -73,6 +73,7 @@ button {
 
 /* Hamburger */
 #hamburger {
+  will-change: transform;
   margin-left: auto;
   margin-bottom: auto;
   margin-top: 3vh;
@@ -97,6 +98,7 @@ button {
 }
 
 #hamburger-close {
+  will-change: opacity;
   position: absolute;
   height: 60px;
   top: calc(3vh + 15px);
@@ -115,6 +117,7 @@ button {
   background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent)
 }
 #hamburger-close #back {
+  will-change: transform;
   height: 10px;
   width: 50px;
   margin: 0;
@@ -130,7 +133,9 @@ button {
 }
 
 #hamburger-menu {
+  will-change: transform;
   position: absolute;
+  opacity: 0.9;
 
   /* 3vh for hamburger, 25px for half hamburger width, 15px for content padding */
   right: calc(3vh + 25px + 15px - 75vmin);
@@ -156,6 +161,7 @@ button {
 }
 
 .hamburger-divider {
+  will-change: opacity;
   z-index: 800;
   width: 75vmin;
   height: 1px;
@@ -172,15 +178,15 @@ button {
 }
 .hamburger-divider.divider-30 {
   position: absolute;
-  right: calc(3vh + 25px + 15px);
-  top: calc(3vh + 25px + 15px);
+  right: calc(3vh + 25px + 15px - 1px);
+  top: calc(3vh + 25px + 15px - 1px);
   transform-origin: right;
   transform: rotate(-30deg);
 }
 .hamburger-divider.divider-60 {
   position: absolute;
-  right: calc(3vh + 25px + 15px);
-  top: calc(3vh + 25px + 15px);
+  right: calc(3vh + 25px + 15px - 1px);
+  top: calc(3vh + 25px + 15px - 1px);
   transform-origin: right;
   transform: rotate(-60deg);
 }
@@ -194,7 +200,7 @@ button {
 .hamburger-divider.divider-90 {
   position: absolute;
   right: calc(3vh + 25px + 15px);
-  top: calc(3vh + 25px + 15px);
+  top: calc(3vh + 25px + 15px - 2px);
   transform-origin: right;
   transform: rotate(-90deg);
 }
@@ -203,7 +209,6 @@ button {
   z-index: 800;
   color: white;
   pointer-events: none;
-  /* opacity: 0; */
 }
 
 .slice-15 {
@@ -232,10 +237,12 @@ button {
 }
 
 .slice-icon {
+  will-change: opacity;
   width: 50px;
   font-size: 120%;
   color: #F3E2B0;
   opacity: 0;
+  pointer-events: none;
 }
 
 .slice-icon .glyphicon {
@@ -253,6 +260,10 @@ button {
 .slice-icon-75 {
   transform-origin: center;
   transform: rotate(71deg);
+}
+
+.slice-icon-active {
+  color: #F0D736;
 }
 
 #container {

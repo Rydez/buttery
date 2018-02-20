@@ -54,6 +54,30 @@ $(document).ready(function() {
     return false;
   });
 
+  $('.slice-icon').click(function() {
+    $('.section').hide();
+    var [clickedEl] = $(this);
+    if (clickedEl.id === 'home-slice') {
+      $('#home-section').show();
+    }
+    else if (clickedEl.id === 'services-slice') {
+      $('#packages-section').show();
+    }
+    else if (clickedEl.id === 'schedule-slice') {
+      $('#appointment-section').show();
+    }
+
+    $('.hamburger-divider').stop().animate({opacity: 0}, 50);
+    $('.slice-icon').stop().animate({opacity: 0}, 50);
+    $('.slice-icon').css('pointer-events', 'none');
+    $('#hamburger-close').removeClass('opened');
+    $('#hamburger-close').addClass('no-click');
+    $('#hamburger-menu').removeClass('opened');
+    $('#hamburger').removeClass('opened');
+    $('#content').removeClass('background-blur');
+    $('#foreground-car').removeClass('background-blur');
+  });
+
   var reviewButton = document.getElementById('review-appointment');
   reviewButton.onclick = reviewAppointment;
 
@@ -228,11 +252,13 @@ $(document).ready(function() {
     $('#foreground-car').addClass('background-blur');
     $('.hamburger-divider').animate({opacity: 1}, 2500);
     $('.slice-icon').animate({opacity: 1}, 2500);
+    $('.slice-icon').css('pointer-events', 'auto');
   });
 
   $('#hamburger-close').click(function() {
     $('.hamburger-divider').stop().animate({opacity: 0}, 50);
     $('.slice-icon').stop().animate({opacity: 0}, 50);
+    $('.slice-icon').css('pointer-events', 'none');
     $(this).removeClass('opened');
     $('#hamburger-close').addClass('no-click');
     $('#hamburger-menu').removeClass('opened');
@@ -242,13 +268,16 @@ $(document).ready(function() {
   });
 
   // border on active hamburger icon
-  $('#hamburger-close, #hamburger').on("mousedown mouseup", function() {
-    console.log('111111111')
+  $('#hamburger-close, #hamburger').on("mousedown mouseup touchstart touchend", function() {
     $('.patty').toggleClass('hamburger-icon-active');
     $('#back').toggleClass('hamburger-icon-active');
     $('#forward').toggleClass('hamburger-icon-active');
   });
 
+  // border on active hamburger icon
+  $('.slice-icon').on("mousedown mouseup touchstart touchend", function() {
+    $(this).toggleClass('slice-icon-active');
+  });
 
   function reviewAppointment(event) {
 
