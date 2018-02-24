@@ -126,7 +126,16 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.26', '192.168.0.10', '192.168.1.179', '192.168.0.13', '192.168.0.14']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '192.168.1.26',
+    '192.168.65.75',
+    '192.168.0.10',
+    '192.168.1.179',
+    '192.168.0.13',
+    '192.168.0.14'
+]
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = ''

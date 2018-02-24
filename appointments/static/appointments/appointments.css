@@ -1,6 +1,11 @@
-@import url("//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+html {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
 
 body {
+  position: relative;
   z-index: 0;
   margin: 0;
   padding: 0;
@@ -38,7 +43,7 @@ button {
 }
 
 /* For desktop */
-@media screen and (min-width: 1001px) {
+/* @media screen and (min-width: 1001px) {
   #foreground-car {
     position: absolute;
     left: 450px;
@@ -46,29 +51,45 @@ button {
     margin-left: auto;
     margin-right: auto;
   }
-}
+} */
 
 /* For beginning to squish content */
-@media screen and (max-width: 1000px) {
+/* @media screen and (max-width: 1000px) {
   #foreground-car {
     position: absolute;
     bottom: -1.5%;
     right: -2%;
   }
-}
+} */
 
 /* For above mobile */
-@media screen and (min-width: 801px) {
+@media screen and (min-width: 851px) {
   #hamburger {
     display: none !important;
+  }
+
+  #hamburger-components {
+    display: none;
+  }
+
+  .background-blur {
+    filter: none !important;
   }
 }
 
 /* For mobile */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
   #navigation {
     display: none !important;
   }
+
+  /* #foreground-car {
+    display: none;
+  } */
+
+  /* .section {
+    margin-bottom: 4vh !important;
+  } */
 }
 
 /* Hamburger */
@@ -76,8 +97,8 @@ button {
   will-change: transform;
   margin-left: auto;
   margin-bottom: auto;
-  margin-top: 3vh;
-  margin-right: 3vh;
+  margin-top: 2.9vmin;
+  margin-right: 2.9vmin;
   transition: all 250ms ease-in 100ms;
   transform: scale(1) rotate(0deg);
 }
@@ -101,8 +122,8 @@ button {
   will-change: opacity;
   position: absolute;
   height: 60px;
-  top: calc(3vh + 15px);
-  right: calc(3vh + 15px);
+  top: calc(2.9vmin + 0.9vmin);
+  right: calc(2.9vmin + 0.9vmin);
   z-index: 1000;
   opacity: 0;
 }
@@ -137,12 +158,12 @@ button {
   position: absolute;
   opacity: 0.9;
 
-  /* 3vh for hamburger, 25px for half hamburger width, 15px for content padding */
-  right: calc(3vh + 25px + 15px - 75vmin);
-  top: calc(3vh + 25px + 15px - 75vmin);
+  /* 2.9vmin for hamburger, 25px for half hamburger width, 1.5vmin for content padding */
+  right: calc(2.9vmin + 25px + 1.5vmin - 250px);
+  top: calc(2.9vmin + 25px + 1.5vmin - 250px);
   border-radius: 100%;
-  width: 150vmin;
-  height: 150vmin;
+  width: 500px;
+  height: 500px;
   background-image: radial-gradient(circle at center, #000000 5%, #182126 50%);
   transform: scale(0);
   z-index: 700;
@@ -151,7 +172,7 @@ button {
 }
 
 #hamburger-menu.opened {
-  transition: all 150ms ease-in 200ms;
+  transition: all 100ms ease-in;
   transform-origin: center;
   transform: scale(1);
 }
@@ -163,44 +184,44 @@ button {
 .hamburger-divider {
   will-change: opacity;
   z-index: 800;
-  width: 75vmin;
+  width: 250px;
   height: 1px;
-  background: linear-gradient(90deg, #F0D736, #F3E2B0, transparent);
+  background: linear-gradient(90deg, #F0D736, #F3E2B0, transparent 85%);
   opacity: 0;
   pointer-events: none;
 }
 
-/* 3vh for hamburger, 25px for half hamburger width, 15px for content padding */
+/* 2.9vmin for hamburger, 25px for half hamburger width, 1.5vmin for content padding */
 .hamburger-divider.divider-00 {
   position: absolute;
-  right: calc(3vh + 25px + 15px);
-  top: calc(3vh + 25px + 15px);
+  right: calc(2.9vmin + 25px + 1.5vmin + 2px);
+  top: calc(2.9vmin + 25px + 1.5vmin);
 }
 .hamburger-divider.divider-30 {
   position: absolute;
-  right: calc(3vh + 25px + 15px - 1px);
-  top: calc(3vh + 25px + 15px - 1px);
+  right: calc(2.9vmin + 25px + 1.5vmin + 2px);
+  top: calc(2.9vmin + 25px + 1.5vmin + 2px);
   transform-origin: right;
   transform: rotate(-30deg);
 }
 .hamburger-divider.divider-60 {
   position: absolute;
-  right: calc(3vh + 25px + 15px - 1px);
-  top: calc(3vh + 25px + 15px - 1px);
+  right: calc(2.9vmin + 25px + 1.5vmin + 2px);
+  top: calc(2.9vmin + 25px + 1.5vmin + 2px);
   transform-origin: right;
   transform: rotate(-60deg);
 }
 /* .hamburger-divider.divider-675 {
   position: absolute;
-  right: calc(3vh + 25px + 15px + 2px);
-  top: calc(3vh + 25px + 15px + 2px);
+  right: calc(2.9vmin + 25px + 1.5vmin + 2px);
+  top: calc(2.9vmin + 25px + 1.5vmin + 2px);
   transform-origin: right;
   transform: rotate(-67.5deg);
 } */
 .hamburger-divider.divider-90 {
   position: absolute;
-  right: calc(3vh + 25px + 15px);
-  top: calc(3vh + 25px + 15px - 2px);
+  right: calc(2.9vmin + 25px + 1.5vmin);
+  top: calc(2.9vmin + 25px + 1.5vmin + 2px);
   transform-origin: right;
   transform: rotate(-90deg);
 }
@@ -212,41 +233,39 @@ button {
 }
 
 .slice-15 {
-  width: 65vmin;
+  width: 250px;
   position: absolute;
-  right: calc(3vh + 25px + 15px);
-  top: calc(3vh + 25px + 15px);
+  right: calc(2.9vmin + 25px + 1.5vmin);
+  top: calc(2.9vmin + 25px + 1.5vmin);
   transform-origin: right;
   transform: rotate(-5deg);
 }
 .slice-45 {
-  width: 62vmin;
+  width: 225px;
   position: absolute;
-  right: calc(3vh + 25px + 15px);
-  top: calc(3vh + 25px + 15px);
+  right: calc(2.9vmin + 25px + 1.5vmin);
+  top: calc(2.9vmin + 25px + 1.5vmin);
   transform-origin: right;
-  transform: rotate(-34deg);
+  transform: rotate(-37deg);
 }
 .slice-75 {
-  width: 57vmin;
+  width: 210px;
   position: absolute;
-  right: calc(3vh + 25px + 15px);
-  top: calc(3vh + 25px + 15px);
+  right: calc(2.9vmin + 25px + 1.5vmin);
+  top: calc(2.9vmin + 25px + 1.5vmin);
   transform-origin: right;
-  transform: rotate(-71deg);
+  transform: rotate(-72deg);
 }
 
 .slice-icon {
+  cursor: pointer;
   will-change: opacity;
-  width: 50px;
+  width: 100px;
   font-size: 120%;
   color: #F3E2B0;
   opacity: 0;
   pointer-events: none;
-}
-
-.slice-icon .glyphicon {
-  font-size: 40px;
+  text-align: center;
 }
 
 .slice-icon-15 {
@@ -255,33 +274,66 @@ button {
 }
 .slice-icon-45 {
   transform-origin: center;
-  transform: rotate(34deg);
+  transform: rotate(37deg);
 }
 .slice-icon-75 {
   transform-origin: center;
-  transform: rotate(71deg);
+  transform: rotate(72deg);
 }
 
-.slice-icon-active {
+.slice-icon-text-active {
   color: #F0D736;
+}
+.slice-icon-svg-active {
+  fill: #F0D736;
+}
+
+.slice-icon p {
+  margin: 0;
+}
+
+.social-media-icon {
+  opacity: 0;
+  z-index: 1000;
+  position: absolute;
+
+  /* Half of padding */
+  right: 0.75vmin;
+
+  /* Width is width between 90 divider and edge minus padding */
+  width: calc(2.9vmin + 25px);
+}
+
+#twitter-icon {
+  top: calc(2.9vmin + 25px + 1.5vmin + 200px);
+}
+#snapchat-icon {
+  top: calc(2.9vmin + 25px + 1.5vmin + 150px);
+}
+#facebook-icon {
+  top: calc(2.9vmin + 25px + 1.5vmin + 100px);
+}
+#instagram-icon {
+  top: calc(2.9vmin + 25px + 1.5vmin + 50px);
 }
 
 #container {
   margin-left: auto;
   margin-right: auto;
+  height: 100%;
   width: 100%;
   max-width: 1000px;
 }
 
 #content {
-  margin: 15px 15px 15px 15px;
+  margin: 1.5vmin 1.5vmin 1.5vmin 1.5vmin;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 5vmin #000000;
-  height: calc(100% - 30px);
+  box-shadow: 0 0 3vmin #000000;
+  height: calc(100% - 3vmin);
   box-sizing: border-box;
   background: #182126;
-  border-radius: 15px;
+  border-radius: 8px;
   z-index: 100;
   transition: all 200ms ease-out;
 }
@@ -289,15 +341,7 @@ button {
 #body {
   height: 100%;
   overflow-y: auto;
-}
-
-#body:before {
-  display: block;
-  position: absolute;
-  content: "";
-  min-height: 20px;
-  min-width: 100%;
-  background-image: linear-gradient(#182126, transparent);
+  -webkit-overflow-scrolling: touch;
 }
 
 #body::-webkit-scrollbar-track {
@@ -319,21 +363,22 @@ button {
 }
 
 .section {
-  margin-bottom: calc(600px - 15vh);
+  margin-bottom: 35vmax;
+  /* margin-bottom: calc(600px - 15vh); */
 }
 
 .card {
   background-color: rgba(255, 255, 255, 0.02);
-  padding: 10px 50px 10px 50px;
-  margin: 30px 0 30px 0;
+  padding: 3vmin 6vmin 3vmin 6vmin;
+  margin: 0 0 4vh 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent)
 }
 
 #logo-container {
   max-width: 410px;
-  margin-left: 3vh;
-  margin-top: 3vh;
+  margin-left: 2.9vmin;
+  margin-top: 2.9vmin;
   width: 50vmin;
 }
 
@@ -377,6 +422,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 2.9vmin;
 }
 
 /* Nav container */
@@ -581,6 +627,9 @@ button {
   content:'checked'
 }
 
+#appointment-form #form-fields {
+  /* display: flex; */
+}
 
 /* UTIL */
 
@@ -593,6 +642,6 @@ button {
 }
 
 .background-blur {
-  filter: blur(3px) grayscale(0.5);
+  filter: blur(2px) grayscale(0.5);
   transition: all 200ms ease-in;
 }
