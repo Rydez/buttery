@@ -23,10 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '5g_!^6!3qf^q!^ok107^1(#r%xafivav^a8z+jj4hk7nn@9n1+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = False
 
 # Application definition
 
@@ -127,6 +124,8 @@ STATICFILES_DIRS = [
 ]
 
 ALLOWED_HOSTS = [
+    'www.butteryaf.com',
+    'butteryaf.com',
     'localhost',
     '127.0.0.1',
     '192.168.1.26',
