@@ -146,13 +146,13 @@ $(document).ready(function() {
     return false;
   });
 
-  var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   // Package selection handler
   $('input[name=package]').change(function() {
 
-    $('#availability').empty();
+    $('.availability').empty();
 
     var package_id = null;
     var packageRadios = $('input[name=package]');
@@ -177,7 +177,7 @@ $(document).ready(function() {
       data: {package_id},
       success: function(availabilities) {
         // Get availability contianer
-        var [container] = $('#availability');
+        var [container] = $(`#availability${package_id}`);
         var [months] = $('<div/>', {id: 'months'});
 
         container.appendChild(months);
@@ -204,7 +204,8 @@ $(document).ready(function() {
             $(`#${nextMonth}-dates`).hide();
 
             // Create label for input
-            var [monthLabel] = $(`<label>${nextMonth}</label>`)
+            var [monthLabel] = $(`<label>${nextMonth}</label>`);
+            monthLabel.classList.add('month-label');
 
             // Create month input and put it in months div
             var [monthInput] = $('<input/>', {
@@ -214,12 +215,13 @@ $(document).ready(function() {
               name: 'months'
             });
 
-            monthLabel.appendChild(monthInput)
+            monthLabel.appendChild(monthInput);
             months.appendChild(monthLabel);
           }
 
           // Create label for input
-          var [dateLabel] = $(`<label>${days[date.getDay()]}, ${date.getDate()}</label>`)
+          var [dateLabel] = $(`<label>${days[date.getDay()]}, ${date.getDate()}</label>`);
+          dateLabel.classList.add('date-label');
 
           // Always append the date
           var [dateInput] = $('<input/>', {
@@ -235,6 +237,9 @@ $(document).ready(function() {
         // Create event listener for inputs
         $('input[name=months]').change(function() {
 
+          // Unselect all
+          $('.month-label').removeClass('selected');
+
           // First, hide all showing dates
           $('.dates').hide();
           var month = this.value;
@@ -242,8 +247,27 @@ $(document).ready(function() {
 
             // Show the one which was just checked
             $(`#${month}-dates`).show();
+            $(this).closest('label').addClass('selected');
           }
         });
+
+        $('input[name=availability]').change(function() {
+
+          // Unselect all
+          $('.date-label').removeClass('selected');
+
+          if (this.checked) {
+            $(this).closest('label').addClass('selected');
+          }
+        });
+
+        $('input[name=months]').first().attr('checked', true);
+        $('input[name=months]').first().closest('label').addClass('selected');
+        $('input[name=months]').first().change();
+
+        $('input[name=availability]').first().attr('checked', true);
+        $('input[name=availability]').first().closest('label').addClass('selected');
+        $('input[name=availability]').first().change();
       },
       // error: function(response) {
       //   console.log(response)

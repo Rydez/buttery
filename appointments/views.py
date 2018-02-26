@@ -1,3 +1,5 @@
+import datetime
+
 from django.views import generic
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
@@ -24,7 +26,36 @@ class AppointmentView(generic.CreateView):
     package = None
     try:
       package = Package.objects.get(id=package_id)
-      availabilities = Availability.objects.filter(minutes_remaining__gte=package.minutes).order_by('date')
+      availabilities = None
+
+      # Check if this is a two day job
+      if (package.minutes > 480):
+        first_day = None
+        available_ids = []
+        availabilities = Availability.objects.all().order_by('date')
+        for availability in availabilities:
+
+          # Get a full first day
+          if not first_day and availability.minutes_remaining == 480:
+            first_day = availability
+          # Get a second full day
+          elif first_day:
+            date_format = '%Y-%m-%d'
+            first_day_date = datetime.datetime.strptime(str(first_day.date.date()), date_format)
+            availability_date = datetime.datetime.strptime(str(availability.date.date()), date_format)
+            date_detla = availability_date - first_day_date
+            if date_detla.days == 1 and availability.minutes_remaining == 480:
+              available_ids.append(first_day.id)
+            elif availability.minutes_remaining == 480:
+              first_day = availability
+            else:
+              # Start over
+              first_day = None
+
+        availabilities = Availability.objects.filter(id__in=available_ids).order_by('date')
+      else:
+        availabilities = Availability.objects.filter(minutes_remaining__gte=package.minutes).order_by('date')
+
       serialized_data = serializers.serialize('json', availabilities)
       return HttpResponse(serialized_data, status=200)
     except ObjectDoesNotExist:
@@ -55,15 +86,27 @@ class AppointmentView(generic.CreateView):
 
       # Get selected availability
       availability_id = request.POST.get('availability')
-      availability_selected = Availability.objects.get(id=availability_id)
+      availability = Availability.objects.get(id=availability_id)
 
       # Get selected package
       package_id = request.POST.get('package')
-      package_selected = Package.objects.get(id=package_id)
+      package = Package.objects.get(id=package_id)
 
-      # Reduce miutes remaining on availability
-      availability_selected.minutes_remaining -= package_selected.minutes
-      availability_selected.save()
+      # For two day package, remove both days
+      if package.minutes > 480:
+        availability = Availability.objects.get(id=availability_id)
+        first = str(availability.date.date())
+        second = str(availability.date.date() + datetime.timedelta(days=1))
+        second_availability = Availability.objects.filter(date__range=[first, second])
+        availability.minutes_remaining = 0
+        second_availability.minutes_remaining = 0
+        availability.save()
+        second_availability.save()
+      else:
+        # Reduce miutes remaining on availability
+        availability.minutes_remaining -= package.minutes
+        availability.save()
+
       return HttpResponse(status=201)
 
     return HttpResponse(form.errors.as_json(), status=400)

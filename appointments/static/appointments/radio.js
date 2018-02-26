@@ -62,6 +62,7 @@ $(document).ready(function() {
         for (var radio of packageRadios) {
           if (radio.checked) {
             var uncheckPackageId = radio.id.split('radio')[1];
+            $(`#short-description${uncheckPackageId}`).hide();
             uncheckAnimations[uncheckPackageId].play(0);
           }
         }
@@ -69,6 +70,7 @@ $(document).ready(function() {
         // Check the clicked one
         checkAnimations[clickedPackageId].play(0);
         $(`#radio${clickedPackageId}`).prop('checked', true);
+        $(`#short-description${clickedPackageId}`).show();
         $(`#radio${clickedPackageId}`).change();
       }
     });

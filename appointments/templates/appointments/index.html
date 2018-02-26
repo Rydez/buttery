@@ -24,7 +24,6 @@
 </head>
 <body>
 <div id="container">
-  {% comment %} <img id="foreground-car" src="../../../static/images/porsche_for_web_tiny.png"> {% endcomment %}
   <div id="hamburger-components">
     <div id="hamburger-close" class="no-click">
       <div id="forward"></div>
@@ -159,31 +158,42 @@
                   <div id="package-radios">
                     {% for package in package_list %}
                       <label id="toggler{{ package.id }}" class="toggler">
-                        <svg id="{{ package.id }}" viewBox="0 0 145 145" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                          <defs>
-                            <filter id="goo">
-                              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur><feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
-                              <feBlend in="SourceGraphic" in2="goo"></feBlend>
-                            </filter>
-                          </defs>
-                          <g class="gooey" transform="translate(0.000000, 0.000000)" fill="#F0D736">
-                            <circle class="dropTop" r="10" cx="70" cy="12"></circle>
+                        <div class="radio-title">
+                          <svg id="{{ package.id }}" viewBox="0 0 145 145" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs>
+                              <filter id="goo">
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur><feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+                                <feBlend in="SourceGraphic" in2="goo"></feBlend>
+                              </filter>
+                            </defs>
+                            <g class="gooey" transform="translate(0.000000, 0.000000)" fill="#F0D736">
+                              <circle class="dropTop" r="10" cx="70" cy="12"></circle>
 
-                            <circle class="drop" r="40" cx="70" cy="70"></circle>
-                            <circle class="drops drop0" r="40" cx="70" cy="70"></circle>
-                            <circle class="drops drop1" r="40" cx="70" cy="70"></circle>
-                            <circle class="drops drop2" r="40" cx="70" cy="70"></circle>
-                            <circle class="drops drop3" r="40" cx="70" cy="70"></circle>
-                            <circle class="drops drop4" r="40" cx="70" cy="70"></circle>
+                              <circle class="drop" r="40" cx="70" cy="70"></circle>
+                              <circle class="drops drop0" r="40" cx="70" cy="70"></circle>
+                              <circle class="drops drop1" r="40" cx="70" cy="70"></circle>
+                              <circle class="drops drop2" r="40" cx="70" cy="70"></circle>
+                              <circle class="drops drop3" r="40" cx="70" cy="70"></circle>
+                              <circle class="drops drop4" r="40" cx="70" cy="70"></circle>
 
 
-                            <path class="ring0" d="M70,140 C31.3400675,140 0,108.659932 0,70 C0,31.3400675 31.3400675,0 70,0 C108.659932,0 140,31.3400675 140,70 C140,108.659932 108.659932,140 70,140 Z M70,129.552239 C102.889793,129.552239 129.552239,102.889793 129.552239,70 C129.552239,37.1102067 102.889793,10.4477612 70,10.4477612 C37.1102067,10.4477612 10.4477612,37.1102067 10.4477612,70 C10.4477612,102.889793 37.1102067,129.552239 70,129.552239 Z" id="Combined-Shape"></path>
-                            <path class="ring" d="M70,140 C31.3400675,140 0,108.659932 0,70 C0,31.3400675 31.3400675,0 70,0 C108.659932,0 140,31.3400675 140,70 C140,108.659932 108.659932,140 70,140 Z M70,129.552239 C102.889793,129.552239 129.552239,102.889793 129.552239,70 C129.552239,37.1102067 102.889793,10.4477612 70,10.4477612 C37.1102067,10.4477612 10.4477612,37.1102067 10.4477612,70 C10.4477612,102.889793 37.1102067,129.552239 70,129.552239 Z" id="Combined-Shape"></path>
-                            {% comment %} <circle fill="rgba(255,255,255,0)" r="120" cx="70" cy="70"></circle> {% endcomment %}
-                          </g>
-                        </svg>
-                        <input type="radio" name="package" id="radio{{ package.id }}" class="package-radio" value="{{ package.id }}">
-                        {{ field.label }} {{ package.id }}
+                              <path class="ring0" d="M70,140 C31.3400675,140 0,108.659932 0,70 C0,31.3400675 31.3400675,0 70,0 C108.659932,0 140,31.3400675 140,70 C140,108.659932 108.659932,140 70,140 Z M70,129.552239 C102.889793,129.552239 129.552239,102.889793 129.552239,70 C129.552239,37.1102067 102.889793,10.4477612 70,10.4477612 C37.1102067,10.4477612 10.4477612,37.1102067 10.4477612,70 C10.4477612,102.889793 37.1102067,129.552239 70,129.552239 Z" id="Combined-Shape"></path>
+                              <path class="ring" d="M70,140 C31.3400675,140 0,108.659932 0,70 C0,31.3400675 31.3400675,0 70,0 C108.659932,0 140,31.3400675 140,70 C140,108.659932 108.659932,140 70,140 Z M70,129.552239 C102.889793,129.552239 129.552239,102.889793 129.552239,70 C129.552239,37.1102067 102.889793,10.4477612 70,10.4477612 C37.1102067,10.4477612 10.4477612,37.1102067 10.4477612,70 C10.4477612,102.889793 37.1102067,129.552239 70,129.552239 Z" id="Combined-Shape"></path>
+                              {% comment %} <circle fill="rgba(255,255,255,0)" r="120" cx="70" cy="70"></circle> {% endcomment %}
+                            </g>
+                          </svg>
+                          <input type="radio" name="package" id="radio{{ package.id }}" class="package-radio" value="{{ package.id }}">
+                          <span>{{ package.name }}</span>
+                        </div>
+                        <!-- <p>{{ package.short_description }}</p> -->
+                        <p id="short-description{{ package.id }}" class="hidden">
+                          kj asdlkjf asldkfj alsdkjf alksdj
+                          alksdj flkasjd flkasj dfla
+                          lkas jdflkasj dl;fakjs dflkasjd;f j
+                        </p>
+                        <div id="availability{{ package.id }}" class="availability">
+                          <!-- availabilities go here -->
+                        </div>
                       </label>
                     {% endfor %}
                   </div>
@@ -191,13 +201,6 @@
               {% endfor %}
             </div>
             <div id="form-buttons">
-              {% for field in form %}
-                {% if field.name == 'availability' %}
-                  <div id="{{ field.name }}">
-                    <!-- Availability buttons go here -->
-                  </div>
-                {% endif %}
-              {% endfor %}
               <button type="button" id="review-appointment">Review</button>
               <button type="button" id="edit-appointment" class="hidden">Edit</button>
               <button type="submit" id="submit-appointment" class="hidden">Submit</button>

@@ -31,37 +31,6 @@ button {
   font-size: 100%;
 }
 
-#foreground-car {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 300;
-  width: 70vmin;
-  max-width: 1000px;
-  pointer-events: none;
-  transition: all 200ms ease-out;
-}
-
-/* For desktop */
-/* @media screen and (min-width: 1001px) {
-  #foreground-car {
-    position: absolute;
-    left: 450px;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-  }
-} */
-
-/* For beginning to squish content */
-/* @media screen and (max-width: 1000px) {
-  #foreground-car {
-    position: absolute;
-    bottom: -1.5%;
-    right: -2%;
-  }
-} */
-
 /* For above mobile */
 @media screen and (min-width: 851px) {
   #hamburger {
@@ -82,14 +51,6 @@ button {
   #navigation {
     display: none !important;
   }
-
-  /* #foreground-car {
-    display: none;
-  } */
-
-  /* .section {
-    margin-bottom: 4vh !important;
-  } */
 }
 
 /* Hamburger */
@@ -363,8 +324,7 @@ button {
 }
 
 .section {
-  margin-bottom: 35vmax;
-  /* margin-bottom: calc(600px - 15vh); */
+  margin-bottom: 35vmin;
 }
 
 .card {
@@ -447,7 +407,7 @@ button {
 
 #navigation #navigation-ul .navigation-li button {
   margin: 6px 0 6px auto;
-  width: 200px;
+  width: 199px;
   font-weight: bold;
   background-color: #182126;
   opacity: 0.8;
@@ -483,13 +443,14 @@ button {
 
 #appointment-form #form-text-fields {
   display: inline-block;
+  margin-right: 70px;
 }
 
 #appointment-form .field-group {
   position: relative;
   margin-bottom: 30px;
   background: #182126;
-  width: 200px;
+  width: 250px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
   background: #182126;
 }
@@ -499,7 +460,7 @@ button {
   color: rgba(255, 255, 255, 0.5);
   padding: 10px 10px 10px 5px;
   display: block;
-  width: 200px;
+  width: 250px;
   border: none;
   border-radius: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
@@ -525,19 +486,19 @@ button {
 }
 
 #appointment-form .field-group input:focus ~ .bar:before {
-  width: 200px;
+  width: 250px;
   transform: scale(1);
 }
 
 #appointment-form .field-group.clicked input:valid ~ .bar:before {
   background: rgb(87, 177, 99);
-  width: 200px;
+  width: 250px;
   transform: scale(1);
 }
 
 #appointment-form .field-group.unclicked input:invalid ~ .bar:before {
   background: rgb(189, 88, 88);
-  width: 200px;
+  width: 250px;
   transform: scale(1);
 }
 
@@ -554,13 +515,13 @@ button {
 #appointment-form .field-group .bar {
   position: relative;
   display: block;
-  width: 200px;
+  width: 250px;
 }
 
 #appointment-form .field-group .bar:before {
   content: '';
   height: 3px;
-  width: 200px;
+  width: 250px;
   bottom: 0px;
   position: absolute;
   background: #F3E2B0;
@@ -573,20 +534,63 @@ button {
 
 #appointment-form #package-radios {
   display: inline-block;
-  width: 120px;
+  width: 250px;
   vertical-align: top;
-  margin-left: 70px;
 }
 
-#appointment-form #package-radios label {
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#appointment-form #package-radios .toggler {
+  width: 250px;
+  padding: 10px;
+  display: block;
   margin-bottom: 20px;
   color: rgba(255, 255, 255, 0.5);
   background: #182126;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+#appointment-form .radio-title {
+  display: flex;
+  align-items: center;
+}
+
+#appointment-form .availability #months {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+#appointment-form .month-label {
+  padding: 3px 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  color: #F0D736;
+  font-size: 115%;
+  margin: auto;
+}
+
+#appointment-form .date-label {
+  padding: 2px 6px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  color: #F0D736;
+  margin: 3px 10px;
+  font-size: 100%;
+}
+
+#appointment-form .availability .dates {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 0;
+}
+
+#appointment-form label.selected {
+  color: #182126;
+  background: #F0D736;
 }
 
 #appointment-form svg {
@@ -594,6 +598,7 @@ button {
   width: 30px;
   height: 30px;
   margin-right: 10px;
+  margin-left: 10px;
   box-shadow: 0px 5px 22px rgba(black, .27);
 }
 
@@ -625,10 +630,6 @@ button {
 
 #appointment-form #package-radios input:checked + div:before {
   content:'checked'
-}
-
-#appointment-form #form-fields {
-  /* display: flex; */
 }
 
 /* UTIL */
