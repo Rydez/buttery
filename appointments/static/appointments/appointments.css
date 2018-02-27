@@ -51,6 +51,14 @@ button {
   #navigation {
     display: none !important;
   }
+
+  #footer #footer-icons, #footer #all-rights {
+    display: none !important;
+  }
+
+  #footer {
+    height: 30px !important;
+  }
 }
 
 /* Hamburger */
@@ -253,7 +261,7 @@ button {
   margin: 0;
 }
 
-.social-media-icon {
+#hamburger-components .social-media-icon {
   opacity: 0;
   z-index: 1000;
   position: absolute;
@@ -265,16 +273,16 @@ button {
   width: calc(2.9vmin + 25px);
 }
 
-#twitter-icon {
+#hamburger-components #twitter-icon {
   top: calc(2.9vmin + 25px + 1.5vmin + 200px);
 }
-#snapchat-icon {
+#hamburger-components #snapchat-icon {
   top: calc(2.9vmin + 25px + 1.5vmin + 150px);
 }
-#facebook-icon {
+#hamburger-components #facebook-icon {
   top: calc(2.9vmin + 25px + 1.5vmin + 100px);
 }
-#instagram-icon {
+#hamburger-components #instagram-icon {
   top: calc(2.9vmin + 25px + 1.5vmin + 50px);
 }
 
@@ -302,6 +310,8 @@ button {
 #body {
   height: 100%;
   overflow-y: auto;
+  max-width: 100%;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -530,6 +540,10 @@ button {
   left: 0%;
 }
 
+#appointment-form .short-description {
+  margin-left: 10px;
+}
+
 /* RADIO */
 
 #appointment-form #package-radios {
@@ -540,7 +554,7 @@ button {
 
 #appointment-form #package-radios .toggler {
   width: 250px;
-  padding: 10px;
+  padding: 10px 0;
   display: block;
   margin-bottom: 20px;
   color: rgba(255, 255, 255, 0.5);
@@ -630,6 +644,38 @@ button {
 
 #appointment-form #package-radios input:checked + div:before {
   content:'checked'
+}
+
+/* FOOTER */
+#footer {
+  width: 100%;
+  background: #182126;
+  color: #F3E2B0;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+
+#footer #copyright {
+  font-size: 90%;
+  margin-left: 20px;
+}
+
+#footer #all-rights {
+  font-size: 90%;
+}
+
+#footer #footer-icons {
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+#footer #footer-icons .footer-icon {
+  width: 30px;
+  margin-left: 5px
 }
 
 /* UTIL */

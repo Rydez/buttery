@@ -6,6 +6,7 @@ from django.core.validators import RegexValidator
 class Package(models.Model):
   name = models.CharField(max_length=200)
   description = models.TextField()
+  short_description = models.TextField(null=True)
   price = models.PositiveIntegerField()
   minutes = models.PositiveIntegerField()
   creation_date = models.DateTimeField(default=datetime.now, blank=True)
@@ -28,6 +29,13 @@ class Availability(models.Model):
 class AvailabilityCheck(models.Model):
   ip_address = models.GenericIPAddressField()
   package = models.ForeignKey(Package)
+  creation_date = models.DateTimeField(default=datetime.now, blank=True)
+
+  def __str__(self):
+    return str(self.ip_address)
+
+class Visit(models.Model):
+  ip_address = models.GenericIPAddressField()
   creation_date = models.DateTimeField(default=datetime.now, blank=True)
 
   def __str__(self):

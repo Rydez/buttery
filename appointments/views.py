@@ -8,7 +8,7 @@ from django.core import serializers
 
 from ipware import get_client_ip
 
-from appointments.models import Appointment, Package, Availability, AvailabilityCheck
+from appointments.models import Appointment, Package, Availability, AvailabilityCheck, Visit
 
 from .forms import AppointmentForm
 
@@ -64,11 +64,18 @@ class AppointmentView(generic.CreateView):
   def availability_check(request):
     client_ip, _ = get_client_ip(request)
     if client_ip is not None:
-      print(client_ip)
       package_id = request.POST.get('package_id')
       package = Package.objects.get(id=package_id)
       availability_check = AvailabilityCheck(ip_address=client_ip, package=package)
       availability_check.save()
+      return HttpResponse(status=201)
+    return HttpResponse(status=400)
+
+  def visit(request):
+    client_ip, _ = get_client_ip(request)
+    if client_ip is not None:
+      visit = Visit(ip_address=client_ip)
+      visit.save()
       return HttpResponse(status=201)
     return HttpResponse(status=400)
 

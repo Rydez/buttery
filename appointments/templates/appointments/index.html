@@ -185,11 +185,8 @@
                           <input type="radio" name="package" id="radio{{ package.id }}" class="package-radio" value="{{ package.id }}">
                           <span>{{ package.name }}</span>
                         </div>
-                        <!-- <p>{{ package.short_description }}</p> -->
-                        <p id="short-description{{ package.id }}" class="hidden">
-                          kj asdlkjf asldkfj alsdkjf alksdj
-                          alksdj flkasjd flkasj dfla
-                          lkas jdflkasj dl;fakjs dflkasjd;f j
+                        <p id="short-description{{ package.id }}" class="short-description hidden">
+                          {{ package.short_description }}
                         </p>
                         <div id="availability{{ package.id }}" class="availability">
                           <!-- availabilities go here -->
@@ -207,6 +204,17 @@
             </div>
           </form>
         </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <span id="copyright">&copy; 2018 Buttery Automotive Finishes.</span>
+      <span id="all-rights">&nbsp;All rights reserved.</span>
+      <div id="footer-icons">
+        <img class="footer-icon" src="../../../static/images/Facebook.png">
+        <img class="footer-icon" src="../../../static/images/Instagram.png">
+        <img class="footer-icon" src="../../../static/images/Snapchat.png">
+        <img class="footer-icon" src="../../../static/images/Twitter.png">
       </div>
     </div>
 

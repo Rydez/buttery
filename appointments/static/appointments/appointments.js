@@ -54,6 +54,15 @@ $(document).ready(function() {
     }
   });
 
+  $.ajax({
+    type: 'POST',
+    url: '/visit/',
+    data: {},
+    error: function(response) {
+      console.log(response);
+    }
+  });
+
   $('.navigation-button').click(function() {
     $('.navigation-button').removeClass('selected');
     var clickedButton = $(this);
