@@ -117,6 +117,10 @@ class AppointmentView(generic.CreateView):
         availability.save()
         second_availability.save()
       else:
+        if (availability.minutes_remaining < package.minutes):
+          errors = {'availability': ['Sorry, that availability was just taken.']}
+          return HttpResponse(form.errors.as_json(), status=400)
+
         # Reduce miutes remaining on availability
         availability.minutes_remaining -= package.minutes
         availability.save()

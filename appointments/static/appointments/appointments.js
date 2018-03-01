@@ -343,7 +343,7 @@ $(document).ready(function() {
     closeHamburgerMenu();
   });
 
-  $(document).click(function(e) {
+  $(document).on('mousedown mouseup touchstart touchend', function(e) {
     const hamburger = $(e.target).closest('#hamburger')[0];
     if (hamburger) {
       return;
@@ -356,7 +356,7 @@ $(document).ready(function() {
   });
 
   // border on active hamburger icon
-  $('#hamburger-close, #hamburger').on("mousedown mouseup touchstart touchend", function() {
+  $('#hamburger-close, #hamburger').on('mousedown mouseup touchstart touchend', function() {
     $('.patty').toggleClass('hamburger-icon-active');
     $('#back').toggleClass('hamburger-icon-active');
     $('#forward').toggleClass('hamburger-icon-active');
