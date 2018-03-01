@@ -102,9 +102,16 @@ class AppointmentView(generic.CreateView):
       # For two day package, remove both days
       if package.minutes > 480:
         availability = Availability.objects.get(id=availability_id)
-        first = str(availability.date.date())
+
+        # Add a minute to the first because we don't want it to end up in our query
+        first = str(availability.date.date() + datetime.timedelta(minutes=1))
         second = str(availability.date.date() + datetime.timedelta(days=1))
-        second_availability = Availability.objects.filter(date__range=[first, second])
+        second_availability = Availability.objects.get(date__range=[first, second])
+
+        if (availability.minutes_remaining == 0 or second_availability.minutes_remaining == 0):
+          errors = {'availability': ['Sorry, that availability was just taken.']}
+          return HttpResponse(form.errors.as_json(), status=400)
+
         availability.minutes_remaining = 0
         second_availability.minutes_remaining = 0
         availability.save()

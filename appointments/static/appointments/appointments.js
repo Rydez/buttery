@@ -133,21 +133,36 @@ $(document).ready(function() {
       success: function() {
         $('#appointment-section').hide();
         $('#appointment-receipt').show();
+        $('#appointment-form').addClass('submitted');
       },
       error: function(response) {
+        $('#appointment-form input').removeClass('server-error');
 
         // Display errors
         var fieldErrors = JSON.parse(response.responseText);
-        var ul = document.getElementById('form-errors');
-        ul.innerHTML = '';
         for (var field in fieldErrors) {
-          var [text] = fieldErrors[field];
-          var li = document.createElement('li');
-          li.appendChild(document.createTextNode(text.message));
-          ul.appendChild(li);
+
+          if (field === 'availability') {
+            continue;
+          }
+
+          var [error] = fieldErrors[field];
+          if (field !== 'package') {
+            var [input] = $(`input[name=${field}]`);
+            input.classList.add('server-error');
+            var [label] = input.labels;
+
+            label.setAttribute('data-error', error.message);
+          }
+          else {
+            var [radios] = $('#package-radios');
+            radios.classList.add('server-error');
+            radios.setAttribute('data-error', 'Select a package and date.');
+          }
         }
 
         // Go back to editing appointment
+        $('#appointment-form').addClass('submitted');
         editAppointment();
       }
     });
@@ -187,14 +202,27 @@ $(document).ready(function() {
       success: function(availabilities) {
         // Get availability contianer
         var [container] = $(`#availability${package_id}`);
-        var [months] = $('<div/>', {id: 'months'});
 
+        var availabilities = JSON.parse(availabilities);
+        if (availabilities.length === 0) {
+          var [months] = $('<div/>', {
+            id: 'months',
+            class: 'no-availabilities'
+          });
+
+          var [noAvailabilities] = $(`<span>All availabilities taken.</span>`);
+          months.appendChild(noAvailabilities);
+          container.appendChild(months);
+          return;
+        }
+
+        var [months] = $('<div/>', {id: 'months'});
         container.appendChild(months);
 
         // Keep track of month
         var currentMonth = '';
         var dates = null;
-        for (var availability of JSON.parse(availabilities)) {
+        for (var availability of availabilities) {
           var dateString = availability.fields.date;
           var date = new Date(dateString);
           var nextMonth = monthNames[date.getMonth()];
@@ -354,11 +382,6 @@ $(document).ready(function() {
   }
 
   function reviewAppointment(event) {
-
-    // Remove packages
-    var packages = document.getElementById('packages');
-    packages.classList.add('hidden');
-
     // Change header
     var creationHeader = document.getElementById('creation-header');
     var reviewHeader = document.getElementById('review-header');
