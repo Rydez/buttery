@@ -59,6 +59,9 @@ button {
   #footer {
     height: 30px !important;
   }
+  .extra-text {
+    display: none;
+  }
 }
 
 /* Hamburger */
@@ -402,12 +405,28 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-flow: row wrap;
+}
+
+#header span:not(.extra-text) {
+  margin-left: 2.9vmin;
+  margin-right: auto;
+  margin-top: 5px;
+  color: #F3E2B0;
+}
+
+#header .break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
 }
 
 /* Nav container */
 #navigation {
+  margin-left: auto;
   margin-right: 2.9vmin;
-  width: 55vw;
+  width: 25vw;
   display: inline-block;
 }
 
@@ -498,36 +517,30 @@ button {
   transform: translate(-10px, -30px) scale(0.85);
 }
 
-#appointment-form.submitted .field-group input:disabled ~ label {
-  position: absolute;
-  color: rgba(255, 255, 255, 0.9);
-  transform: translate(-10px, -30px) scale(0.85);
-}
-
-#appointment-form.submitted .field-group input:valid ~ label {
-  position: absolute;
-  color: rgb(87, 177, 99);
-  transform: translate(-10px, -30px) scale(0.85);
-}
-
-#appointment-form.submitted .field-group input:invalid ~ label {
-  position: absolute;
-  color: rgb(189, 88, 88);
-  transform: translate(-10px, -30px) scale(0.85);
-}
-
 #appointment-form .field-group input:focus ~ .bar:before {
   width: 250px;
   transform: scale(1);
 }
 
-#appointment-form.submitted .field-group input:valid ~ .bar:before {
+#appointment-form.submitted .field-group input:not(.server-error) ~ label {
+  position: absolute;
+  color: rgb(87, 177, 99);
+  transform: translate(-10px, -30px) scale(0.85);
+}
+
+#appointment-form.submitted .field-group input.server-error ~ label {
+  position: absolute;
+  color: rgb(189, 88, 88);
+  transform: translate(-10px, -30px) scale(0.85);
+}
+
+#appointment-form.submitted .field-group input:not(.server-error) ~ .bar:before {
   background: rgb(87, 177, 99);
   width: 250px;
   transform: scale(1);
 }
 
-#appointment-form.submitted .field-group input:invalid ~ .bar:before {
+#appointment-form.submitted .field-group input.server-error ~ .bar:before {
   background: rgb(189, 88, 88);
   width: 250px;
   transform: scale(1);
@@ -543,6 +556,7 @@ button {
   transition: 150ms ease all;
 }
 
+#appointment-form.submitted #package-radios input.server-error ~ label:after,
 #appointment-form.submitted .field-group input.server-error ~ label:after {
   content: attr(data-error);
   display: block;
@@ -555,7 +569,6 @@ button {
 #appointment-form.submitted #package-radios.server-error:after {
   content: attr(data-error);
   display: block;
-  position: absolute;
   width: 250px;
   color: rgb(189, 88, 88);
   transform: translateY(5px);
@@ -680,7 +693,8 @@ button {
   cursor: pointer;
 }
 
-#appointment-form #package-radios input {
+#appointment-form #package-radios .availability input,
+#appointment-form #package-radios .radio-title input {
   position:absolute;
   top:-1000px;
   left:-1000px;
@@ -696,6 +710,7 @@ button {
   content:'checked'
 }
 
+#appointment-receipt button,
 #form-buttons button {
   margin-right: 10px;
   background-color: #182126;
@@ -708,12 +723,21 @@ button {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 }
 
+#appointment-receipt button:focus,
 #form-buttons button:focus {
   outline: none;
   color: #F0D736;
   opacity: 1;
   border: 1px solid #F0D736;
   background: #182126;
+}
+
+#appointment-form #form-review {
+  font-size: 120%;
+}
+
+#appointment-form #form-review p span {
+ color: #F0D736;
 }
 
 /* FOOTER */

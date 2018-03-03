@@ -120,12 +120,10 @@ $(document).ready(function() {
 
   // Form submit handler
   $('#appointment-form').submit(function() {
+    $('#appointment-form #form-fields').hide();
+    $('#appointment-form #form-review').show();
 
-    // Remove disabled attribute in order to collect data, then re-disable them
-    var disabled = $(this).find(':input:disabled').removeAttr('disabled');
     var formData = $(this).serialize();
-    disabled.attr('disabled','true');
-
     $.ajax({
       type: 'POST',
       url: '/',
@@ -259,12 +257,15 @@ $(document).ready(function() {
           // Create label for input
           var [dateLabel] = $(`<label>${days[date.getDay()]}, ${date.getDate()}</label>`);
           dateLabel.classList.add('date-label');
+          dateLabel.setAttribute('for', `availability-date${availability.pk}`)
 
           // Always append the date
           var [dateInput] = $('<input/>', {
+            id: `availability-date${availability.pk}`,
             type: 'radio',
             value: availability.pk,
-            name: 'availability'
+            name: 'availability',
+            'data-date': `${days[date.getDay()]}, ${date.getDate()}`
           });
 
           dateLabel.appendChild(dateInput)
@@ -280,31 +281,24 @@ $(document).ready(function() {
           // First, hide all showing dates
           $('.dates').hide();
           var month = this.value;
-          if (this.checked) {
 
-            // Show the one which was just checked
-            $(`#${month}-dates`).show();
-            $(this).closest('label').addClass('selected');
-          }
+          // Show the one which was just checked
+          $(`#${month}-dates`).show();
+          $(this).closest('label').addClass('selected');
         });
 
         $('input[name=availability]').change(function() {
-
-          // Unselect all
           $('.date-label').removeClass('selected');
-
-          if (this.checked) {
-            $(this).closest('label').addClass('selected');
-          }
+          $(this).closest('label').addClass('selected');
         });
 
         $('input[name=months]').first().attr('checked', true);
         $('input[name=months]').first().closest('label').addClass('selected');
         $('input[name=months]').first().change();
 
-        $('input[name=availability]').first().attr('checked', true);
-        $('input[name=availability]').first().closest('label').addClass('selected');
-        $('input[name=availability]').first().change();
+        $('.availability input[name=availability]').first().attr('checked', true);
+        $('.availability input[name=availability]').first().closest('label').addClass('selected');
+        $('.availability input[name=availability]').first().change();
       },
       // error: function(response) {
       //   console.log(response)
@@ -320,7 +314,7 @@ $(document).ready(function() {
 
   // Keep track of when field was blurred
   $('.field-group').focusout(function() {
-    if($(this).find('input').val() !== '') {
+    if($(this).find('input[type=text]').val() !== '') {
       $(this).addClass('unclicked');
     }
   });
@@ -386,9 +380,16 @@ $(document).ready(function() {
     var creationHeader = document.getElementById('creation-header');
     var reviewHeader = document.getElementById('review-header');
     var editHeader = document.getElementById('edit-header');
+    var creationParagraph = document.getElementById('creation-paragraph');
+    var reviewParagraph = document.getElementById('review-paragraph');
+    var editParagraph = document.getElementById('edit-paragraph');
+
     creationHeader.classList.add('hidden');
+    creationParagraph.classList.add('hidden');
     reviewHeader.classList.remove('hidden');
+    reviewParagraph.classList.remove('hidden');
     editHeader.classList.add('hidden');
+    editParagraph.classList.add('hidden');
 
     // Change buttons
     var reviewButton = document.getElementById('review-appointment');
@@ -398,25 +399,62 @@ $(document).ready(function() {
     editButton.classList.remove('hidden');
     submitButton.classList.remove('hidden');
 
-    // Disable fields
-    var fields = document.getElementById('appointment-form').elements;
-    for (var field of fields) {
-      if (field.id !== 'edit-appointment' &&
-          field.id !== 'submit-appointment' &&
-          field.type !== 'hidden')
-      {
-        field.disabled = true;
+    // Create review
+    var container = $('#form-review');
+    container.empty();
+    var inputs = $('#appointment-form input');
+    var ignoreFields = ['csrfmiddlewaretoken', 'package', 'availability', 'psuedo-availability', 'months'];
+    for (var input of inputs) {
+      if (ignoreFields.indexOf(input.name) === -1) {
+        var label = input.labels[0];
+        var name = label.innerText;
+        var value = input.value || 'Empty';
+        var reviewLine = $(`<p><b>${name}</b>: <span>${value}</span></p>`);
+        container.append(reviewLine);
       }
     }
+
+    var packageRadios = $('input[name=package]')
+    var packageName = 'Empty';
+    for (var radio of packageRadios) {
+      if (radio.checked) {
+        packageName = $(radio).data('name');
+      }
+    }
+
+    var reviewLine = $(`<p><b>Package</b>: <span>${packageName}</span></p>`);
+    container.append(reviewLine);
+
+    var availabilities = $('input[name=availability]')
+    var dateString = 'Empty';
+    for (var availability of availabilities) {
+      if (availability.checked) {
+        dateString = $(availability).data('date');
+      }
+    }
+
+    var reviewLine = $(`<p><b>Date</b>: <span>${dateString}</span></p>`);
+    container.append(reviewLine);
+
+    $('#appointment-form #form-fields').hide();
+    $('#appointment-form #form-review').show();
+    $('#appointment-form').attr('novalidate', true);
+    $('.section').hide();
+    $('#appointment-section').scrollTop(0);
+    $('#appointment-section').show();
   }
 
   function editAppointment() {
 
     // Change header
     var reviewHeader = document.getElementById('review-header');
+    var reviewParagraph = document.getElementById('review-paragraph');
     var editHeader = document.getElementById('edit-header');
+    var editParagraph = document.getElementById('edit-paragraph');
     reviewHeader.classList.add('hidden');
+    reviewParagraph.classList.add('hidden');
     editHeader.classList.remove('hidden');
+    editParagraph.classList.remove('hidden');
 
     // Change buttons
     var reviewButton = document.getElementById('review-appointment');
@@ -426,15 +464,15 @@ $(document).ready(function() {
     editButton.classList.add('hidden');
     submitButton.classList.add('hidden');
 
-    // Disable fields
-    var fields = document.getElementById('appointment-form').elements;
-    for (var field of fields) {
-      field.disabled = false;
-    }
+    $('#appointment-form #form-review').hide();
+    $('#appointment-form #form-fields').show();
+    $('#appointment-form').attr('novalidate', false);
+    $('.section').hide();
+    $('#appointment-section').scrollTop(0);
+    $('#appointment-section').show();
   }
 
   function backToHome(event) {
     window.location = '';
   }
-
 });
