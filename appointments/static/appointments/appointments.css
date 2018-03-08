@@ -11,10 +11,11 @@ body {
   padding: 0;
   background: #F3E2B0;
   font-size: 16px;
+  font-family: helvetica;
   overflow: hidden;
 }
 
-h1, h2, p {
+h1, h2, h3, h4, h5, p {
   color: #F3E2B0;
 }
 
@@ -217,7 +218,7 @@ button {
   right: calc(2.9vmin + 25px + 1.5vmin);
   top: calc(2.9vmin + 25px + 1.5vmin);
   transform-origin: right;
-  transform: rotate(-37deg);
+  transform: rotate(-35deg);
 }
 .slice-75 {
   width: 210px;
@@ -225,7 +226,7 @@ button {
   right: calc(2.9vmin + 25px + 1.5vmin);
   top: calc(2.9vmin + 25px + 1.5vmin);
   transform-origin: right;
-  transform: rotate(-72deg);
+  transform: rotate(-68deg);
 }
 
 .slice-icon {
@@ -245,11 +246,11 @@ button {
 }
 .slice-icon-45 {
   transform-origin: center;
-  transform: rotate(37deg);
+  transform: rotate(35deg);
 }
 .slice-icon-75 {
   transform-origin: center;
-  transform: rotate(72deg);
+  transform: rotate(68deg);
 }
 
 .slice-icon-text-active {
@@ -345,7 +346,7 @@ button {
 }
 
 .section {
-  margin-bottom: 35vmin;
+  margin-bottom: 400px;
 }
 
 .card {
@@ -353,7 +354,21 @@ button {
   padding: 3vmin 6vmin 3vmin 6vmin;
   margin: 0 0 4vh 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent)
+  background: rgba(150, 150, 150, 0.1);
+  /* background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent) */
+}
+
+#definition.card h1, h4 {
+  margin-bottom: 5px;
+}
+#definition.card h3 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#definition.card p {
+  margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #logo-container {
@@ -400,7 +415,6 @@ button {
 /* logo and navigation */
 #header {
   padding-top: 2.9vmin;
-  padding-bottom: 2.9vmin;
   position: relative;
   display: flex;
   align-items: center;
@@ -409,17 +423,16 @@ button {
 }
 
 #header span:not(.extra-text) {
+  width: 100%;
   margin-left: 2.9vmin;
   margin-right: auto;
-  margin-top: 5px;
+  margin-top: 15px;
+  margin-bottom: 10px;
   color: #F3E2B0;
 }
 
-#header .break {
-  flex-basis: 100%;
-  width: 0px;
-  height: 0px;
-  overflow: hidden;
+a[href^="tel"] {
+  color: inherit;
 }
 
 /* Nav container */
@@ -475,6 +488,14 @@ button {
 }
 
 /* FORM */
+
+#appointment-form {
+  margin-top: 30px;
+}
+
+#appointment-form #form-fields {
+  margin-bottom: 20px;
+}
 
 #appointment-form #form-text-fields {
   display: inline-block;
@@ -571,7 +592,7 @@ button {
   display: block;
   width: 250px;
   color: rgb(189, 88, 88);
-  transform: translateY(5px);
+  transform: translateY(-5px);
 }
 
 #appointment-form.submitted .field-group input.server-error ~ .bar {
@@ -710,7 +731,6 @@ button {
   content:'checked'
 }
 
-#appointment-receipt button,
 #form-buttons button {
   margin-right: 10px;
   background-color: #182126;
@@ -723,12 +743,20 @@ button {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 }
 
-#appointment-receipt button:focus,
 #form-buttons button:focus {
   outline: none;
   color: #F0D736;
   opacity: 1;
   border: 1px solid #F0D736;
+  background: #182126;
+}
+
+#form-buttons button:disabled {
+  outline: none;
+  color: rgba(255, 255, 255, 0.3);
+  opacity: 1;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: default;
   background: #182126;
 }
 
@@ -756,15 +784,15 @@ button {
 #footer:before {
   content: '';
   position: absolute;
-  top: -1vmin;
+  top: -4vmin;
   display: inline-block;
-  height: 1vmin;
+  height: 4vmin;
   width: 100%;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
 }
 
 #footer #copyright {
-  font-size: 90%;
+  font-size: 95%;
   margin-left: 20px;
 }
 

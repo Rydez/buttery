@@ -1,10 +1,14 @@
+import os
 import datetime
+from email.mime.image import MIMEImage
 
 from django.views import generic
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.core import serializers
-# from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.template import Context
 
 from ipware import get_client_ip
 
@@ -27,6 +31,8 @@ class AppointmentView(generic.CreateView):
     try:
       package = Package.objects.get(id=package_id)
       availabilities = None
+
+      one_week_away = datetime.datetime.now() + datetime.timedelta(days=7)
 
       # Check if this is a two day job
       if (package.minutes > 480):
@@ -52,9 +58,9 @@ class AppointmentView(generic.CreateView):
               # Start over
               first_day = None
 
-        availabilities = Availability.objects.filter(id__in=available_ids).order_by('date')
+        availabilities = Availability.objects.filter(id__in=available_ids, date__gt=one_week_away).order_by('date')
       else:
-        availabilities = Availability.objects.filter(minutes_remaining__gte=package.minutes).order_by('date')
+        availabilities = Availability.objects.filter(minutes_remaining__gte=package.minutes, date__gt=one_week_away).order_by('date')
 
       serialized_data = serializers.serialize('json', availabilities)
       return HttpResponse(serialized_data, status=200)
@@ -84,13 +90,6 @@ class AppointmentView(generic.CreateView):
     if form.is_valid():
       form.save()
 
-      # subject, from_email, to = 'hello', 'appointments@buttery.com', 'rmelend1@kent.edu'
-      # text_content = 'This is an important message.'
-      # html_content = '<p>This is an <strong>important</strong> message.</p>'
-      # msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-      # msg.attach_alternative(html_content, "text/html")
-      # msg.send()
-
       # Get selected availability
       availability_id = request.POST.get('availability')
       availability = Availability.objects.get(id=availability_id)
@@ -98,6 +97,35 @@ class AppointmentView(generic.CreateView):
       # Get selected package
       package_id = request.POST.get('package')
       package = Package.objects.get(id=package_id)
+
+      template_context = {
+        'post_data': request.POST.dict(),
+        'availability_date': availability.date.strftime('%A, %B %d, %Y'),
+        'package_name': package.name
+      }
+
+      text_content = ''
+      html_content = render_to_string('appointments/email.html', template_context)
+
+      subject = 'Appointment'
+      from_email = 'support@butteryaf.com'
+      to_us = 'support@butteryaf.com'
+      to_them = request.POST.get('email')
+
+      for field in request.POST:
+        if field == 'availability':
+          text = 'date: ' + str(availability.date) + ', '
+          text_content += text
+        elif field == 'package':
+          text = 'package: ' + str(package.name) + ', '
+          text_content += text
+        elif field != 'csrfmiddlewaretoken' and field != 'months' and field != 'email':
+          text = field + ': ' + str(request.POST.get(field)) + ', '
+          text_content += text
+
+      msg = EmailMultiAlternatives(subject, text_content, from_email, [to_us, to_them])
+      msg.attach_alternative(html_content, "text/html")
+      msg.send()
 
       # For two day package, remove both days
       if package.minutes > 480:

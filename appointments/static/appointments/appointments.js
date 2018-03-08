@@ -115,11 +115,9 @@ $(document).ready(function() {
   var editButton = document.getElementById('edit-appointment');
   editButton.onclick = editAppointment;
 
-  var homeButton = document.getElementById('back-to-home');
-  homeButton.onclick = backToHome;
-
   // Form submit handler
   $('#appointment-form').submit(function() {
+    $('#submit-appointment').prop('disabled', true);
     $('#appointment-form #form-fields').hide();
     $('#appointment-form #form-review').show();
 
@@ -129,9 +127,33 @@ $(document).ready(function() {
       url: '/',
       data: formData,
       success: function() {
+
+        // Change header
+        var creationHeader = document.getElementById('creation-header');
+        var reviewHeader = document.getElementById('review-header');
+        var creationParagraph = document.getElementById('creation-paragraph');
+        var reviewParagraph = document.getElementById('review-paragraph');
+        creationHeader.classList.remove('hidden');
+        creationParagraph.classList.remove('hidden');
+        reviewHeader.classList.add('hidden');
+        reviewParagraph.classList.add('hidden');
+
+        // Change buttons
+        var reviewButton = document.getElementById('review-appointment');
+        var editButton = document.getElementById('edit-appointment');
+        var submitButton = document.getElementById('submit-appointment');
+        reviewButton.classList.remove('hidden');
+        editButton.classList.add('hidden');
+        submitButton.classList.add('hidden');
+
+        $('#appointment-form #form-review').hide();
+        $('#appointment-form #form-fields').show();
+        $('#appointment-form').attr('novalidate', false);
+        $('#appointment-form').removeClass('submitted');
+        $('#submit-appointment').prop('disabled', false);
+        $('#appointment-form')[0].reset();
         $('#appointment-section').hide();
         $('#appointment-receipt').show();
-        $('#appointment-form').addClass('submitted');
       },
       error: function(response) {
         $('#appointment-form input').removeClass('server-error');
@@ -162,6 +184,7 @@ $(document).ready(function() {
         // Go back to editing appointment
         $('#appointment-form').addClass('submitted');
         editAppointment();
+        $('#submit-appointment').prop('disabled', false);
       }
     });
 
@@ -314,10 +337,19 @@ $(document).ready(function() {
 
   // Keep track of when field was blurred
   $('.field-group').focusout(function() {
-    if($(this).find('input[type=text]').val() !== '') {
+    if($(this).find('input').val() !== '') {
       $(this).addClass('unclicked');
     }
   });
+
+  // Because autofill
+  setInterval(function () {
+    for (var fieldGroup of $('.field-group')) {
+      if($(fieldGroup).find('input').val() !== '') {
+        fieldGroup.classList.add('unclicked');
+      }
+    }
+  }, 50);
 
   // Open hamburger menu
   $('#hamburger').click(function() {

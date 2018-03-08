@@ -52,7 +52,7 @@ ROOT_URLCONF = 'buttery.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,8 +136,7 @@ ALLOWED_HOSTS = [
     '192.168.0.14'
 ]
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = ''
+EMAIL_HOST = 'smtp.webfaction.com'
+EMAIL_HOST_USER = 'buttery'
 EMAIL_HOST_PASSWORD = ''
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+SERVER_EMAIL = 'support@butteryaf.com'
