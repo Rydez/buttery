@@ -1,0 +1,37 @@
+{% load field_name %}
+
+<!DOCTYPE html>
+<html>
+<body style="background: #182126; padding: 50px; width: 500px">
+  <div style="width: 100%">
+    <div id="logo">
+      <img style="width: 240px" src="http://butteryaf.com/static/images/logo_long_tagline.png">
+    </div>
+    <div id="social-media">
+      <img style="width: 50px; margin-right: 10px" src="http://butteryaf.com/static/images/Facebook.png">
+      <img style="width: 50px; margin-right: 10px" src="http://butteryaf.com/static/images/Instagram.png">
+      <img style="width: 50px; margin-right: 10px" src="http://butteryaf.com/static/images/Snapchat.png">
+      <img style="width: 50px; margin-right: 10px" src="http://butteryaf.com/static/images/Twitter.png">
+    </div>
+  </div>
+  <div style="color: #F3E2B0; font-family: helvetica;">
+    <p>
+      Thank you for making an appointment with us! Please
+      Review the details below to make sure everything is
+      correct. You can expect a confirmation call from us
+      the day before your appointment.
+    </p>
+    <br>
+    <h4>Appointment Details:</h4>
+    {% for field, value in post_data.items %}
+      {% if field == 'availability' %}
+        <p>Date: {{ availability_date }} </p>
+      {% elif field == 'package' %}
+        <p>Package: {{ package_name }} </p>
+      {% elif field != 'csrfmiddlewaretoken' and field != 'months' and field != 'email' %}
+        <p>{{ field|field_name }}: {{ value }} </p>
+      {% endif %}
+    {% endfor %}
+  </div>
+</body>
+</html>
