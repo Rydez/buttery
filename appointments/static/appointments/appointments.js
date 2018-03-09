@@ -10,13 +10,14 @@ $(document).ready(function() {
   $('body').on('touchstart', '#body', function(e) {
     if (e.currentTarget.scrollTop === 0) {
       e.currentTarget.scrollTop = 1;
-    } else if (e.currentTarget.scrollHeight === e.currentTarget.scrollTop + e.currentTarget.offsetHeight) {
+    }
+    else if (e.currentTarget.scrollHeight === e.currentTarget.scrollTop + e.currentTarget.offsetHeight) {
       e.currentTarget.scrollTop -= 1;
     }
   });
 
   // Stops preventDefault from being called on document if it sees a scrollable div
-  $('body').on('touchmove', '#body', function(e) {
+  $('body').on('touchstart touchmove', '#body', function(e) {
     e.stopPropagation();
   });
 
@@ -157,6 +158,7 @@ $(document).ready(function() {
       },
       error: function(response) {
         $('#appointment-form input').removeClass('server-error');
+        $('#package-radios').removeClass('server-error');
 
         // Display errors
         var fieldErrors = JSON.parse(response.responseText);
@@ -166,16 +168,16 @@ $(document).ready(function() {
             continue;
           }
 
-          var [error] = fieldErrors[field];
+          var error = fieldErrors[field][0];
           if (field !== 'package') {
-            var [input] = $(`input[name=${field}]`);
+            var input = $(`input[name=${field}]`)[0];
             input.classList.add('server-error');
-            var [label] = input.labels;
+            var label = input.labels[0];
 
             label.setAttribute('data-error', error.message);
           }
           else {
-            var [radios] = $('#package-radios');
+            var radios = $('#package-radios')[0];
             radios.classList.add('server-error');
             radios.setAttribute('data-error', 'Select a package and date.');
           }

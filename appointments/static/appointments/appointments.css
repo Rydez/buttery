@@ -318,15 +318,6 @@ button {
   -webkit-overflow-scrolling: touch;
 }
 
-#body:before {
-  content: '';
-  position: absolute;
-  display: inline-block;
-  height: 1vmin;
-  width: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), transparent);
-}
-
 #body::-webkit-scrollbar-track {
 	border: 1px solid #F3E2B0;
 	background-color: rgba(0, 0, 0, 0.1);
@@ -422,11 +413,22 @@ button {
   flex-flow: row wrap;
 }
 
+#header:after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  top: 100%;
+  left: 0;
+  height: 3vmin;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), transparent);
+}
+
 #header span:not(.extra-text) {
   width: 100%;
   margin-left: 2.9vmin;
   margin-right: auto;
-  margin-top: 15px;
+  margin-top: 1vh;
   margin-bottom: 10px;
   color: #F3E2B0;
 }
@@ -784,9 +786,10 @@ a[href^="tel"] {
 #footer:before {
   content: '';
   position: absolute;
-  top: -4vmin;
+  top: -5vmin;
+  left: 0;
   display: inline-block;
-  height: 4vmin;
+  height: 5vmin;
   width: 100%;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
 }
