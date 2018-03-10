@@ -1,5 +1,6 @@
 import os
 import datetime
+import json
 from email.mime.image import MIMEImage
 
 from django.views import generic
@@ -131,14 +132,20 @@ class AppointmentView(generic.CreateView):
       if package.minutes > 480:
         availability = Availability.objects.get(id=availability_id)
 
-        # Add a minute to the first because we don't want it to end up in our query
-        first = str(availability.date.date() + datetime.timedelta(minutes=1))
-        second = str(availability.date.date() + datetime.timedelta(days=1))
-        second_availability = Availability.objects.get(date__range=[first, second])
+        # To make our range, start with the beginning of the availability day
+        first = str(availability.date.date())
+
+        # End on the beginning of two days later. So, begin, say, at the 2nd,
+        # and end on the 4th. Availabilities on the 4th wont be included because
+        # it's the beginning.
+        second = str(availability.date.date() + datetime.timedelta(days=2))
+
+        # Exclude the first availability
+        second_availability = Availability.objects.exclude(id=availability_id).get(date__range=[first, second])
 
         if (availability.minutes_remaining == 0 or second_availability.minutes_remaining == 0):
           errors = {'availability': ['Sorry, that availability was just taken.']}
-          return HttpResponse(form.errors.as_json(), status=400)
+          return HttpResponse(json.dumps(errors), status=400)
 
         availability.minutes_remaining = 0
         second_availability.minutes_remaining = 0
@@ -147,7 +154,7 @@ class AppointmentView(generic.CreateView):
       else:
         if (availability.minutes_remaining < package.minutes):
           errors = {'availability': ['Sorry, that availability was just taken.']}
-          return HttpResponse(form.errors.as_json(), status=400)
+          return HttpResponse(json.dumps(errors), status=400)
 
         # Reduce miutes remaining on availability
         availability.minutes_remaining -= package.minutes

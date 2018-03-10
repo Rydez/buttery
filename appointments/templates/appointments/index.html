@@ -1,16 +1,16 @@
 
 {% load static %}
 {% load staticfiles %}
-<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
-{% comment %} <meta name="format-detection" content="telephone=no" /> {% endcomment %}
-<link rel="stylesheet" type="text/css" href="{% static 'appointments/appointments.css' %}" />
+<!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'appointments/appointments.css' %}" />
     <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
     <script src="{% static 'appointments/appointments.js' %}"></script>
     <script src="{% static 'appointments/radio.js' %}"></script>
-    <script>
+    <!-- {% comment %} <script>
       window.onerror = function(message, source, lineno, colno, error) {
         alert(message);
         alert(source);
@@ -18,9 +18,9 @@
         alert(colno);
         alert(error);
       };
-    </script>
+    </script> {% endcomment %} -->
   <title>
-    Buttery Automotive Finishes
+    Buttery AF
   </title>
 </head>
 <body>
@@ -211,11 +211,13 @@
                           <input type="radio" name="package" id="radio{{ package.id }}" class="package-radio" value="{{ package.id }}" data-name="{{ package.name }}">
                           <span>{{ package.name }}</span>
                         </div>
-                        <p id="short-description{{ package.id }}" class="short-description hidden">
-                          {{ package.short_description }}
-                        </p>
-                        <div id="availability{{ package.id }}" class="availability">
-                          <!-- availabilities go here -->
+                        <div id="package-details{{ package.id }}" class="package-details">
+                          <p id="short-description{{ package.id }}" class="short-description hidden">
+                            {{ package.short_description }}
+                          </p>
+                          <div id="availability{{ package.id }}" class="availability">
+                            <!-- availabilities go here -->
+                          </div>
                         </div>
                       </label>
                     {% endfor %}

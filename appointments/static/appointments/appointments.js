@@ -5,19 +5,8 @@ $(document).ready(function() {
     e.preventDefault();
   });
 
-  // Uses body because jQuery on events are called off of the element they are
-  // added to, so bubbling would not work if we used document instead.
-  $('body').on('touchstart', '#body', function(e) {
-    if (e.currentTarget.scrollTop === 0) {
-      e.currentTarget.scrollTop = 1;
-    }
-    else if (e.currentTarget.scrollHeight === e.currentTarget.scrollTop + e.currentTarget.offsetHeight) {
-      e.currentTarget.scrollTop -= 1;
-    }
-  });
-
   // Stops preventDefault from being called on document if it sees a scrollable div
-  $('body').on('touchstart touchmove', '#body', function(e) {
+  $('body').on('touchmove', '#body', function(e) {
     e.stopPropagation();
   });
 
@@ -80,8 +69,14 @@ $(document).ready(function() {
       $('#packages-section').show();
     }
     else if (clickedEl.id === 'appointments-button') {
-      $('#appointment-section').scrollTop(0);
-      $('#appointment-section').show();
+      if ($('#appointment-form').hasClass('successfully-submitted')) {
+        $('#appointment-receipt').scrollTop(0);
+        $('#appointment-receipt').show();
+      }
+      else {
+        $('#appointment-section').scrollTop(0);
+        $('#appointment-section').show();
+      }
     }
 
     return false;
@@ -102,9 +97,16 @@ $(document).ready(function() {
       $('#packages-button').addClass('selected');
     }
     else if (clickedEl.id === 'schedule-slice') {
-      $('#appointment-section').scrollTop(0);
-      $('#appointment-section').show();
-      $('#appointments-button').addClass('selected');
+      if ($('#appointment-form').hasClass('successfully-submitted')) {
+        $('#appointment-receipt').scrollTop(0);
+        $('#appointment-receipt').show();
+        $('#appointments-button').addClass('selected');
+      }
+      else {
+        $('#appointment-section').scrollTop(0);
+        $('#appointment-section').show();
+        $('#appointments-button').addClass('selected');
+      }
     }
 
     closeHamburgerMenu();
@@ -128,33 +130,9 @@ $(document).ready(function() {
       url: '/',
       data: formData,
       success: function() {
-
-        // Change header
-        var creationHeader = document.getElementById('creation-header');
-        var reviewHeader = document.getElementById('review-header');
-        var creationParagraph = document.getElementById('creation-paragraph');
-        var reviewParagraph = document.getElementById('review-paragraph');
-        creationHeader.classList.remove('hidden');
-        creationParagraph.classList.remove('hidden');
-        reviewHeader.classList.add('hidden');
-        reviewParagraph.classList.add('hidden');
-
-        // Change buttons
-        var reviewButton = document.getElementById('review-appointment');
-        var editButton = document.getElementById('edit-appointment');
-        var submitButton = document.getElementById('submit-appointment');
-        reviewButton.classList.remove('hidden');
-        editButton.classList.add('hidden');
-        submitButton.classList.add('hidden');
-
-        $('#appointment-form #form-review').hide();
-        $('#appointment-form #form-fields').show();
-        $('#appointment-form').attr('novalidate', false);
-        $('#appointment-form').removeClass('submitted');
-        $('#submit-appointment').prop('disabled', false);
-        $('#appointment-form')[0].reset();
         $('#appointment-section').hide();
         $('#appointment-receipt').show();
+        $('#appointment-form').addClass('successfully-submitted');
       },
       error: function(response) {
         $('#appointment-form input').removeClass('server-error');
@@ -165,7 +143,9 @@ $(document).ready(function() {
         for (var field in fieldErrors) {
 
           if (field === 'availability') {
-            continue;
+            var radios = $('#package-radios')[0];
+            radios.classList.add('server-error');
+            radios.setAttribute('data-error', fieldErrors[field][0]);
           }
 
           var error = fieldErrors[field][0];
@@ -200,6 +180,7 @@ $(document).ready(function() {
   $('input[name=package]').change(function() {
 
     $('.availability').empty();
+    $('.package-details').removeClass('opened');
 
     var package_id = null;
     var packageRadios = $('input[name=package]');
@@ -214,7 +195,7 @@ $(document).ready(function() {
       url: '/availability_check/',
       data: {package_id},
       error: function(response) {
-        console.log(response);
+        // console.log(response);
       }
     });
 
@@ -236,6 +217,7 @@ $(document).ready(function() {
           var [noAvailabilities] = $(`<span>All availabilities taken.</span>`);
           months.appendChild(noAvailabilities);
           container.appendChild(months);
+          $(`#package-details${package_id}`).addClass('opened');
           return;
         }
 
@@ -293,7 +275,7 @@ $(document).ready(function() {
             'data-date': `${days[date.getDay()]}, ${date.getDate()}`
           });
 
-          dateLabel.appendChild(dateInput)
+          dateLabel.appendChild(dateInput);
           dates.appendChild(dateLabel);
         }
 
@@ -324,6 +306,8 @@ $(document).ready(function() {
         $('.availability input[name=availability]').first().attr('checked', true);
         $('.availability input[name=availability]').first().closest('label').addClass('selected');
         $('.availability input[name=availability]').first().change();
+
+        $(`#package-details${package_id}`).addClass('opened');
       },
       // error: function(response) {
       //   console.log(response)
