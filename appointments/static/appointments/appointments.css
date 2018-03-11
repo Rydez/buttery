@@ -708,6 +708,7 @@ a[href^="tel"] {
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 #appointment-form .month-label {
@@ -728,6 +729,10 @@ a[href^="tel"] {
   color: #F0D736;
   margin: 3px 7px;
   font-size: 100%;
+}
+
+#appointment-form .no-availabilities {
+  margin-top: 10px;
 }
 
 #appointment-form .availability .dates {
