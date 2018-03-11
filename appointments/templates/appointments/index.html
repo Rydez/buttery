@@ -6,6 +6,7 @@
   <head>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'appointments/appointments.css' %}" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../static/images/favicon.ico"/>
     <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
     <script src="{% static 'appointments/appointments.js' %}"></script>
@@ -31,7 +32,9 @@
       <div id="back"></div>
     </div>
     <div id="hamburger-menu"></div>
-    <img class="social-media-icon" id="facebook-icon" src="../../../static/images/Facebook.png">
+    <a href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
+      <img class="social-media-icon" id="facebook-icon" src="../../../static/images/Facebook.png">
+    </a>
     <img class="social-media-icon" id="instagram-icon" src="../../../static/images/Instagram.png">
     <img class="social-media-icon" id="snapchat-icon" src="../../../static/images/Snapchat.png">
     <img class="social-media-icon" id="twitter-icon" src="../../../static/images/Twitter.png">
@@ -109,16 +112,15 @@
     </div>
     <div id="body">
       <div id="home-section" class="section">
-        <div class="card" id="definition">
-          <h1>but·ter·y</h1>
-          <h3>/ˈbədərē/</h3>
-          <h4><i>adjective</i></h4>
-          <p>Extraordinarily smooth.</p>
-          <p>"How did you get that black paint so buttery?"</p>
-        </div>
-        <div class="card">
-          <h1>Who We Are</h1>
-          <p>
+        <div class="card" id="definition-card">
+          <div id="definition">
+            <h1>but·ter·y</h1>
+            <h3>/ˈbədərē/</h3>
+            <h4><i>adjective</i></h4>
+            <p>Extraordinarily smooth.</p>
+            <p>"How did you get that black paint so buttery?"</p>
+          </div>
+          <p id="company-description">
             Buttery Automotive Finishes offers a complete mobile automotive
             detailing service, specializing in sport and luxury vehicles in
             North Eastern Ohio. We respect our clients surrounding areas by
@@ -128,20 +130,29 @@
             pricing. Buttery A.F. is structured around the highest quality
             possible while making the process incredibly easy for our clients.
           </p>
-          <p>
-            Buttery A.F. was started by three brothers Cameron, Ryan, and Tyler.
-            With experience working with Mercedes-Benz and Porsche, Cameron has
-            developed a passion to obtain the best-looking finishes possible.
-            With the support of Ryan and Tyler, all Cameron has to focus on are
-            Buttery finishes.
-          </p>
+        </div>
+        <div class="card">
+          <div id="who-we-are">
+            <h1>Who We Are</h1>
+            <p>
+              Buttery A.F. was started by three brothers Cameron, Ryan, and Tyler.
+              With experience working with Mercedes-Benz and Porsche, Cameron has
+              developed a passion to obtain the best-looking finishes possible.
+              With the support of Ryan and Tyler, all Cameron has to focus on are
+              Buttery finishes.
+            </p>
+          </div>
+          <div id="cam">
+            <img src="../../../static/images/cam.png">
+            <div id="cam-caption">Cameron, The Detailer</div id="cam-caption">
+          </div>
         </div>
       </div>
 
       <div id="packages-section" class="section hidden">
         {% for package in package_list %}
           <div class="card">
-            <h1>{{ package.name }}</h1>
+            <h1>{{ package.name }} - ${{ package.price }}</h1>
             <p class="package-description">{{ package.description }}</p>
           </div>
         {% endfor %}
@@ -257,7 +268,9 @@
       <span id="copyright">&copy; 2018 Buttery Automotive Finishes.</span>
       <span id="all-rights">&nbsp;All rights reserved.</span>
       <div id="footer-icons">
-        <img class="footer-icon" src="../../../static/images/Facebook.png">
+        <a href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
+          <img class="footer-icon" src="../../../static/images/Facebook.png">
+        </a>
         <img class="footer-icon" src="../../../static/images/Instagram.png">
         <img class="footer-icon" src="../../../static/images/Snapchat.png">
         <img class="footer-icon" src="../../../static/images/Twitter.png">

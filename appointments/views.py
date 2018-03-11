@@ -108,7 +108,7 @@ class AppointmentView(generic.CreateView):
       text_content = ''
       html_content = render_to_string('appointments/email.html', template_context)
 
-      subject = 'Appointment'
+      subject = 'Appointment Details'
       from_email = 'support@butteryaf.com'
       to_us = 'support@butteryaf.com'
       to_them = request.POST.get('email')
