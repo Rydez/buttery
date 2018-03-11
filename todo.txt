@@ -1,5 +1,27 @@
+NERD STUFF
 - New tab when clicking social media links.
 - Justify package details to left (don't center).
 - Form should be address then city, not the other way around.
 - Fix field ordering in email.
 - Date in review should show month as well.
+- Polish language using adj and dohm passages.
+- Fix so that first image when linking is logo.
+- Google Analytics
+- For the nerds button on packages
+- Order package button on packages page.
+- Fix the Edge logo shine thing.
+- Log screen dimensions on visits
+- Social media icons choppy, prolly scaled down too much
+
+SALES STUFF
+- Get easy linking to flat6 work.
+- SEO.
+- Groupon.
+- Yelp.
+- Print media (news paper, etc.)
+- Email blaster from customer emails.
+  + Set up lead generation techniques to gather emails.
+- Add a note for businesses on website.
+- Google business account.
+- Facebook marketplace.
+- Craigslist.

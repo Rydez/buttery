@@ -1,6 +1,8 @@
 
 {% load static %}
 {% load staticfiles %}
+{% load custom_tags %}
+
 <html>
   <head>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
@@ -32,16 +34,16 @@
     </div>
     <div id="hamburger-menu"></div>
     <a href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
-      <img class="social-media-icon" id="facebook-icon" src="../../../static/images/Facebook.png">
+      <img class="social-media-icon" id="facebook-icon" src="../../../static/images/Facebook50.png">
     </a>
     <a href="https://twitter.com/buttery_af">
-      <img class="social-media-icon" id="twitter-icon" src="../../../static/images/Twitter.png">
+      <img class="social-media-icon" id="twitter-icon" src="../../../static/images/Twitter50.png">
     </a>
     <a href="https://www.instagram.com/butteryautomotivefinishes/">
-      <img class="social-media-icon" id="instagram-icon" src="../../../static/images/Instagram.png">
+      <img class="social-media-icon" id="instagram-icon" src="../../../static/images/Instagram50.png">
     </a>
     <a href="https://www.snapchat.com/add/butteryfinishes">
-      <img class="social-media-icon" id="snapchat-icon" src="../../../static/images/Snapchat.png">
+      <img class="social-media-icon" id="snapchat-icon" src="../../../static/images/Snapchat50.png">
     </a>
 
     <div class="hamburger-divider divider-00"></div>
@@ -120,11 +122,15 @@
       <div id="home-section" class="section">
         <div class="card" id="definition-card">
           <div id="definition">
-            <h1>but·ter·y</h1>
-            <h3>/ˈbədərē/</h3>
-            <h4><i>adjective</i></h4>
-            <p>Extraordinarily smooth.</p>
-            <p>"How did you get that black paint so buttery?"</p>
+            <div id="definition-header">
+              <h1>but·ter·y</h1>
+              <h3>/ˈbədərē/</h3>
+            </div>
+            <div id="definition-body">
+              <h4><i>adjective</i></h4>
+              <p>Extraordinarily smooth.</p>
+              <p>"How did you get that black paint so buttery?"</p>
+            </div>
           </div>
           <p id="company-description">
             Buttery Automotive Finishes offers a complete mobile automotive
@@ -164,7 +170,11 @@
         </div>
         {% for package in package_list %}
           <div class="card">
-            <h1>{{ package.name }} - ${{ package.price }}</h1>
+            <h1>
+              {{ package.name }} -
+              <s> ${{ package.price }}</s>
+              <span class="yellow-text">&nbsp;${{ package.price|twenty_off }}</span>
+            </h1>
             <p class="package-description">{{ package.description }}</p>
           </div>
         {% endfor %}
@@ -205,6 +215,14 @@
               {% for field in form %}
                 {% if field.name == 'package' %}
                   <div id="package-radios">
+                    <div id="package-special">
+                      <p class="yellow-text">
+                        <b>Grand Opening Prices:</b>
+                      </p>
+                      <p class="yellow-text">
+                        All appointments scheduled before May 1st are 20% off.
+                      </p>
+                    </div>
                     {% for package in package_list %}
                       <label id="toggler{{ package.id }}" class="toggler">
                         <div class="radio-title">
@@ -232,7 +250,8 @@
                             </g>
                           </svg>
                           <input type="radio" name="package" id="radio{{ package.id }}" class="package-radio" value="{{ package.id }}" data-name="{{ package.name }}">
-                          <span>{{ package.name }} - ${{ package.price }}</span>
+                          <span>{{ package.name }} - </span>
+                          <span class="yellow-text">&nbsp;${{ package.price|twenty_off }}</span>
                         </div>
                         <div id="package-details{{ package.id }}" class="package-details">
                           <p id="short-description{{ package.id }}" class="short-description hidden">
@@ -281,16 +300,16 @@
       <span id="all-rights">&nbsp;All rights reserved.</span>
       <div id="footer-icons">
         <a href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
-          <img class="footer-icon" src="../../../static/images/Facebook.png">
+          <img class="footer-icon" src="../../../static/images/Facebook50.png">
         </a>
         <a href="https://twitter.com/buttery_af">
-          <img class="footer-icon" src="../../../static/images/Twitter.png">
+          <img class="footer-icon" src="../../../static/images/Twitter50.png">
         </a>
         <a href="https://www.instagram.com/butteryautomotivefinishes/">
-          <img class="footer-icon" src="../../../static/images/Instagram.png">
+          <img class="footer-icon" src="../../../static/images/Instagram50.png">
         </a>
         <a href="https://www.snapchat.com/add/butteryfinishes">
-          <img class="footer-icon" src="../../../static/images/Snapchat.png">
+          <img class="footer-icon" src="../../../static/images/Snapchat50.png">
         </a>
       </div>
     </div>

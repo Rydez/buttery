@@ -34,6 +34,10 @@ button {
   font-size: 100%;
 }
 
+.yellow-text {
+  color: #F0D736;
+}
+
 /* For above mobile */
 @media screen and (min-width: 851px) {
   #hamburger {
@@ -270,6 +274,7 @@ button {
   opacity: 0;
   z-index: 1000;
   position: absolute;
+  image-rendering: crisp-edges;
 
   /* Half of padding */
   right: 0.75vmin;
@@ -368,31 +373,51 @@ button {
 }
 
 #definition-card.card #definition h1 {
+  font-size: 170%;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 5px;
 }
 
 #definition-card.card #definition h4 {
-  margin-top: 10px;
+  margin-top: 0;
   margin-bottom: 0;
+  font-size: 90%;
 }
 #definition-card.card #definition h3 {
   margin-top: 5px;
   margin-bottom: 5px;
+  font-size: 125%;
 }
 #definition-card.card #definition p {
+  font-size: 90%;
   margin-left: 20px;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
 #definition-card #definition {
-  display: inline-block;
+  width: 100%;
   padding: 10px 20px;
+  box-sizing: border-box;
   border: solid 1px rgba(243, 226, 176, 0.4);
 }
 
+#definition-card #definition #definition-header {
+  vertical-align: top;
+  display: inline-block;
+  margin-right: 40px;
+}
+
+#definition-card #definition #definition-body {
+  margin-top: 2px;
+  vertical-align: top;
+  display: inline-block;
+}
+
 #cam {
+  width: 175px;
+  margin-left: 0;
+  margin-top: 15px;
   text-align: center;
 }
 
@@ -476,6 +501,7 @@ a {
   height: 3vmin;
   width: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.3), transparent);
+  pointer-events: none;
 }
 
 #header span:not(.extra-text) {
@@ -495,7 +521,6 @@ a[href^="tel"] {
 #navigation {
   margin-left: auto;
   margin-right: 2.9vmin;
-  width: 25vw;
   display: inline-block;
 }
 
@@ -801,6 +826,17 @@ a[href^="tel"] {
   content:'checked'
 }
 
+#package-special {
+  width: 250px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  margin-right: 0;
+}
+
+#package-special p {
+  margin: 0;
+};
+
 #form-buttons {
   margin-top: 15px;
 }
@@ -864,6 +900,7 @@ a[href^="tel"] {
   height: 5vmin;
   width: 100%;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+  pointer-events: none;
 }
 
 #footer #copyright {
