@@ -35,9 +35,16 @@
     <a href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
       <img class="social-media-icon" id="facebook-icon" src="../../../static/images/Facebook.png">
     </a>
-    <img class="social-media-icon" id="instagram-icon" src="../../../static/images/Instagram.png">
-    <img class="social-media-icon" id="snapchat-icon" src="../../../static/images/Snapchat.png">
-    <img class="social-media-icon" id="twitter-icon" src="../../../static/images/Twitter.png">
+    <a href="https://twitter.com/buttery_af">
+      <img class="social-media-icon" id="twitter-icon" src="../../../static/images/Twitter.png">
+    </a>
+    <a href="https://www.instagram.com/butteryautomotivefinishes/">
+      <img class="social-media-icon" id="instagram-icon" src="../../../static/images/Instagram.png">
+    </a>
+    <a href="https://www.snapchat.com/add/butteryfinishes">
+      <img class="social-media-icon" id="snapchat-icon" src="../../../static/images/Snapchat.png">
+    </a>
+
     <div class="hamburger-divider divider-00"></div>
     <div class="hamburger-divider divider-30"></div>
     <div class="hamburger-divider divider-60"></div>
@@ -105,7 +112,7 @@
       </div>
       <span>
         <span class="extra-text">Call / Text: </span>
-        (123) 555-1234,
+        (330) 541-7196,
         <span class="extra-text"> Email: </span>
         support@butteryaf.com
       </span>
@@ -150,6 +157,12 @@
       </div>
 
       <div id="packages-section" class="section hidden">
+        <div class="card">
+          <h1 id="special-header">Grand Opening Prices</h1>
+          <p id="special-body">
+            All appointments scheduled before May 1st are 20% off.
+          </p>
+        </div>
         {% for package in package_list %}
           <div class="card">
             <h1>{{ package.name }} - ${{ package.price }}</h1>
@@ -220,7 +233,7 @@
                             </g>
                           </svg>
                           <input type="radio" name="package" id="radio{{ package.id }}" class="package-radio" value="{{ package.id }}" data-name="{{ package.name }}">
-                          <span>{{ package.name }}</span>
+                          <span>{{ package.name }} - ${{ package.price }}</span>
                         </div>
                         <div id="package-details{{ package.id }}" class="package-details">
                           <p id="short-description{{ package.id }}" class="short-description hidden">
@@ -271,9 +284,15 @@
         <a href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
           <img class="footer-icon" src="../../../static/images/Facebook.png">
         </a>
-        <img class="footer-icon" src="../../../static/images/Instagram.png">
-        <img class="footer-icon" src="../../../static/images/Snapchat.png">
-        <img class="footer-icon" src="../../../static/images/Twitter.png">
+        <a href="https://twitter.com/buttery_af">
+          <img class="footer-icon" src="../../../static/images/Twitter.png">
+        </a>
+        <a href="https://www.instagram.com/butteryautomotivefinishes/">
+          <img class="footer-icon" src="../../../static/images/Instagram.png">
+        </a>
+        <a href="https://www.snapchat.com/add/butteryfinishes">
+          <img class="footer-icon" src="../../../static/images/Snapchat.png">
+        </a>
       </div>
     </div>
   </div>
