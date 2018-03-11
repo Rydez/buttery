@@ -1,0 +1,2 @@
+- New tab when clicking social media links.
+- Justify package details to left (don't center).
