@@ -411,7 +411,6 @@ button {
 }
 
 #logo-container {
-  max-width: 410px;
   margin-left: 2.9vmin;
   width: 45vmin;
 }
@@ -420,12 +419,12 @@ button {
   width: 45vmin;
 }
 
-.mask a{
+.mask a {
   width: 45vmin;
   position: relative;
   display: block;
-  -webkit-filter: drop-shadow(1px 1px 10px rgba(0,0,0,.8));
-  filter: drop-shadow(1px 1px 10px rgba(0,0,0,.8));
+  -webkit-filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.8));
   -webkit-animation: shine 5s infinite;
   animation: shine 5s infinite;
 }
@@ -440,11 +439,14 @@ button {
 }
 
 .mask a::after{
-  content:'';
+  content: '';
   position: absolute;
   pointer-events: none;
-  top:0; left:0; right:0; bottom: 0;
-  background: radial-gradient(0 0,circle farthest-side, rgba(255,255,255,0) 80%,rgba(255,255,255,.8) 95%,rgba(255,255,255,0) 100%) no-repeat;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(0 0, circle farthest-side, rgba(255,255,255,0) 80%,rgba(255,255,255,.8) 95%,rgba(255,255,255,0) 100%) no-repeat;
   background: radial-gradient(circle farthest-side at 0 0, rgba(255,255,255,0) 80%,rgba(255,255,255,.8) 95%,rgba(255,255,255,0) 100%) no-repeat;
   background-position: inherit;
   -webkit-mask: url('../../../static/images/logo_long_tagline.png') center no-repeat;
@@ -879,8 +881,8 @@ a[href^="tel"] {
 }
 
 #footer #footer-icons .footer-icon {
-  width: 30px;
-  margin-left: 5px;
+  width: 37px;
+  margin-left: 7px;
   cursor: pointer;
 }
 
