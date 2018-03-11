@@ -1,2 +1,5 @@
 - New tab when clicking social media links.
 - Justify package details to left (don't center).
+- Form should be address then city, not the other way around.
+- Fix field ordering in email.
+- Date in review should show month as well.
