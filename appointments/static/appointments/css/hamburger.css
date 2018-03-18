@@ -1,0 +1,230 @@
+
+/* Hamburger */
+#hamburger {
+  will-change: transform;
+  margin-left: auto;
+  margin-bottom: auto;
+  margin-right: 2.9vmin;
+  transition: all 250ms ease-in 100ms;
+  transform: scale(1) rotate(0deg);
+}
+
+#hamburger .patty {
+  height: 10px;
+  width: 50px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #F3E2B0;
+  background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent)
+}
+
+#hamburger.opened {
+  transition: all 250ms ease-out;
+  transform-origin: center;
+  transform: scale(0) rotate(360deg);
+}
+
+#hamburger-close {
+  will-change: opacity;
+  position: absolute;
+  height: 60px;
+  top: calc(2.9vmin + 0.9vmin);
+  right: calc(2.9vmin + 0.9vmin);
+  z-index: 1000;
+  opacity: 0;
+}
+#hamburger-close #forward {
+  height: 10px;
+  width: 50px;
+  margin: 0;
+  border-radius: 5px;
+  border: 1px solid #F3E2B0;
+  transform-origin: center;
+  transform: rotate(45deg) translate(15px, 15px);
+  background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent)
+}
+#hamburger-close #back {
+  will-change: transform;
+  height: 10px;
+  width: 50px;
+  margin: 0;
+  border-radius: 5px;
+  border: 1px solid #F3E2B0;
+  transform-origin: center;
+  transform: rotate(-45deg) translate(-7px, 7px);
+  background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent)
+}
+#hamburger-close.opened {
+  transition: all 250ms ease-in 500ms;
+  opacity: 1;
+}
+
+#hamburger-menu {
+  will-change: transform;
+  position: absolute;
+  opacity: 0.9;
+
+  /* 2.9vmin for hamburger, 25px for half hamburger width, 1.5vmin for content padding */
+  right: calc(2.9vmin + 25px + 1.5vmin - 250px);
+  top: calc(2.9vmin + 25px + 1.5vmin - 250px);
+  border-radius: 100%;
+  width: 500px;
+  height: 500px;
+  background-image: radial-gradient(circle at center, #000000 5%, #182126 50%);
+  transform: scale(0);
+  z-index: 700;
+  transition: all 250ms ease-in;
+  border: 2px solid #F0D736;
+}
+
+#hamburger-menu.opened {
+  transition: all 100ms ease-in;
+  transform-origin: center;
+  transform: scale(1);
+}
+
+.hamburger-icon-active {
+  border: 1px solid #F0D736 !important;
+}
+
+.hamburger-divider {
+  will-change: opacity;
+  z-index: 800;
+  width: 250px;
+  height: 1px;
+  background: linear-gradient(90deg, #F0D736, #F3E2B0, transparent 85%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 2.9vmin for hamburger, 25px for half hamburger width, 1.5vmin for content padding */
+.hamburger-divider.divider-00 {
+  position: absolute;
+  right: calc(2.9vmin + 25px + 1.5vmin + 2px);
+  top: calc(2.9vmin + 25px + 1.5vmin);
+}
+.hamburger-divider.divider-30 {
+  position: absolute;
+  right: calc(2.9vmin + 25px + 1.5vmin + 2px);
+  top: calc(2.9vmin + 25px + 1.5vmin + 2px);
+  transform-origin: right;
+  transform: rotate(-30deg);
+}
+.hamburger-divider.divider-60 {
+  position: absolute;
+  right: calc(2.9vmin + 25px + 1.5vmin + 2px);
+  top: calc(2.9vmin + 25px + 1.5vmin + 2px);
+  transform-origin: right;
+  transform: rotate(-60deg);
+}
+/* .hamburger-divider.divider-675 {
+  position: absolute;
+  right: calc(2.9vmin + 25px + 1.5vmin + 2px);
+  top: calc(2.9vmin + 25px + 1.5vmin + 2px);
+  transform-origin: right;
+  transform: rotate(-67.5deg);
+} */
+.hamburger-divider.divider-90 {
+  position: absolute;
+  right: calc(2.9vmin + 25px + 1.5vmin);
+  top: calc(2.9vmin + 25px + 1.5vmin + 2px);
+  transform-origin: right;
+  transform: rotate(-90deg);
+}
+
+.hamburger-slice {
+  z-index: 800;
+  color: white;
+  pointer-events: none;
+}
+
+.slice-15 {
+  width: 250px;
+  position: absolute;
+  right: calc(2.9vmin + 25px + 1.5vmin);
+  top: calc(2.9vmin + 25px + 1.5vmin);
+  transform-origin: right;
+  transform: rotate(-5deg);
+}
+.slice-45 {
+  width: 225px;
+  position: absolute;
+  right: calc(2.9vmin + 25px + 1.5vmin);
+  top: calc(2.9vmin + 25px + 1.5vmin);
+  transform-origin: right;
+  transform: rotate(-35deg);
+}
+.slice-75 {
+  width: 210px;
+  position: absolute;
+  right: calc(2.9vmin + 25px + 1.5vmin);
+  top: calc(2.9vmin + 25px + 1.5vmin);
+  transform-origin: right;
+  transform: rotate(-68deg);
+}
+
+.slice-icon {
+  cursor: pointer;
+  will-change: opacity;
+  width: 100px;
+  font-size: 100%;
+  color: #F3E2B0;
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+}
+
+.slice-icon-15 {
+  transform-origin: center;
+  transform: rotate(5deg);
+}
+.slice-icon-45 {
+  transform-origin: center;
+  transform: rotate(35deg);
+}
+.slice-icon-75 {
+  transform-origin: center;
+  transform: rotate(68deg);
+}
+
+.slice-icon-text-active {
+  color: #F0D736;
+}
+.slice-icon-svg-active {
+  fill: #F0D736;
+}
+
+.slice-icon p {
+  margin: 0;
+}
+
+#hamburger-components .social-media-icon {
+  opacity: 0;
+  z-index: 1000;
+  position: absolute;
+  image-rendering: crisp-edges;
+
+  /* Half of padding */
+  right: 0.75vmin;
+
+  /* Width is width between 90 divider and edge minus padding */
+  width: calc(2.9vmin + 25px);
+}
+
+#hamburger-components #twitter-icon {
+  top: calc(2.9vmin + 25px + 1.5vmin + 200px);
+}
+#hamburger-components #snapchat-icon {
+  top: calc(2.9vmin + 25px + 1.5vmin + 150px);
+}
+#hamburger-components #facebook-icon {
+  top: calc(2.9vmin + 25px + 1.5vmin + 100px);
+}
+#hamburger-components #instagram-icon {
+  top: calc(2.9vmin + 25px + 1.5vmin + 50px);
+}
+
+.background-blur {
+  filter: blur(2px) grayscale(0.5);
+  transition: all 200ms ease-in;
+}

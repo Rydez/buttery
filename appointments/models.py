@@ -5,6 +5,7 @@ from django.core.validators import RegexValidator
 
 class Package(models.Model):
   name = models.CharField(max_length=200)
+  service_type = models.CharField(default='', max_length=200)
   description = models.TextField()
   short_description = models.TextField(null=True)
   price = models.PositiveIntegerField()

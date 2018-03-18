@@ -1,0 +1,50 @@
+
+/* Nav container */
+#navigation {
+  margin-left: auto;
+  margin-right: 2.9vmin;
+  display: inline-block;
+}
+
+#navigation #navigation-ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#navigation #navigation-ul .navigation-li {
+  display: flex;
+}
+
+#navigation #navigation-ul .navigation-li button {
+  margin: 0 0 12px auto;
+  width: 199px;
+  font-weight: bold;
+  background-color: #182126;
+  opacity: 0.8;
+  color: #F3E2B0;
+  border: 1px solid #F3E2B0;
+
+  text-align: left;
+  padding: 12px 0 10px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+#navigation #navigation-ul .navigation-li button:focus {
+  outline: none;
+}
+
+#navigation #navigation-ul .navigation-li button:active {
+  opacity: 1;
+}
+
+/* Nav radio button label when pressed */
+#navigation #navigation-ul .navigation-li .selected {
+  color: #F0D736;
+  opacity: 1;
+  border: 1px solid #F0D736;
+  background: #182126;
+}

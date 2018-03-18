@@ -1,0 +1,47 @@
+/* For above mobile */
+@media screen and (min-width: 851px) {
+  html, body, #container {
+    background: #F3E2B0;
+  }
+
+  #hamburger {
+    display: none !important;
+  }
+
+  #hamburger-components {
+    display: none;
+  }
+
+  .background-blur {
+    filter: none !important;
+  }
+}
+
+/* For mobile */
+@media screen and (max-width: 850px) {
+  html, body, #container {
+    background: #182126;
+  }
+
+  #navigation {
+    display: none !important;
+  }
+
+  #header #header-icons, #footer #all-rights {
+    display: none !important;
+  }
+
+  #header #header-bottom {
+    margin-top: 10px;
+  }
+
+  #footer {
+    height: 30px !important;
+  }
+
+  .extra-text {
+    display: none;
+  }
+}
+
+

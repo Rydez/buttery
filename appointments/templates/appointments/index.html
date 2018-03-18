@@ -4,45 +4,87 @@
 {% load custom_tags %}
 
 <html>
-  <head>
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{% static 'appointments/appointments.css' %}" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../static/images/favicon.ico"/>
-    <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
-    <script src="{% static 'appointments/appointments.js' %}"></script>
-    <script src="{% static 'appointments/radio.js' %}"></script>
-    <!-- {% comment %} <script>
-      window.onerror = function(message, source, lineno, colno, error) {
-        alert(message);
-        alert(source);
-        alert(lineno);
-        alert(colno);
-        alert(error);
-      };
-    </script> {% endcomment %} -->
+<head>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/base.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/form.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/hamburger.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/navbar.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/layout.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/header-content.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/body-content.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/footer-content.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/scrollbar.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/mobile.css' %}" />
+  <link rel="shortcut icon" type="image/x-icon" href="../../../static/images/favicon.ico"/>
+  <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'appointments/appointments.js' %}"></script>
+  <script src="{% static 'appointments/radio.js' %}"></script>
+  {% comment %} <!-- <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      alert(message);
+      alert(source);
+      alert(lineno);
+      alert(colno);
+      alert(error);
+    };
+  </script> --> {% endcomment %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "Mobile Automotive Detailing",
+      "name": "Buttery Automotive Detailing",
+      "author": "Melendez",
+      "image": "http://butteryaf.com/static/images/logo.png",
+      "url": "http://butteryaf.com/",
+      "description": "Buttery Automotive Finishes is a complete mobile detailing business which specializes in sport and luxury vehicles. We offer ceramic coating, paint correction, polish and interior services.",
+      "contactPoint": [
+        { "@type": "ContactPoint",
+          "telephone": "+1-330-541-7196",
+          "contactType": "Customer service"
+        }
+      ],
+      "logo": "http://butteryaf.com/static/images/logo.png",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday",
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      ]
+    }
+  </script>
   <title>
-    Buttery A.F.
+    Buttery Automotive Finishes
   </title>
+  <meta name="description" content="Buttery Automotive Finishes is a complete mobile detailing business which specializes in sport and luxury vehicles. We offer ceramic coating, paint correction, polish and interior services."
 </head>
 <body>
-<div id="container">
   <div id="hamburger-components">
     <div id="hamburger-close" class="no-click">
       <div id="forward"></div>
       <div id="back"></div>
     </div>
     <div id="hamburger-menu"></div>
-    <a href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
+    <a target="_blank" class="hamburger-social-link no-click" href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
       <img class="social-media-icon" id="facebook-icon" src="../../../static/images/Facebook50.png">
     </a>
-    <a href="https://twitter.com/buttery_af">
+    <a target="_blank" class="hamburger-social-link no-click" href="https://twitter.com/buttery_af">
       <img class="social-media-icon" id="twitter-icon" src="../../../static/images/Twitter50.png">
     </a>
-    <a href="https://www.instagram.com/butteryautomotivefinishes/">
+    <a target="_blank" class="hamburger-social-link no-click" href="https://www.instagram.com/butteryautomotivefinishes/">
       <img class="social-media-icon" id="instagram-icon" src="../../../static/images/Instagram50.png">
     </a>
-    <a href="https://www.snapchat.com/add/butteryfinishes">
+    <a target="_blank" class="hamburger-social-link no-click" href="https://www.snapchat.com/add/butteryfinishes">
       <img class="social-media-icon" id="snapchat-icon" src="../../../static/images/Snapchat50.png">
     </a>
 
@@ -82,11 +124,7 @@
   </div>
   <div id="content">
     <div id="header">
-      <div id="logo-container" class="mask">
-        <a>
-          <img id="logo-image" src="../../../static/images/logo_long_tagline.png">
-        </a>
-      </div>
+      <img id="logo-image" src="../../../static/images/logo.png">
       <div id="navigation">
         <ul id="navigation-ul">
           <li class="navigation-li">
@@ -111,16 +149,43 @@
         <div class="patty"></div>
         <div class="patty"></div>
       </div>
-      <span>
-        <span class="extra-text">Call / Text: </span>
-        (330) 541-7196,
-        <span class="extra-text"> Email: </span>
-        support@butteryaf.com
-      </span>
+      <div id="header-bottom">
+        <span id="contact-info">
+          <span class="extra-text">Call / Text: </span>
+          (330) 541-7196,
+          <span class="extra-text"> Email: </span>
+          support@butteryaf.com
+        </span>
+        <div id="header-icons">
+          <a target="_blank" href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
+            <img class="header-icon" src="../../../static/images/Facebook50.png">
+          </a>
+          <a target="_blank" href="https://twitter.com/buttery_af">
+            <img class="header-icon" src="../../../static/images/Twitter50.png">
+          </a>
+          <a target="_blank" href="https://www.instagram.com/butteryautomotivefinishes/">
+            <img class="header-icon" src="../../../static/images/Instagram50.png">
+          </a>
+          <a target="_blank" href="https://www.snapchat.com/add/butteryfinishes">
+            <img class="header-icon" src="../../../static/images/Snapchat50.png">
+          </a>
+        </div>
+      </div>
     </div>
     <div id="body">
       <div id="home-section" class="section">
         <div class="card" id="definition-card">
+          <h1>Mobile Automotive Detailing</h1>
+          <p id="company-description">
+            Buttery Automotive Finishes offers a complete mobile automotive
+            detailing service, specializing in sport and luxury vehicles in
+            Northeastern Ohio. We respect our client's surrounding areas by
+            using eco-friendly products. Our handpicked packages reduce
+            confusion and ensure a high-quality detail is done every time.
+            There are no surprise upsells because everything is included in our
+            pricing. Buttery A.F. is structured around the highest quality
+            possible while making the process incredibly easy for our clients.
+          </p>
           <div id="definition">
             <div id="definition-header">
               <h1>but·ter·y</h1>
@@ -132,16 +197,6 @@
               <p>"How did you get that black paint so buttery?"</p>
             </div>
           </div>
-          <p id="company-description">
-            Buttery Automotive Finishes offers a complete mobile automotive
-            detailing service, specializing in sport and luxury vehicles in
-            Northeastern Ohio. We respect our client's surrounding areas by
-            using eco-friendly products. Our handpicked packages reduce
-            confusion and ensure a high-quality detail is done every time.
-            There are no surprise upsells because everything is included in our
-            pricing. Buttery A.F. is structured around the highest quality
-            possible while making the process incredibly easy for our clients.
-          </p>
         </div>
         <div class="card">
           <div id="who-we-are">
@@ -155,8 +210,17 @@
             </p>
           </div>
           <div id="cam">
-            <img src="../../../static/images/cam.png">
-            <div id="cam-caption">Cameron, The Detailer</div id="cam-caption">
+            <div id="cam-picture">
+              <img src="../../../static/images/cam.png" alt="detailer, certified, cameron, melendez">
+              <div id="cam-caption">Cameron, The Detailer</div>
+            </div>
+            <div id="cam-certifications">
+              <h1>Certifications</h1>
+              <ul>
+                <li>Rupes Advanced Sanding and Polishing</li>
+                <li>Professional Detailing Products(PDP) Perpetual Ceramic Coating Certified Installer</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -175,6 +239,7 @@
               <s> ${{ package.price }}</s>
               <span class="yellow-text">&nbsp;${{ package.price|twenty_off }}</span>
             </h1>
+            <h2>{{ package.service_type }}</h2>
             <p class="package-description">{{ package.description }}</p>
           </div>
         {% endfor %}
@@ -224,32 +289,10 @@
                       </p>
                     </div>
                     {% for package in package_list %}
-                      <label id="toggler{{ package.id }}" class="toggler">
+                      <label id="package-label{{ package.id }}" class="package-label" for="radio{{ package.id }}">
                         <div class="radio-title">
-                          <svg id="{{ package.id }}" viewBox="0 0 145 145" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <defs>
-                              <filter id="goo">
-                                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur><feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
-                                <feBlend in="SourceGraphic" in2="goo"></feBlend>
-                              </filter>
-                            </defs>
-                            <g class="gooey" transform="translate(0.000000, 0.000000)" fill="#F0D736">
-                              <circle class="dropTop" r="10" cx="70" cy="12"></circle>
-
-                              <circle class="drop" r="40" cx="70" cy="70"></circle>
-                              <circle class="drops drop0" r="40" cx="70" cy="70"></circle>
-                              <circle class="drops drop1" r="40" cx="70" cy="70"></circle>
-                              <circle class="drops drop2" r="40" cx="70" cy="70"></circle>
-                              <circle class="drops drop3" r="40" cx="70" cy="70"></circle>
-                              <circle class="drops drop4" r="40" cx="70" cy="70"></circle>
-
-
-                              <path class="ring0" d="M70,140 C31.3400675,140 0,108.659932 0,70 C0,31.3400675 31.3400675,0 70,0 C108.659932,0 140,31.3400675 140,70 C140,108.659932 108.659932,140 70,140 Z M70,129.552239 C102.889793,129.552239 129.552239,102.889793 129.552239,70 C129.552239,37.1102067 102.889793,10.4477612 70,10.4477612 C37.1102067,10.4477612 10.4477612,37.1102067 10.4477612,70 C10.4477612,102.889793 37.1102067,129.552239 70,129.552239 Z" id="Combined-Shape"></path>
-                              <path class="ring" d="M70,140 C31.3400675,140 0,108.659932 0,70 C0,31.3400675 31.3400675,0 70,0 C108.659932,0 140,31.3400675 140,70 C140,108.659932 108.659932,140 70,140 Z M70,129.552239 C102.889793,129.552239 129.552239,102.889793 129.552239,70 C129.552239,37.1102067 102.889793,10.4477612 70,10.4477612 C37.1102067,10.4477612 10.4477612,37.1102067 10.4477612,70 C10.4477612,102.889793 37.1102067,129.552239 70,129.552239 Z" id="Combined-Shape"></path>
-                              {% comment %} <circle fill="rgba(255,255,255,0)" r="120" cx="70" cy="70"></circle> {% endcomment %}
-                            </g>
-                          </svg>
                           <input type="radio" name="package" id="radio{{ package.id }}" class="package-radio" value="{{ package.id }}" data-name="{{ package.name }}">
+                          <label></label>
                           <span>{{ package.name }} - </span>
                           <span class="yellow-text">&nbsp;${{ package.price|twenty_off }}</span>
                         </div>
@@ -298,23 +341,8 @@
     <div id="footer">
       <span id="copyright">&copy; 2018 Buttery Automotive Finishes.</span>
       <span id="all-rights">&nbsp;All rights reserved.</span>
-      <div id="footer-icons">
-        <a href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
-          <img class="footer-icon" src="../../../static/images/Facebook50.png">
-        </a>
-        <a href="https://twitter.com/buttery_af">
-          <img class="footer-icon" src="../../../static/images/Twitter50.png">
-        </a>
-        <a href="https://www.instagram.com/butteryautomotivefinishes/">
-          <img class="footer-icon" src="../../../static/images/Instagram50.png">
-        </a>
-        <a href="https://www.snapchat.com/add/butteryfinishes">
-          <img class="footer-icon" src="../../../static/images/Snapchat50.png">
-        </a>
-      </div>
     </div>
   </div>
-</div>
 
 {% comment %} <pre>{% filter force_escape %}{% debug %}{% endfilter %}</pre> {% endcomment %}
 </body>

@@ -1,0 +1,304 @@
+
+/* FORM */
+
+#appointment-form {
+  margin-top: 30px;
+}
+
+#appointment-form #form-text-fields {
+  display: inline-block;
+  margin-right: 70px;
+}
+
+#appointment-form .field-group {
+  position: relative;
+  margin-bottom: 30px;
+  background: #182126;
+  width: 250px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  background: #182126;
+}
+
+#appointment-form .field-group input {
+  background: none;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 10px 0 10px 5px;
+  display: block;
+  width: 245px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#appointment-form .field-group input:focus {
+  outline: none;
+}
+
+#appointment-form .field-group input:focus ~ label {
+  position: absolute;
+  color: #F3E2B0;
+  transform: translate(-10px, -30px) scale(0.85);
+}
+
+#appointment-form .field-group.unclicked input ~ label {
+  position: absolute;
+  color: #F3E2B0;
+  transform: translate(-10px, -30px) scale(0.85);
+}
+
+#appointment-form .field-group input:focus ~ .bar:before {
+  width: 250px;
+  transform: scale(1);
+}
+
+#appointment-form.submitted .field-group input:not(.server-error) ~ label {
+  position: absolute;
+  color: rgb(87, 177, 99);
+  transform: translate(-10px, -30px) scale(0.85);
+}
+
+#appointment-form.submitted .field-group input.server-error ~ label {
+  position: absolute;
+  color: rgb(189, 88, 88);
+  transform: translate(-10px, -30px) scale(0.85);
+}
+
+#appointment-form.submitted .field-group input:not(.server-error) ~ .bar:before {
+  background: rgb(87, 177, 99);
+  width: 250px;
+  transform: scale(1);
+}
+
+#appointment-form.submitted .field-group input.server-error ~ .bar:before {
+  background: rgb(189, 88, 88);
+  width: 250px;
+  transform: scale(1);
+}
+
+#appointment-form .field-group label {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 150ms ease all;
+}
+
+#appointment-form.submitted #package-radios input.server-error ~ label:after,
+#appointment-form.submitted .field-group input.server-error ~ label:after {
+  content: attr(data-error);
+  display: block;
+  position: absolute;
+  width: 250px;
+  color: rgb(189, 88, 88);
+  transform: translateY(50px);
+}
+
+#appointment-form.submitted #package-radios.server-error:after {
+  content: attr(data-error);
+  display: block;
+  width: 250px;
+  color: rgb(189, 88, 88);
+  transform: translateY(-5px);
+}
+
+#appointment-form.submitted .field-group input.server-error ~ .bar {
+  margin-bottom: 45px
+}
+
+#appointment-form .field-group input.server-error:disabled ~ label:after {
+  opacity: 0;
+  transition: all 5ms ease-out;
+}
+
+#appointment-form .field-group .bar {
+  position: relative;
+  display: block;
+  width: 250px;
+}
+
+#appointment-form .field-group .bar:before {
+  content: '';
+  height: 3px;
+  width: 250px;
+  bottom: 0px;
+  position: absolute;
+  background: #F3E2B0;
+  transition: 150ms ease all;
+  transform: scale(0);
+  left: 0%;
+}
+
+#appointment-form .short-description {
+  margin-left: 10px;
+}
+
+#appointment-form #package-radios input.package-radio {
+  position: absolute;
+  opacity: 0;
+}
+
+#appointment-form #package-radios input.package-radio + label {
+  position: relative;
+  font-size: 16px;
+}
+
+#appointment-form #package-radios input.package-radio + label:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -12px;
+  left: -28px;
+  height: 18px;
+  width: 18px;
+  background: 182126;
+  border: 2px solid #F0D736;
+  box-shadow: inset 0px 0px 0px 3px #182126 ;
+  border-radius: 50%;
+}
+
+#appointment-form #package-radios input.package-radio:checked + label:before {
+  background: #F0D736;
+}
+
+#appointment-form #package-radios {
+  display: inline-block;
+  width: 250px;
+  vertical-align: top;
+}
+
+#appointment-form #package-radios .package-label {
+  width: 250px;
+  padding: 10px 0;
+  display: block;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  background: #182126;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+#appointment-form .package-label {
+  cursor: pointer;
+}
+
+#appointment-form .radio-title {
+  display: flex;
+  align-items: center;
+  margin-left: 35px;
+}
+
+#appointment-form .availability #months {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#appointment-form .month-label {
+  padding: 3px 8px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  color: #F0D736;
+  font-size: 115%;
+  margin-left: 15px
+}
+
+#appointment-form .date-label {
+  padding: 3px 6px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  color: #F0D736;
+  margin: 3px 5px;
+  font-size: 100%;
+}
+
+#appointment-form .no-availabilities {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#appointment-form .availability .dates {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 5px 0;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#appointment-form .package-details {
+  opacity: 0;
+}
+
+#appointment-form .package-details.opened {
+  opacity: 1;
+  transition: all 300ms ease-in;
+}
+
+#appointment-form label.selected {
+  color: #182126;
+  background: #F0D736;
+}
+
+#appointment-form #package-radios .availability input {
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+  opacity: 0;
+}
+
+#package-special {
+  width: 250px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  margin-right: 0;
+}
+
+#package-special p {
+  margin: 0;
+};
+
+#form-buttons {
+  margin-top: 15px;
+}
+
+#form-buttons button {
+  margin-right: 10px;
+  background-color: #182126;
+  opacity: 0.8;
+  color: #F3E2B0;
+  border: 1px solid #F3E2B0;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+#form-buttons button:focus {
+  outline: none;
+  color: #F0D736;
+  opacity: 1;
+  border: 1px solid #F0D736;
+  background: #182126;
+}
+
+#form-buttons button:disabled {
+  outline: none;
+  color: rgba(255, 255, 255, 0.3);
+  opacity: 1;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: default;
+  background: #182126;
+}
+
+#appointment-form #form-review {
+  font-size: 120%;
+  margin-bottom: 20px;
+}
+
+#appointment-form #form-review p span {
+ color: #F0D736;
+}
+

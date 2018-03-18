@@ -1,14 +1,5 @@
 $(document).ready(function() {
 
-  // Uses document because document will be topmost level in bubbling
-  $(document).on('touchmove',function(e){
-    e.preventDefault();
-  });
-
-  // Stops preventDefault from being called on document if it sees a scrollable div
-  $('body').on('touchmove', '#body', function(e) {
-    e.stopPropagation();
-  });
 
   // Cookie handling stuff
   function get_cookie(name) {
@@ -51,6 +42,13 @@ $(document).ready(function() {
     error: function(response) {
       console.log(response);
     }
+  });
+
+  $('#logo-image').click(function() {
+    $('.navigation-button').removeClass('selected');
+    $('#home-button').addClass('selected');
+    $('#home-section').scrollTop(0);
+    $('#home-section').show();
   });
 
   $('.navigation-button').click(function() {
@@ -181,6 +179,7 @@ $(document).ready(function() {
 
     $('.availability').empty();
     $('.package-details').removeClass('opened');
+    $('.short-description').hide();
 
     var package_id = null;
     var packageRadios = $('input[name=package]');
@@ -205,6 +204,8 @@ $(document).ready(function() {
       data: {package_id},
       success: function(availabilities) {
         // Get availability contianer
+
+        $(`#short-description${package_id}`).show();
         var [container] = $(`#availability${package_id}`);
 
         var availabilities = JSON.parse(availabilities);
@@ -272,7 +273,7 @@ $(document).ready(function() {
             type: 'radio',
             value: availability.pk,
             name: 'availability',
-            'data-date': `${days[date.getDay()]}, ${date.getDate()}`
+            'data-date': `${days[date.getDay()]}, ${nextMonth} ${date.getDate()}`
           });
 
           dateLabel.appendChild(dateInput);
@@ -343,6 +344,7 @@ $(document).ready(function() {
     $('#hamburger-menu').addClass('opened');
     $('#hamburger-close').addClass('opened');
     $('#hamburger-close').removeClass('no-click');
+    $('.hamburger-social-link').removeClass('no-click');
     $('#content').addClass('background-blur');
     $('#foreground-car').addClass('background-blur');
     $('.hamburger-divider').animate({opacity: 1}, 1500);
@@ -387,6 +389,7 @@ $(document).ready(function() {
     $('.slice-icon').css('pointer-events', 'none');
     $('#hamburger-close').removeClass('opened');
     $('#hamburger-close').addClass('no-click');
+    $('.hamburger-social-link').addClass('no-click');
     $('#hamburger-menu').removeClass('opened');
     $('#hamburger').removeClass('opened');
     $('#content').removeClass('background-blur');
