@@ -140,11 +140,13 @@
 }
 
 #appointment-form #package-radios input.package-radio + label {
+  pointer-events: none;
   position: relative;
   font-size: 16px;
 }
 
 #appointment-form #package-radios input.package-radio + label:before {
+  pointer-events: none;
   content: "";
   display: block;
   position: absolute;
