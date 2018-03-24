@@ -15,7 +15,22 @@
   margin: 5px 0;
   border-radius: 5px;
   border: 1px solid #F3E2B0;
-  background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent)
+  background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent);
+  animation: breath 2000ms linear infinite;
+}
+
+@keyframes breath {
+  0% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
 }
 
 #hamburger.opened {

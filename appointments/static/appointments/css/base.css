@@ -47,7 +47,12 @@ button {
 }
 
 ul {
-  margin: 0;
+  margin-top: 0;
+  color: #F3E2B0;
+}
+
+ul li {
+  margin-top: 5px;
 }
 
 a[href^="tel"] {
@@ -64,6 +69,10 @@ a[href^="tel"] {
 
 .blue-text {
   color: #182126;
+}
+
+.bold {
+  font-weight: bolder;
 }
 
 .hidden {

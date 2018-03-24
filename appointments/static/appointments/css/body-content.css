@@ -71,7 +71,7 @@
 
 #cam #cam-picture {
   display: inline-block;
-  margin-right: 40px;
+  margin-right: 10px;
 }
 
 #cam #cam-certifications {
@@ -81,9 +81,27 @@
   color: #F3E2B0;
 }
 
-#cam #cam-certifications ul {
-  margin-top: -10px;
-  padding-left: 20px;
+#cam #cam-certifications a {
+  color: #F3E2B0;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+#cam #cam-certifications img {
+  display: inline-block;
+  width: 100px;
+}
+
+#cam #cam-certifications .certification {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-top: 10px;
+}
+
+#cam #cam-certifications .certification span {
+  margin-left: 10px;
 }
 
 #who-we-are {

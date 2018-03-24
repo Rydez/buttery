@@ -17,9 +17,8 @@
   <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/scrollbar.css' %}" />
   <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/mobile.css' %}" />
   <link rel="shortcut icon" type="image/x-icon" href="../../../static/images/favicon.ico"/>
-  <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
-  <script src="{% static 'appointments/appointments.js' %}"></script>
-  <script src="{% static 'appointments/radio.js' %}"></script>
+  <script defer src="{% static 'jquery-3.2.1.min.js' %}"></script>
+  <script defer src="{% static 'appointments/appointments.js' %}"></script>
   {% comment %} <!-- <script>
     window.onerror = function(message, source, lineno, colno, error) {
       alert(message);
@@ -76,16 +75,16 @@
     </div>
     <div id="hamburger-menu"></div>
     <a target="_blank" class="hamburger-social-link no-click" href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
-      <img class="social-media-icon" id="facebook-icon" src="../../../static/images/Facebook50.png">
+      <img class="social-media-icon" id="facebook-icon" src="../../../static/images/facebook.png" alt="social, media, fb">
     </a>
     <a target="_blank" class="hamburger-social-link no-click" href="https://twitter.com/buttery_af">
-      <img class="social-media-icon" id="twitter-icon" src="../../../static/images/Twitter50.png">
+      <img class="social-media-icon" id="twitter-icon" src="../../../static/images/twitter.png" alt="social, media, tw">
     </a>
     <a target="_blank" class="hamburger-social-link no-click" href="https://www.instagram.com/butteryautomotivefinishes/">
-      <img class="social-media-icon" id="instagram-icon" src="../../../static/images/Instagram50.png">
+      <img class="social-media-icon" id="instagram-icon" src="../../../static/images/instagram.png" alt="social, media, ig">
     </a>
     <a target="_blank" class="hamburger-social-link no-click" href="https://www.snapchat.com/add/butteryfinishes">
-      <img class="social-media-icon" id="snapchat-icon" src="../../../static/images/Snapchat50.png">
+      <img class="social-media-icon" id="snapchat-icon" src="../../../static/images/snapchat.png" alt="social, media, sc">
     </a>
 
     <div class="hamburger-divider divider-00"></div>
@@ -124,7 +123,7 @@
   </div>
   <div id="content">
     <div id="header">
-      <img id="logo-image" src="../../../static/images/logo.png">
+      <img id="logo-image" src="../../../static/images/logo.png" alt="logo, buttery, af, automotive, finishes, detailing, mobile">
       <div id="navigation">
         <ul id="navigation-ul">
           <li class="navigation-li">
@@ -158,16 +157,16 @@
         </span>
         <div id="header-icons">
           <a target="_blank" href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
-            <img class="header-icon" src="../../../static/images/Facebook50.png">
+            <img class="header-icon" src="../../../static/images/facebook.png" alt="social, media, fb">
           </a>
           <a target="_blank" href="https://twitter.com/buttery_af">
-            <img class="header-icon" src="../../../static/images/Twitter50.png">
+            <img class="header-icon" src="../../../static/images/twitter.png" alt="social, media, tw">
           </a>
           <a target="_blank" href="https://www.instagram.com/butteryautomotivefinishes/">
-            <img class="header-icon" src="../../../static/images/Instagram50.png">
+            <img class="header-icon" src="../../../static/images/instagram.png" alt="social, media, ig">
           </a>
           <a target="_blank" href="https://www.snapchat.com/add/butteryfinishes">
-            <img class="header-icon" src="../../../static/images/Snapchat50.png">
+            <img class="header-icon" src="../../../static/images/snapchat.png" alt="social, media, sc">
           </a>
         </div>
       </div>
@@ -176,6 +175,14 @@
       <div id="home-section" class="section">
         <div class="card" id="definition-card">
           <h1>Mobile Automotive Detailing</h1>
+          <ul>
+            <li><span class="bold yellow-text">Mobile:</span> We come to you!</li>
+            <li><span class="bold yellow-text">No upsells:</span> Our prices don't change unexpectedly.</li>
+            <li><span class="bold yellow-text">Eco-Friendly:</span> No nasty acids.</li>
+            <li><span class="bold yellow-text">Certified:</span> Trained in sanding, polishing and ceramic coating.</li>
+            <li><span class="bold yellow-text">Exotics:</span> Knowledge and experience of specific needs for high-end vehicles.</li>
+            <li><span class="bold yellow-text">Full Service:</span> Exterior and Interior.</li>
+          </ul>
           <p id="company-description">
             Buttery Automotive Finishes offers a complete mobile automotive
             detailing service, specializing in sport and luxury vehicles in
@@ -216,10 +223,18 @@
             </div>
             <div id="cam-certifications">
               <h1>Certifications</h1>
-              <ul>
-                <li>Rupes Advanced Sanding and Polishing</li>
-                <li>Professional Detailing Products (PDP) Perpetual Ceramic Coating Certified Installer</li>
-              </ul>
+                <div class="certification">
+                  <a target="_blank" href="http://www.rupes.com/">
+                    <img src="../../../static/images/rupes-logo.png" alt="certification, certified, rupes, sanding, polishing">
+                    <span>Rupes Advanced Sanding and Polishing</span>
+                  </a>
+                </div>
+                <div class="certification">
+                  <a target="_blank" href="https://www.professionaldetailingproducts.com/">
+                    <img src="../../../static/images/pdp-logo.png" alt="certification, certified, pdp, professional, detailing, products, ceramic, coating">
+                    <span>Professional Detailing Products (PDP) Perpetual Ceramic Coating Certified Installer</span>
+                  </a>
+                </div>
             </div>
           </div>
         </div>
