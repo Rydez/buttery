@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load custom_tags %}
+
+{% block static_files %}
+  <script defer src="{% static 'appointments/js/appointments.js' %}"></script>
+{% endblock %}
+
+{% block title %}Appointments{% endblock %}
+
+{% block section %}
+
+<div id="appointment-section" class="section">
+  <div class="card">
+    <h1 id="creation-header">Make an Appointment:</h1>
+    <h1 id="review-header" class="hidden">Review Appointment:</h1>
+    <h1 id="edit-header" class="hidden">Edit Appointment:</h1>
+    <p id="creation-paragraph">
+      Please fill out and submit the following information to create an
+      appointment for one of our services. If none of the available
+      dates work for you, please request a date via call, text, or email.
+    </p>
+    <p id="review-paragraph" class="hidden">
+      Please make sure that the following information is correct
+    </p>
+    <p id="edit-paragraph" class="hidden">
+      Please make any necessary corrections.
+    </p>
+    <form id="appointment-form" action="" method="POST">
+      {% csrf_token %}
+      <div id="form-fields">
+        <div id="form-text-fields">
+          {% for field in form %}
+            {% if field.name != 'package' and field.name != 'availability' %}
+              <div class="field-group">
+                {{ field }}
+                <span class="bar"></span>
+                <label for="{{ field.id_for_label }}">
+                  {{ field.label }}
+                </label>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        {% for field in form %}
+          {% if field.name == 'package' %}
+            <div id="package-radios">
+              <div id="package-special">
+                <p class="yellow-text">
+                  <b>Grand Opening Prices:</b>
+                </p>
+                <p class="yellow-text">
+                  All appointments scheduled before May 1st are 20% off.
+                </p>
+              </div>
+              {% for package in packages %}
+                <label id="package-label{{ package.id }}" class="package-label" for="radio{{ package.id }}">
+                  <div class="radio-title">
+                    <input type="radio" name="package" id="radio{{ package.id }}" class="package-radio" value="{{ package.id }}" data-name="{{ package.name }}">
+                    <label></label>
+                    <span>{{ package.name }} - </span>
+                    <span class="yellow-text">&nbsp;${{ package.price|twenty_off }}</span>
+                  </div>
+                </label>
+                <div id="package-details{{ package.id }}" class="package-details">
+                  <p id="short-description{{ package.id }}" class="short-description">
+                    {{ package.short_description }}
+                  </p>
+                  <div class="availability">
+                    {% if filtered_availabilities|get_item:package.id|length == 0 %}
+                      <div class="months no-availabilities">
+                        <span>All availabilities taken.</span>
+                      </div>
+                    {% endif %}
+                    {% for package_id, month_avails in filtered_availabilities.items %}
+                      {% if package_id == package.id %}
+                        <div class="months">
+                          {% for month, avails in month_avails.items %}
+                            <label class="month-label">
+                              {{ month|month }}
+                              <input type="radio" value="{{ month|month }}" id="{{ month|month }}-input{{ package.id }}" name="months">
+                            </label>
+                          {% endfor %}
+                          {% for month, avails in month_avails.items %}
+                            <div id="{{ month|month }}-dates{{ package.id }}" class="dates">
+                              {% for avail in avails %}
+                                <label class="date-label" for="package{{ package.id }}-avail{{ avail.id }}">
+                                  {{ avail.date|day }}, {{ avail.date.day }}
+                                  <input id="package{{ package.id }}-avail{{ avail.id }}" type="radio" value="{{ avail.id }}" name="availability" data-date="{{ avail.date|day }}, {{ avail.date.day }}">
+                                </label>
+                              {% endfor %}
+                            </div>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div id="form-review" class="hidden">
+        <!-- Dynamically created content here -->
+      </div>
+      <div id="form-buttons">
+        <button type="button" id="review-appointment">Review</button>
+        <button type="button" id="edit-appointment" class="hidden">Edit</button>
+        <button type="submit" id="submit-appointment" class="hidden">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div id="appointment-receipt" class="section hidden">
+  <div class="card">
+    <h1>Thank you for making an appointment!</h1>
+    <p>
+      We've sent you an email with your appointment details.
+      You can expect a confirmation call from us the day
+      before your appointment.
+    </p>
+    <p>
+      If you have any questions or concerns, please call,
+      text, or email us. Our contact information is always at the
+      top of the page.
+    </p>
+  </div>
+</div>
+
+{% endblock %}

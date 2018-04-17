@@ -1,0 +1,31 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}Packages{% endblock %}
+
+{% block section %}
+
+<div id="packages-section" class="section">
+  <div class="card">
+    <h1 id="special-header">Grand Opening Prices</h1>
+    <p id="special-body">
+      All appointments scheduled before May 1st are 20% off.
+    </p>
+  </div>
+  {% for package in packages %}
+    <div class="card">
+      <h1>
+        {{ package.name }} -
+        <s> ${{ package.price }}</s>
+        <span class="yellow-text">&nbsp;${{ package.price|twenty_off }}</span>
+      </h1>
+      <h2>{{ package.service_type }}</h2>
+      <p class="package-description">{{ package.description }}</p>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

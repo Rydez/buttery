@@ -37,6 +37,7 @@ class AvailabilityCheck(models.Model):
 
 class Visit(models.Model):
   ip_address = models.GenericIPAddressField()
+  path_name = models.CharField(default='', max_length=100)
   creation_date = models.DateTimeField(default=datetime.now, blank=True)
 
   def __str__(self):

@@ -1,0 +1,192 @@
+
+{% load static %}
+{% load staticfiles %}
+
+<html>
+<head>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+  <meta name="description" content="Buttery Automotive Finishes is a complete mobile detailing business which specializes in sport and luxury vehicles. We offer ceramic coating, paint correction, polish and interior services.">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/base.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/form.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/hamburger.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/navbar.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/layout.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/header-content.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/body-content.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/footer-content.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/scrollbar.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/mobile.css' %}" />
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../../static/images/favicon.ico"/>
+
+  <script defer src="{% static 'jquery-3.2.1.min.js' %}"></script>
+  <script defer src="{% static 'appointments/js/base.js' %}"></script>
+
+  {% block static_files %}{% endblock %}
+  {% comment %} <!-- <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      alert(message);
+      alert(source);
+      alert(lineno);
+      alert(colno);
+      alert(error);
+    };
+  </script> --> {% endcomment %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "Mobile Automotive Detailing",
+      "name": "Buttery Automotive Detailing",
+      "author": "Melendez",
+      "image": "http://butteryaf.com/static/images/logo.png",
+      "url": "http://butteryaf.com/",
+      "description": "Buttery Automotive Finishes is a complete mobile detailing business which specializes in sport and luxury vehicles. We offer ceramic coating, paint correction, polish and interior services.",
+      "contactPoint": [
+        { "@type": "ContactPoint",
+          "telephone": "+1-330-541-7196",
+          "contactType": "Customer service"
+        }
+      ],
+      "logo": "http://butteryaf.com/static/images/logo.png",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday",
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      ]
+    }
+  </script>
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+  <div id="hamburger-components">
+    <div id="hamburger-close" class="no-click">
+      <div id="forward"></div>
+      <div id="back"></div>
+    </div>
+    <div id="hamburger-menu"></div>
+    <a target="_blank" class="hamburger-social-link no-click" href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
+      <img class="social-media-icon" id="facebook-icon" src="../../../static/images/facebook.png" alt="social, media, fb">
+    </a>
+    <a target="_blank" class="hamburger-social-link no-click" href="https://twitter.com/buttery_af">
+      <img class="social-media-icon" id="twitter-icon" src="../../../static/images/twitter.png" alt="social, media, tw">
+    </a>
+    <a target="_blank" class="hamburger-social-link no-click" href="https://www.instagram.com/butteryautomotivefinishes/">
+      <img class="social-media-icon" id="instagram-icon" src="../../../static/images/instagram.png" alt="social, media, ig">
+    </a>
+    <a target="_blank" class="hamburger-social-link no-click" href="https://www.snapchat.com/add/butteryfinishes">
+      <img class="social-media-icon" id="snapchat-icon" src="../../../static/images/snapchat.png" alt="social, media, sc">
+    </a>
+
+    <div class="hamburger-divider divider-00"></div>
+    <div class="hamburger-divider divider-30"></div>
+    <div class="hamburger-divider divider-60"></div>
+    {% comment %} <div class="hamburger-divider divider-675"></div> {% endcomment %}
+    <div class="hamburger-divider divider-90"></div>
+    <div class="hamburger-slice slice-15">
+      <a href="{% url 'appointments:home' %}">
+        <div id="home-slice" class="slice-icon slice-icon-15">
+          <svg fill="#F3E2B0" height="48" viewBox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+          <p>Home</p>
+        </div>
+      </a>
+    </div>
+    <div class="hamburger-slice slice-45">
+      <a href="{% url 'appointments:packages' %}">
+        <div id="packages-slice" class="slice-icon slice-icon-45">
+          <svg fill="#F3E2B0" height="48" viewBox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+          </svg>
+          <p>Packages</p>
+        </div>
+      </a>
+    </div>
+    <div class="hamburger-slice slice-75">
+      <a href="{% url 'appointments:appointments' %}">
+        <div id="appointments-slice" class="slice-icon slice-icon-75">
+          <svg fill="#F3E2B0" height="48" viewBox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+          </svg>
+          <p>Appointment</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div id="content">
+    <div id="header">
+      <img id="logo-image" src="../../../static/images/logo.png" alt="logo, buttery, af, automotive, finishes, detailing, mobile">
+      <div id="navigation">
+        <ul id="navigation-ul">
+          <li class="navigation-li">
+            <a href="{% url 'appointments:home' %}" id="home-button">
+              Home
+            </a>
+          </li>
+          <li class="navigation-li">
+            <a href="{% url 'appointments:packages' %}" id="packages-button">
+              Packages
+            </a>
+          </li>
+          <li class="navigation-li">
+            <a href="{% url 'appointments:appointments' %}" id="appointments-button">
+              Appointments
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div id="hamburger">
+        <div class="patty"></div>
+        <div class="patty"></div>
+        <div class="patty"></div>
+      </div>
+      <div id="header-bottom">
+        <span id="contact-info">
+          <span class="extra-text">Call / Text: </span>
+          (330) 541-7196,
+          <span class="extra-text"> Email: </span>
+          support@butteryaf.com
+        </span>
+        <div id="header-icons">
+          <a target="_blank" href="https://www.facebook.com/Buttery-Automotive-Finishes-949553905203942/">
+            <img class="header-icon" src="../../../static/images/facebook.png" alt="social, media, fb">
+          </a>
+          <a target="_blank" href="https://twitter.com/buttery_af">
+            <img class="header-icon" src="../../../static/images/twitter.png" alt="social, media, tw">
+          </a>
+          <a target="_blank" href="https://www.instagram.com/butteryautomotivefinishes/">
+            <img class="header-icon" src="../../../static/images/instagram.png" alt="social, media, ig">
+          </a>
+          <a target="_blank" href="https://www.snapchat.com/add/butteryfinishes">
+            <img class="header-icon" src="../../../static/images/snapchat.png" alt="social, media, sc">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div id="body">
+      {% block section %}{% endblock %}
+    </div>
+    <div id="footer">
+      <span id="copyright">&copy; 2018 Buttery Automotive Finishes.</span>
+      <span id="all-rights">&nbsp;All rights reserved.</span>
+    </div>
+  </div>
+{% comment %} <pre>{% filter force_escape %}{% debug %}{% endfilter %}</pre> {% endcomment %}
+</body>
+</html>

@@ -16,7 +16,8 @@
   display: flex;
 }
 
-#navigation #navigation-ul .navigation-li button {
+#navigation #navigation-ul .navigation-li a {
+  text-decoration: none;
   margin: 0 0 12px auto;
   width: 199px;
   font-weight: bold;
@@ -33,11 +34,7 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 }
 
-#navigation #navigation-ul .navigation-li button:focus {
-  outline: none;
-}
-
-#navigation #navigation-ul .navigation-li button:active {
+#navigation #navigation-ul .navigation-li a:active {
   opacity: 1;
 }
 

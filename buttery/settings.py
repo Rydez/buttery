@@ -29,6 +29,7 @@ DEBUG = True
 
 INSTALLED_APPS = [
     'appointments.apps.AppointmentsConfig',
+    'stories.apps.StoriesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,6 +57,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'buttery.context_processors.visit',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',

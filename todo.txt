@@ -1,12 +1,9 @@
 NERD STUFF
-- Fix field ordering in email.
-- Date in review should show month as well.
-- Polish language using adj and dohm passages.
 - Fix so that first image when linking is logo.
-- Google Analytics
-- For the nerds button on packages
-- Order package button on packages page.
-- Log screen dimensions on visits
+- Google Analytics.
+- Change weird hamburger to just a filled in yellow one.
+- Notes field on appointments.
+
 
 SALES STUFF
 - Get easy linking to flat6 work.
