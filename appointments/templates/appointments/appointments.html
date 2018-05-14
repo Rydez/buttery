@@ -46,21 +46,13 @@
         {% for field in form %}
           {% if field.name == 'package' %}
             <div id="package-radios">
-              <div id="package-special">
-                <p class="yellow-text">
-                  <b>Grand Opening Prices:</b>
-                </p>
-                <p class="yellow-text">
-                  All appointments scheduled before May 1st are 20% off.
-                </p>
-              </div>
               {% for package in packages %}
                 <label id="package-label{{ package.id }}" class="package-label" for="radio{{ package.id }}">
                   <div class="radio-title">
                     <input type="radio" name="package" id="radio{{ package.id }}" class="package-radio" value="{{ package.id }}" data-name="{{ package.name }}">
                     <label></label>
                     <span>{{ package.name }} - </span>
-                    <span class="yellow-text">&nbsp;${{ package.price|twenty_off }}</span>
+                    <span class="yellow-text">&nbsp;${{ package.price }}</span>
                   </div>
                 </label>
                 <div id="package-details{{ package.id }}" class="package-details">
@@ -86,8 +78,8 @@
                             <div id="{{ month|month }}-dates{{ package.id }}" class="dates">
                               {% for avail in avails %}
                                 <label class="date-label" for="package{{ package.id }}-avail{{ avail.id }}">
-                                  {{ avail.date|day }}, {{ avail.date.day }}
-                                  <input id="package{{ package.id }}-avail{{ avail.id }}" type="radio" value="{{ avail.id }}" name="availability" data-date="{{ avail.date|day }}, {{ avail.date.day }}">
+                                  {{ avail.date|day }} {{ avail.date.day }}
+                                  <input id="package{{ package.id }}-avail{{ avail.id }}" type="radio" value="{{ avail.id }}" name="availability" data-date="{{ avail.date|day }}, {{ month|month }} {{ avail.date.day }}">
                                 </label>
                               {% endfor %}
                             </div>

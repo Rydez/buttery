@@ -37,16 +37,6 @@ $(document).ready(function() {
 
 
 
-  // Home link on logo
-  $('#logo-image').click(function() {
-    $('.navigation-button').removeClass('selected');
-    $('#home-button').addClass('selected');
-    $('#home-section').scrollTop(0);
-    $('#home-section').show();
-  });
-
-
-
 
   // Select the nav button
   var slug = window.location.pathname.split('/')[1];
@@ -85,7 +75,6 @@ $(document).ready(function() {
       $('#appointments-slice').find('svg').addClass('slice-icon-svg-active');
     }
 
-
     $('.hamburger-divider').stop(true, true).delay(200).animate({opacity: 1}, 500);
     $('.slice-icon').stop(true, true).delay(200).animate({opacity: 1}, 500);
     $('.social-media-icon').stop(true, true).delay(200).animate({opacity: 1}, 500);
@@ -108,15 +97,14 @@ $(document).ready(function() {
     }
   });
 
-  // border on active hamburger icon
   $('#hamburger-close, #hamburger').on('mousedown mouseup touchstart touchend', function() {
     $('.patty').toggleClass('hamburger-icon-active');
     $('#back').toggleClass('hamburger-icon-active');
     $('#forward').toggleClass('hamburger-icon-active');
   });
 
-  // border on active hamburger icon
-  $('.slice-icon').on("mousedown mouseup touchstart touchend", function() {
+  // active hamburger icon
+  $('.slice-icon').on('mousedown mouseup touchstart touchend', function() {
     $(this).find('p').toggleClass('slice-icon-text-active');
     $(this).find('svg').toggleClass('slice-icon-svg-active');
   });

@@ -27,11 +27,6 @@ class PackageView(generic.ListView):
 	def get_queryset(self):
 		return Package.objects.all()
 
-  # def get_context_data(self, **kwargs):
-  #   context = super().get_context_data(**kwargs)
-  #   context['package_list'] = Package.objects.all()
-  #   return context
-
 class AppointmentView(generic.CreateView):
   form_class = AppointmentForm
   template_name = 'appointments/appointments.html'
@@ -91,49 +86,6 @@ class AppointmentView(generic.CreateView):
     context['filtered_availabilities'] = filtered_availabilities
     return context
 
-
-  # def package_availabilities(request):
-  #   package_id = request.GET.get('package_id')
-  #   package = None
-  #   try:
-  #     package = Package.objects.get(id=package_id)
-  #     availabilities = None
-
-  #     one_week_away = datetime.datetime.now() + datetime.timedelta(days=7)
-
-  #     # Check if this is a two day job
-  #     if (package.minutes > 480):
-  #       first_day = None
-  #       available_ids = []
-  #       availabilities = Availability.objects.all().order_by('date')
-  #       for availability in availabilities:
-
-  #         # Get a full first day
-  #         if not first_day and availability.minutes_remaining == 480:
-  #           first_day = availability
-  #         # Get a second full day
-  #         elif first_day:
-  #           date_format = '%Y-%m-%d'
-  #           first_day_date = datetime.datetime.strptime(str(first_day.date.date()), date_format)
-  #           availability_date = datetime.datetime.strptime(str(availability.date.date()), date_format)
-  #           date_detla = availability_date - first_day_date
-  #           if date_detla.days == 1 and availability.minutes_remaining == 480:
-  #             available_ids.append(first_day.id)
-  #           elif availability.minutes_remaining == 480:
-  #             first_day = availability
-  #           else:
-  #             # Start over
-  #             first_day = None
-
-  #       availabilities = Availability.objects.filter(id__in=available_ids, date__gt=one_week_away).order_by('date')
-  #     else:
-  #       availabilities = Availability.objects.filter(minutes_remaining__gte=package.minutes, date__gt=one_week_away).order_by('date')
-
-  #     serialized_data = serializers.serialize('json', availabilities)
-  #     return HttpResponse(serialized_data, status=200)
-  #   except ObjectDoesNotExist:
-  #     return HttpResponse(status=404)
-
   def availability_check(request):
     client_ip, _ = get_client_ip(request)
     if client_ip is not None:
@@ -144,7 +96,7 @@ class AppointmentView(generic.CreateView):
       return HttpResponse(status=201)
     return HttpResponse(status=400)
 
-  def post(self, request, *args, **kwargs):
+  def create_appointment(request):
     form = AppointmentForm(request.POST)
     if form.is_valid():
       form.save()

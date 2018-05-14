@@ -15,7 +15,7 @@ $(document).ready(function() {
     var formData = $(this).serialize();
     $.ajax({
       type: 'POST',
-      url: '/',
+      url: '/create_appointment/',
       data: formData,
       success: function() {
         $('#appointment-section').hide();
@@ -123,15 +123,10 @@ $(document).ready(function() {
   $('input[name=availability]').first().attr('checked', true);
   $('input[name=availability]').first().change();
 
-  // Keep track of when field was clicked
-  $('.field-group').focusin(function() {
+  $('.field-group').on('focusin focusout', function() {
     $(this).addClass('clicked');
     $(this).removeClass('unclicked');
-  });
-
-  // Keep track of when field was blurred
-  $('.field-group').focusout(function() {
-    if($(this).find('input').val() !== '') {
+    if($(this).children().first().val() !== '') {
       $(this).addClass('unclicked');
     }
   });
@@ -139,7 +134,7 @@ $(document).ready(function() {
   // Because autofill
   setInterval(function () {
     for (var fieldGroup of $('.field-group')) {
-      if($(fieldGroup).find('input').val() !== '') {
+      if($(fieldGroup).children().first().val() !== '') {
         fieldGroup.classList.add('unclicked');
       }
     }
@@ -204,6 +199,13 @@ $(document).ready(function() {
     }
 
     var reviewLine = $(`<p><b>Date</b>: <span>${dateString}</span></p>`);
+    container.append(reviewLine);
+
+    var [specialNotes] = $('#appointment-form textarea');
+    var label = specialNotes.labels[0];
+    var name = label.innerText;
+    var value = specialNotes.value || 'Empty';
+    var reviewLine = $(`<p><b>${name}</b>: <span>${value}</span></p>`);
     container.append(reviewLine);
 
     $('#appointment-form #form-fields').hide();

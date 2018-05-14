@@ -1,14 +1,12 @@
 
 .card #special-header {
   color: #F0D736;
-  font-size: 200%;
+  font-size: 160%;
   margin-bottom: 5px;
 }
 
-.card #special-body {
-  color: #F0D736;
-  margin-top: 0;
-  font-size: 140%;
+.card #special-body ul {
+  margin-bottom: 0;
 }
 
 #definition-card.card #definition h1 {

@@ -10,27 +10,11 @@
 }
 
 #hamburger .patty {
-  height: 10px;
+  height: 7px;
   width: 50px;
-  margin: 5px 0;
-  border-radius: 5px;
-  border: 1px solid #F3E2B0;
-  background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent);
-  animation: breath 2000ms linear infinite;
-}
-
-@keyframes breath {
-  0% {
-    opacity: 0.3;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0.3;
-  }
+  margin: 7px 0;
+  border-radius: 3px;
+  background: #F0D736;
 }
 
 #hamburger.opened {
@@ -49,25 +33,23 @@
   opacity: 0;
 }
 #hamburger-close #forward {
-  height: 10px;
+  height: 7px;
   width: 50px;
   margin: 0;
-  border-radius: 5px;
-  border: 1px solid #F3E2B0;
+  border-radius: 3px;
   transform-origin: center;
-  transform: rotate(45deg) translate(15px, 15px);
-  background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent)
+  transform: rotate(45deg) translate(12px, 12px);
+  background: #F0D736;
 }
 #hamburger-close #back {
   will-change: transform;
-  height: 10px;
+  height: 7px;
   width: 50px;
   margin: 0;
-  border-radius: 5px;
-  border: 1px solid #F3E2B0;
+  border-radius: 3px;
   transform-origin: center;
   transform: rotate(-45deg) translate(-7px, 7px);
-  background: linear-gradient(140deg, rgba(150, 150, 150, 0.25), transparent)
+  background: #F0D736;
 }
 #hamburger-close.opened {
   transition: all 100ms ease-in 150ms;
@@ -99,7 +81,7 @@
 }
 
 .hamburger-icon-active {
-  border: 1px solid #F0D736 !important;
+  opacity: 0.6 !important;
 }
 
 .hamburger-divider {
@@ -224,10 +206,10 @@
   image-rendering: crisp-edges;
 
   /* Half of padding */
-  right: 0.75vmin;
+  right: 0.85vmin;
 
   /* Width is width between 90 divider and edge minus padding */
-  width: calc(2.9vmin + 25px);
+  width: calc(2.2vmin + 25px);
 }
 
 #hamburger-components #twitter-icon {

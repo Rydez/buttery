@@ -10,17 +10,25 @@
 
 <div id="packages-section" class="section">
   <div class="card">
-    <h1 id="special-header">Grand Opening Prices</h1>
-    <p id="special-body">
-      All appointments scheduled before May 1st are 20% off.
-    </p>
+    <h1>If you can't find what you're looking for, ask us!</h1>
+    <div id="special-body">
+      <ul>
+        <li>
+          <span class="bold yellow-text">Call / Text: </span>
+          (330) 541-7196
+        </li>
+        <li>
+          <span class="bold yellow-text">Email: </span>
+          support@butteryaf.com
+        </li>
+      </ul>
+    </div>
   </div>
   {% for package in packages %}
     <div class="card">
       <h1>
         {{ package.name }} -
-        <s> ${{ package.price }}</s>
-        <span class="yellow-text">&nbsp;${{ package.price|twenty_off }}</span>
+        <span class="yellow-text">${{ package.price }}</span>
       </h1>
       <h2>{{ package.service_type }}</h2>
       <p class="package-description">{{ package.description }}</p>

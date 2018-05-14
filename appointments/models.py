@@ -56,6 +56,7 @@ class Appointment(models.Model):
   availability = models.ForeignKey(Availability, on_delete=models.PROTECT, null=True) # This should not be nullable
   validated = models.BooleanField(default=False, blank=True)
   creation_date = models.DateTimeField(default=datetime.now, blank=True)
+  special_notes = models.TextField(default='', blank=True)
 
   def __str__(self):
     return '%s %s' % (self.first_name, self.last_name)
