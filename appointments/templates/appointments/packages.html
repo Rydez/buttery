@@ -22,6 +22,7 @@
           support@butteryaf.com
         </li>
       </ul>
+      <br>
     </div>
   </div>
   {% for package in packages %}
@@ -30,8 +31,21 @@
         {{ package.name }} -
         <span class="yellow-text">${{ package.price }}</span>
       </h1>
-      <h2>{{ package.service_type }}</h2>
+      <span class="bold cream-text">
+        <span class="bold yellow-text">{{ package.service_type }}</span>
+        - {{ package.overview }}
+      </span>
+
       <p class="package-description">{{ package.description }}</p>
+      {% if package.upgrade_name != '' %}
+        <br>
+        <span class="bold yellow-text">
+          {{ package.upgrade_name }} for ${{ package.upgrade_price }}
+        </span>
+        <p class="package-description">
+          {{ package.upgrade_description }}
+        </p>
+      {% endif %}
     </div>
   {% endfor %}
 </div>

@@ -145,12 +145,10 @@ $(document).ready(function() {
     var creationHeader = document.getElementById('creation-header');
     var reviewHeader = document.getElementById('review-header');
     var editHeader = document.getElementById('edit-header');
-    var creationParagraph = document.getElementById('creation-paragraph');
     var reviewParagraph = document.getElementById('review-paragraph');
     var editParagraph = document.getElementById('edit-paragraph');
 
     creationHeader.classList.add('hidden');
-    creationParagraph.classList.add('hidden');
     reviewHeader.classList.remove('hidden');
     reviewParagraph.classList.remove('hidden');
     editHeader.classList.add('hidden');
