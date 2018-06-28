@@ -15,6 +15,7 @@ class Package(models.Model):
   price = models.PositiveIntegerField()
   minutes = models.PositiveIntegerField()
   creation_date = models.DateTimeField(default=datetime.now, blank=True)
+  order = models.PositiveIntegerField(default=0)
 
   def __str__(self):
     return '%s' % (self.name)

@@ -25,7 +25,7 @@ class PackageView(generic.ListView):
 	context_object_name = 'packages'
 
 	def get_queryset(self):
-		return Package.objects.all()
+		return Package.objects.order_by('order').all()
 
 class DealershipView(generic.TemplateView):
   template_name = 'appointments/dealerships.html'
