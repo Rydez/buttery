@@ -57,6 +57,7 @@ class Appointment(models.Model):
   address = models.CharField(max_length=100)
   zip_code = models.PositiveIntegerField()
   package = models.ForeignKey(Package, on_delete=models.PROTECT, null=True) # This should not be nullable
+  upgraded = models.BooleanField(default=False)
   availability = models.ForeignKey(Availability, on_delete=models.PROTECT, null=True) # This should not be nullable
   validated = models.BooleanField(default=False, blank=True)
   creation_date = models.DateTimeField(default=datetime.now, blank=True)

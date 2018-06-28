@@ -46,9 +46,13 @@ $(document).ready(function() {
   else if (slug === 'packages') {
     $('#packages-button').addClass('selected');
   }
-  else if (slug === 'appointments') {
-    $('#appointments-button').addClass('selected');
+  else if (slug === 'dealerships') {
+    $('#dealerships-button').addClass('selected');
   }
+
+  // else if (slug === 'appointments') {
+  //   $('#appointments-button').addClass('selected');
+  // }
 
   // Open hamburger menu
   $('#hamburger').click(function() {
@@ -70,10 +74,14 @@ $(document).ready(function() {
       $('#packages-slice').find('p').addClass('slice-icon-text-active');
       $('#packages-slice').find('svg').addClass('slice-icon-svg-active');
     }
-    else if (slug === 'appointments') {
-      $('#appointments-slice').find('p').addClass('slice-icon-text-active');
-      $('#appointments-slice').find('svg').addClass('slice-icon-svg-active');
+    else if (slug === 'dealerships') {
+      $('#dealerships-slice').find('p').addClass('slice-icon-text-active');
+      $('#dealerships-slice').find('svg').addClass('slice-icon-svg-active');
     }
+    // else if (slug === 'appointments') {
+    //   $('#appointments-slice').find('p').addClass('slice-icon-text-active');
+    //   $('#appointments-slice').find('svg').addClass('slice-icon-svg-active');
+    // }
 
     $('.hamburger-divider').stop(true, true).delay(200).animate({opacity: 1}, 500);
     $('.slice-icon').stop(true, true).delay(200).animate({opacity: 1}, 500);

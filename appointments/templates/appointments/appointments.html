@@ -36,7 +36,7 @@
       <div id="form-fields">
         <div id="form-text-fields">
           {% for field in form %}
-            {% if field.name != 'package' and field.name != 'availability' %}
+            {% if field.name != 'package' and field.name != 'availability' and field.name != 'upgraded' %}
               <div class="field-group">
                 {{ field }}
                 <span class="bar"></span>
@@ -44,6 +44,17 @@
                   {{ field.label }}
                 </label>
               </div>
+            {% endif %}
+          {% endfor %}
+
+          {% for field in form %}
+            {% if field.name == 'upgraded' %}
+              {% for package in packages %}
+                <label for="upgrade-{{ package.id }}">
+                  <input id="upgrade-{{ package.id }}" type="checkbox" value="{{ package.id }}" name="upgraded">
+                  {{ package.upgrade_name }} for ${{ package.upgrade_price }}
+                </label>
+              {% endfor %}
             {% endif %}
           {% endfor %}
         </div>
@@ -72,15 +83,15 @@
                     {% for package_id, month_avails in filtered_availabilities.items %}
                       {% if package_id == package.id %}
                         <div class="months">
-                          {% for month, avails in month_avails.items %}
+                          {% for month in month_avails|sorted_keys_list %}
                             <label class="month-label">
                               {{ month|month }}
                               <input type="radio" value="{{ month|month }}" id="{{ month|month }}-input{{ package.id }}" name="months">
                             </label>
                           {% endfor %}
-                          {% for month, avails in month_avails.items %}
+                          {% for month in month_avails|sorted_keys_list %}
                             <div id="{{ month|month }}-dates{{ package.id }}" class="dates">
-                              {% for avail in avails %}
+                              {% for avail in month_avails|get_item:month %}
                                 <label class="date-label" for="package{{ package.id }}-avail{{ avail.id }}">
                                   {{ avail.date|day }} {{ avail.date.day }}
                                   <input id="package{{ package.id }}-avail{{ avail.id }}" type="radio" value="{{ avail.id }}" name="availability" data-date="{{ avail.date|day }}, {{ month|month }} {{ avail.date.day }}">

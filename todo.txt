@@ -17,3 +17,7 @@ SALES STUFF
 - Google business account.
 - Facebook marketplace.
 - Craigslist.
+
+
+ICONS:
+  iconmonstr.com

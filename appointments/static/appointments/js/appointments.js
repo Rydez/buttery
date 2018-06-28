@@ -71,6 +71,15 @@ $(document).ready(function() {
       }
     }
 
+    var packageUpgrades = $('input[name=upgraded]');
+    for (var upgrade of packageUpgrades) {
+      $('label[for='+ upgrade.id +']').hide();
+      $(upgrade).prop('checked', false);
+      if (upgrade.value === package_id) {
+        $('label[for='+ upgrade.id +']').show();
+      }
+    }
+
     $.ajax({
       type: 'POST',
       url: '/availability_check/',

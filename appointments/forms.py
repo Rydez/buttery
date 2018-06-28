@@ -20,6 +20,7 @@ class AppointmentForm(ModelForm):
       'zip_code',
       'special_notes',
       'package',
+      'upgraded',
       'availability',
     ]
     error_messages = {

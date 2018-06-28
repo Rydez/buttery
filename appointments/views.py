@@ -27,6 +27,9 @@ class PackageView(generic.ListView):
 	def get_queryset(self):
 		return Package.objects.all()
 
+class DealershipView(generic.TemplateView):
+  template_name = 'appointments/dealerships.html'
+
 class AppointmentView(generic.CreateView):
   form_class = AppointmentForm
   template_name = 'appointments/appointments.html'
@@ -82,7 +85,6 @@ class AppointmentView(generic.CreateView):
           filtered_availabilities[package.id][avail.date.month].append(avail)
         else:
           filtered_availabilities[package.id][avail.date.month] = [avail]
-    print(filtered_availabilities)
     context['filtered_availabilities'] = filtered_availabilities
     return context
 

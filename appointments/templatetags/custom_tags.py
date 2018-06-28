@@ -25,9 +25,15 @@ def month(value):
   return months[value - 1]
 
 # Return formatted day
-days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 @register.filter
 def day(value):
-  day_of_week = value.today().weekday()
+  day_of_week = value.weekday()
   return days[day_of_week]
+
+@register.filter
+def sorted_keys_list(dictionary):
+  keys = list(dictionary.keys())
+  keys.sort()
+  return keys
