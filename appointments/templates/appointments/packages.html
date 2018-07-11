@@ -28,17 +28,15 @@
   {% for package in packages %}
     <div class="card">
       <h1>
-        {{ package.name }} -
+        {{ package.service_type }} -
         <span class="yellow-text">${{ package.price }}</span>
       </h1>
-      <span class="bold cream-text">
-        <span class="bold yellow-text">{{ package.service_type }}</span>
-        - {{ package.overview }}
-      </span>
+      <span class="bold yellow-text">What is this?</span>
+      <p class="cream-text">{{ package.overview }}</p>
 
+      <span class="bold yellow-text">How is it done?</span>
       <p class="package-description">{{ package.description }}</p>
       {% if package.upgrade_name != '' %}
-        <br>
         <span class="bold yellow-text">
           {{ package.upgrade_name }} for ${{ package.upgrade_price }}
         </span>
